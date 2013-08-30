@@ -8,4 +8,4 @@
 [A4.pdf]: ../book/A4.pdf
 [code.zip]: ../code.zip
 [book.html]: ../book/book.html
-[all.zip]: https://github.com/ccckmit/csharpbook/archive/gh-pages.zip
+[all.zip]: https://github.com/ccckmit/webbook/archive/gh-pages.zip
