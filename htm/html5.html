@@ -1,0 +1,376 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" href="../css/book.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+  <h1><a href="index.htm">電子書：Web 程式設計</a></h1>
+  <table id="bar" border="0" style="border:0;"><tr style="border:0;">
+    <td style="text-align:left;border:0;"> <a href="book.html">目錄</a> | <a href="download.html">下載</a> | <a href="course.html">課程</a> | <a href="forum.html">討論</a> | <a href="exam.html">測驗</a></td>
+    <td style="text-align:right;border:0;"><a href="http://ccckmit.wikidot.com/">陳鍾誠</a> 於 <a href="http://www.nqu.edu.tw/">金門大學</a></td>
+  </tr></table>
+</div>
+<div id="content">
+<div id="TOC">
+<ul>
+<li><a href="#新一代網頁語法----html-5">新一代網頁語法 -- HTML 5</a><ul>
+<li><a href="#html-5-簡介">HTML 5 簡介</a></li>
+<li><a href="#html-4-語法的簡化與修改">HTML 4 語法的簡化與修改</a></li>
+<li><a href="#結構性語意標記">結構性語意標記</a></li>
+<li><a href="#互動性標記">互動性標記</a></li>
+<li><a href="#標記表格資料---datagrid">標記：表格資料 - datagrid</a></li>
+<li><a href="#結語">結語</a></li>
+<li><a href="#參考文獻">參考文獻</a></li>
+</ul></li>
+</ul>
+</div>
+<h1 id="新一代網頁語法----html-5"><a href="#新一代網頁語法----html-5">新一代網頁語法 -- HTML 5</a></h1>
+<h2 id="html-5-簡介"><a href="#html-5-簡介">HTML 5 簡介</a></h2>
+<p>HTML 5 最早是由由 WHATWG 在 2004 年提出，2007年被 W3C 所接納，在2008年1月22日發布第一份正式草案，預計在 2012 年才會推出正式標準。</p>
+<p>即便如此，各家瀏覽器廠商早已展開動作，紛紛將 HTML5 視為重要的戰場，Firefox、Opera、Google Chrome、Apple Safari 等瀏覽器都已經支援了 HTML5 的功能，微軟的 IE 可以說是最慢才宣布要支援 HTML5 的重要瀏覽器，但微軟也已明確宣布要在 IE9 當中全力擁抱 HTML5，這些現象讓 HTML5 可能成為下一代 Web 的最重要技術。</p>
+<p>目前在 Web 上，關於繪圖等功能主要是採用 Adobe 的 Flash 技術所製作的，但是在 iPhone 成功佔領手機市場後，蘋果的老板 Steve Job 卻拒絕讓 Flash 登上 iPhone 平台，並且聲稱 HTML5 比 Flash 好太多了。Steve Jobs 更進一步以契約的方式借助法律規定任何 Flash 技術都不准登上 iPhone 平台，這個動作對 Flash 技術的殺傷力極大，但也讓 HTML5 陣營的氣勢大盛，網路上紛紛盛傳 Flash 即將死亡，HTML5 將取而代之。</p>
+<p>技術體系：</p>
+<p>HTML 5 是新一代的網頁標準，其內涵並非只有 HTML5 一項而已，整個技術體系包含 HTML5、CSS3 與增強過的 JavaScript API 函式庫，這個架構可以用下列公式表示。</p>
+<pre><code>HTML5 = HTML5 + CSS3 + new JavaScript API</code></pre>
+<p>在上述公式中，最重要的角色其實是 new JavaScript API，因為這個新版的函式庫當中包含了 2D 的 Canvas 繪圖、3D 的 WebGL 技術、衛星定位函式庫、網路的 Socket 函式庫、WebSQL 資料庫函數、以及 local Storage 函數可用來永久儲存資料，這些技術讓瀏覽器能力大為增強，幾乎可以成為網路作業系統了。</p>
+<p>目前 HTML5 的標準尚未定案，但是各家瀏覽器廠商已經開始大幅支援 HTML5 標準了，這使得實作可能會比標準領先，因而也會進一步改變 HTML5 的技術內容，形成更完整的網頁呈現體系，筆者相信在這兩年當中，HTML5 仍會有不少的修改與進化，而非是一成不變的。</p>
+<h2 id="html-4-語法的簡化與修改"><a href="#html-4-語法的簡化與修改">HTML 4 語法的簡化與修改</a></h2>
+<h3 id="簡化檔頭"><a href="#簡化檔頭">簡化：檔頭</a></h3>
+<p>簡化前：HTML4</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;
+&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;<span class="dt">&gt;</span></code></pre>
+<p>簡化後：HTML5</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></code></pre>
+<h3 id="簡化javascript-引用"><a href="#簡化javascript-引用">簡化：JavaScript 引用</a></h3>
+<p>簡化前：HTML4</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href=</span><span class="st">&quot;path/to/stylesheet.css&quot;</span><span class="ot"> type=</span><span class="st">&quot;text/css&quot;</span> <span class="kw">/&gt;</span>
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="ot"> src=</span><span class="st">&quot;path/to/script.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></code></pre>
+<p>簡化後：HTML5</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href=</span><span class="st">&quot;path/to/stylesheet.css&quot;</span> <span class="kw">/&gt;</span>
+<span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;path/to/script.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></code></pre>
+<h3 id="修改small-標記的意義"><a href="#修改small-標記的意義">修改：Small 標記的意義</a></h3>
+<p>Small 標記原來代表副標題，現在用來代表小字或邊註。</p>
+<h3 id="修改屬性可以不加引號"><a href="#修改屬性可以不加引號">修改：屬性可以不加引號</a></h3>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;p</span><span class="ot"> class=</span><span class="st">myClass</span><span class="ot"> id=</span><span class="st">someId</span><span class="kw">&gt;</span> Start the reactor.</code></pre>
+<h3 id="新增email-型態的輸入欄位"><a href="#新增email-型態的輸入欄位">新增：email 型態的輸入欄位</a></h3>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> id=</span><span class="st">&quot;email&quot;</span><span class="ot"> name=</span><span class="st">&quot;email&quot;</span><span class="ot"> type=</span><span class="st">&quot;email&quot;</span> <span class="kw">/&gt;</span></code></pre>
+<h3 id="新增placeholder"><a href="#新增placeholder">新增：Placeholder</a></h3>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> name=</span><span class="st">&quot;email&quot;</span><span class="ot"> type=</span><span class="st">&quot;email&quot;</span><span class="ot"> placeholder=</span><span class="st">&quot;doug@givethesepeopleair.com&quot;</span> <span class="kw">/&gt;</span></code></pre>
+<h3 id="新增required-屬性"><a href="#新增required-屬性">新增：Required 屬性</a></h3>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> name=</span><span class="st">&quot;someInput&quot;</span><span class="ot"> required</span><span class="kw">&gt;</span></code></pre>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> name=</span><span class="st">&quot;someInput&quot;</span><span class="ot"> required=</span><span class="st">&quot;required&quot;</span><span class="kw">&gt;</span></code></pre>
+<h3 id="新增autofocus"><a href="#新增autofocus">新增：Autofocus</a></h3>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> name=</span><span class="st">&quot;someInput&quot;</span><span class="ot"> placeholder=</span><span class="st">&quot;Douglas Quaid&quot;</span><span class="ot"> required autofocus</span><span class="kw">&gt;</span></code></pre>
+<h3 id="新增正則表達式"><a href="#新增正則表達式">新增：正則表達式</a></h3>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;form</span><span class="ot"> action=</span><span class="st">&quot;&quot;</span><span class="ot"> method=</span><span class="st">&quot;post&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;username&quot;</span><span class="kw">&gt;</span>Create a Username: <span class="kw">&lt;/label&gt;</span>
+<span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> name=</span><span class="st">&quot;username&quot;</span><span class="ot"> id=</span><span class="st">&quot;username&quot;</span><span class="ot"> placeholder=</span><span class="st">&quot;4 </span><span class="er">&lt;</span><span class="st">&gt; 10&quot;</span>
+<span class="ot">pattern=</span><span class="st">&quot;[A-Za-z]{4,10}&quot;</span><span class="ot"> autofocus required</span><span class="kw">&gt;</span>
+<span class="kw">&lt;button</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="kw">&gt;</span>Go <span class="kw">&lt;/button&gt;</span>
+<span class="kw">&lt;/form&gt;</span></code></pre>
+<h3 id="新增mark"><a href="#新增mark">新增：Mark</a></h3>
+<p>Mark 用來標註那些需要凸顯的字詞，像是以下的 &quot;Open Your Mind&quot;</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;h3&gt;</span> Search Results <span class="kw">&lt;/h3&gt;</span>
+<span class="kw">&lt;p&gt;</span> They were interrupted, just after Quato said, <span class="kw">&lt;mark&gt;</span>&quot;Open your Mind&quot;<span class="kw">&lt;/mark&gt;</span>. <span class="kw">&lt;/p&gt;</span></code></pre>
+<h2 id="結構性語意標記"><a href="#結構性語意標記">結構性語意標記</a></h2>
+<p>HTML4 ：目前的部落格描述方式 問題：有太多的 div 標記，很難用程式解析其語意關係。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+  <span class="kw">&lt;head&gt;</span>
+    <span class="kw">&lt;title&gt;</span>Mokka mit Schlag <span class="kw">&lt;/title&gt;</span>
+ <span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+<span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;page&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;header&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;h1&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;http://www.elharo.com/blog&quot;</span><span class="kw">&gt;</span>Mokka mit Schlag<span class="kw">&lt;/a&gt;&lt;/h1&gt;</span>
+  <span class="kw">&lt;/div&gt;</span>
+  <span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;container&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;center&quot;</span><span class="ot"> class=</span><span class="st">&quot;column&quot;</span><span class="kw">&gt;</span>               
+      <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;post&quot;</span><span class="ot"> id=</span><span class="st">&quot;post-1000572&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;h2&gt;&lt;a</span><span class="ot"> href=</span>
+      <span class="st">&quot;/blog/birding/2007/04/23/spring-comes-and-goes-in-sussex-county/&quot;</span><span class="kw">&gt;</span>
+      Spring Comes (and Goes) in Sussex County<span class="kw">&lt;/a&gt;&lt;/h2&gt;</span>
+        
+        <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;entry&quot;</span><span class="kw">&gt;</span>
+          <span class="kw">&lt;p&gt;</span>Yesterday I joined the Brooklyn Bird Club for our
+          annual trip to Western New Jersey, specifically Hyper
+          Humus, a relatively recently discovered hot spot. It
+          started out as a nice winter morning when we arrived
+          at the site at 7:30 A.M., progressed to Spring around
+          10:00 A.M., and reached early summer by 10:15. <span class="kw">&lt;/p&gt;</span>
+        <span class="kw">&lt;/div&gt;</span>
+      <span class="kw">&lt;/div&gt;</span>
+
+
+      <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;post&quot;</span><span class="ot"> id=</span><span class="st">&quot;post-1000571&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;h2&gt;&lt;a</span><span class="ot"> href=</span>
+          <span class="st">&quot;/blog/birding/2007/04/23/but-does-it-count-for-your-life-list/&quot;</span><span class="kw">&gt;</span>
+           But does it count for your life list?<span class="kw">&lt;/a&gt;&lt;/h2&gt;</span>
+        
+        <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;entry&quot;</span><span class="kw">&gt;</span>
+          <span class="kw">&lt;p&gt;</span>Seems you can now go <span class="kw">&lt;a</span>
+<span class="ot">          href=</span><span class="st">&quot;http://www.wired.com/science/discoveries/news/</span>
+<span class="st">          2007/04/cone_sf&quot;</span><span class="kw">&gt;</span>bird watching via the Internet<span class="kw">&lt;/a&gt;</span>. I
+          haven&#39;t been able to test it out yet (20 user
+          limit apparently) but this is certainly cool.
+          Personally, I can&#39;t imagine it replacing
+          actually being out in the field by any small amount.
+          On the other hand, I&#39;ve always found it quite
+          sad to meet senior birders who are no longer able to
+          hold binoculars steady or get to the park. I can
+          imagine this might be of some interest to them. At
+          least one elderly birder did a big year on TV, after
+          he could no longer get out so much. This certainly
+          tops that.<span class="kw">&lt;/p&gt;</span>
+        <span class="kw">&lt;/div&gt;</span>
+      <span class="kw">&lt;/div&gt;</span>
+
+      <span class="kw">&lt;/div&gt;</span>
+    
+    <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;navigation&quot;</span><span class="kw">&gt;</span>
+      <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;alignleft&quot;</span><span class="kw">&gt;</span>
+         <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;/blog/page/2/&quot;</span><span class="kw">&gt;</span><span class="dv">&amp;laquo;</span> Previous Entries<span class="kw">&lt;/a&gt;</span>
+       <span class="kw">&lt;/div&gt;</span>
+      <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;alignright&quot;</span><span class="kw">&gt;&lt;/div&gt;</span>
+    <span class="kw">&lt;/div&gt;</span>
+  <span class="kw">&lt;/div&gt;</span>
+
+  <span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;right&quot;</span><span class="ot"> class=</span><span class="st">&quot;column&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">&quot;sidebar&quot;</span><span class="kw">&gt;</span>
+      <span class="kw">&lt;li&gt;&lt;h2&gt;</span>Info<span class="kw">&lt;/h2&gt;</span>
+      <span class="kw">&lt;ul&gt;</span>
+        <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;/blog/comment-policy/&quot;</span><span class="kw">&gt;</span>Comment Policy<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;/blog/todo-list/&quot;</span><span class="kw">&gt;</span>Todo List<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+      <span class="kw">&lt;/ul&gt;&lt;/li&gt;</span>
+      <span class="kw">&lt;li&gt;&lt;h2&gt;</span>Archives<span class="kw">&lt;/h2&gt;</span>
+        <span class="kw">&lt;ul&gt;</span>
+          <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&#39;/blog/2007/04/&#39;</span><span class="kw">&gt;</span>April 2007<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+          <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&#39;/blog/2007/03/&#39;</span><span class="kw">&gt;</span>March 2007<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+          <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&#39;/blog/2007/02/&#39;</span><span class="kw">&gt;</span>February 2007<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+          <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&#39;/blog/2007/01/&#39;</span><span class="kw">&gt;</span>January 2007<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="kw">&lt;/ul&gt;</span>
+      <span class="kw">&lt;/li&gt;</span>
+    <span class="kw">&lt;/ul&gt;</span>
+  <span class="kw">&lt;/div&gt;</span>
+  <span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;footer&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;p&gt;</span>Copyright 2007 Elliotte Rusty Harold<span class="kw">&lt;/p&gt;</span>
+  <span class="kw">&lt;/div&gt;</span>
+<span class="kw">&lt;/div&gt;</span>
+  
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>HTML5 ：新的部落格描述方式 解決：改用 section, article 的方式，以釐清哪些是文章，哪些是段落。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+ <span class="kw">&lt;head&gt;</span>
+    <span class="kw">&lt;title&gt;</span>Mokka mit Schlag <span class="kw">&lt;/title&gt;</span>
+ <span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+  <span class="kw">&lt;header&gt;</span>
+    <span class="kw">&lt;h1&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;http://www.elharo.com/blog&quot;</span><span class="kw">&gt;</span>Mokka mit Schlag<span class="kw">&lt;/a&gt;&lt;/h1&gt;</span>
+  <span class="kw">&lt;/header&gt;</span>
+  <span class="kw">&lt;section&gt;</span>               
+      <span class="kw">&lt;article&gt;</span>
+        <span class="kw">&lt;h2&gt;&lt;a</span><span class="ot"> href=</span>
+        <span class="st">&quot;/blog/birding/2007/04/23/spring-comes-and-goes-in-sussex-county/&quot;</span><span class="kw">&gt;</span>
+         Spring Comes (and Goes) in Sussex County<span class="kw">&lt;/a&gt;&lt;/h2&gt;</span>
+        
+        <span class="kw">&lt;p&gt;</span>Yesterday I joined the Brooklyn Bird Club for our
+        annual trip to Western New Jersey, specifically Hyper
+        Humus, a relatively recently discovered hot spot. It
+        started out as a nice winter morning when we arrived at
+        the site at 7:30 A.M., progressed to Spring around 10:00
+        A.M., and reached early summer by 10:15. <span class="kw">&lt;/p&gt;</span>
+      <span class="kw">&lt;/article&gt;</span>
+
+
+      <span class="kw">&lt;article&gt;</span>
+        <span class="kw">&lt;h2&gt;&lt;a</span><span class="ot"> href=</span>
+          <span class="st">&quot;/blog/birding/2007/04/23/but-does-it-count-for-your-life-list/&quot;</span><span class="kw">&gt;</span>
+          But does it count for your life list?<span class="kw">&lt;/a&gt;&lt;/h2&gt;</span>
+        
+          <span class="kw">&lt;p&gt;</span>Seems you can now go <span class="kw">&lt;a</span>
+<span class="ot">          href=</span><span class="st">&quot;http://www.wired.com/science/discoveries/news/</span>
+<span class="st">          2007/04/cone_sf&quot;</span><span class="kw">&gt;</span>bird watching via the Internet<span class="kw">&lt;/a&gt;</span>. I
+          haven&#39;t been able to test it out yet (20 user
+          limit apparently) but this is certainly cool.
+          Personally, I can&#39;t imagine it replacing
+          actually being out in the field by any small amount.
+          On the other hand, I&#39;ve always found it quite
+          sad to meet senior birders who are no longer able to
+          hold binoculars steady or get to the park. I can
+          imagine this might be of some interest to them. At
+          least one elderly birder did a big year on TV, after
+          he could no longer get out so much. This certainly
+          tops that.<span class="kw">&lt;/p&gt;</span>
+      <span class="kw">&lt;/article&gt;</span>    
+    <span class="kw">&lt;nav&gt;</span>
+      <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;/blog/page/2/&quot;</span><span class="kw">&gt;</span><span class="dv">&amp;laquo;</span> Previous Entries<span class="kw">&lt;/a&gt;</span>
+    <span class="kw">&lt;/nav&gt;</span>
+  <span class="kw">&lt;/section&gt;</span>
+
+  <span class="kw">&lt;nav&gt;</span>
+    <span class="kw">&lt;ul&gt;</span>
+      <span class="kw">&lt;li&gt;&lt;h2&gt;</span>Info<span class="kw">&lt;/h2&gt;</span>
+      <span class="kw">&lt;ul&gt;</span>
+        <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;/blog/comment-policy/&quot;</span><span class="kw">&gt;</span>Comment Policy<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;/blog/todo-list/&quot;</span><span class="kw">&gt;</span>Todo List<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+      <span class="kw">&lt;/ul&gt;&lt;/li&gt;</span>
+      <span class="kw">&lt;li&gt;&lt;h2&gt;</span>Archives<span class="kw">&lt;/h2&gt;</span>
+        <span class="kw">&lt;ul&gt;</span>
+          <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&#39;/blog/2007/04/&#39;</span><span class="kw">&gt;</span>April 2007<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+          <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&#39;/blog/2007/03/&#39;</span><span class="kw">&gt;</span>March 2007<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+          <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&#39;/blog/2007/02/&#39;</span><span class="kw">&gt;</span>February 2007<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+          <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&#39;/blog/2007/01/&#39;</span><span class="kw">&gt;</span>January 2007<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="kw">&lt;/ul&gt;</span>
+      <span class="kw">&lt;/li&gt;</span>
+    <span class="kw">&lt;/ul&gt;</span>
+  <span class="kw">&lt;/nav&gt;</span>
+  <span class="kw">&lt;footer&gt;</span>
+    <span class="kw">&lt;p&gt;</span>Copyright 2007 Elliotte Rusty Harold<span class="kw">&lt;/p&gt;</span>
+  <span class="kw">&lt;/footer&gt;</span>
+  
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>檢視範例：<a href="http://dl.dropbox.com/u/6387819/html5/Semantics/TagStructure.htm">http://dl.dropbox.com/u/6387819/html5/Semantics/TagStructure.htm</a></p>
+<h2 id="互動性標記"><a href="#互動性標記">互動性標記</a></h2>
+<p>標記：更詳細資訊 - details</p>
+<p>預設不會顯示的進一步資訊</p>
+<pre class="sourceCode html"><code class="sourceCode html">The bill of a Craveri&#39;s Murrelet is about 10% thinner than
+the bill of a Xantus&#39;s Murrelet.
+<span class="kw">&lt;details&gt;</span>
+<span class="kw">&lt;legend&gt;</span>[Sibley, 2000]<span class="kw">&lt;/legend&gt;</span>
+<span class="kw">&lt;p&gt;</span>Sibley, David Allen, The Sibley Guide to Birds, (New York:
+Chanticleer Press, 2000) p. 247 <span class="kw">&lt;/p&gt;</span>
+<span class="kw">&lt;/details&gt;</span></code></pre>
+<h2 id="標記表格資料---datagrid"><a href="#標記表格資料---datagrid">標記：表格資料 - datagrid</a></h2>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;datagrid&gt;</span>
+  <span class="kw">&lt;table&gt;</span>
+    <span class="kw">&lt;tr&gt;&lt;td&gt;</span>Jones<span class="kw">&lt;/td&gt;&lt;td&gt;</span>Allison<span class="kw">&lt;/td&gt;&lt;td&gt;</span>A-<span class="kw">&lt;/td&gt;&lt;td&gt;</span>B+<span class="kw">&lt;/td&gt;&lt;td&gt;</span>A<span class="kw">&lt;/td&gt;&lt;/tr&gt;</span>
+    <span class="kw">&lt;tr&gt;&lt;td&gt;</span>Smith<span class="kw">&lt;/td&gt;&lt;td&gt;</span>Johnny<span class="kw">&lt;/td&gt;&lt;td&gt;</span>A<span class="kw">&lt;/td&gt;&lt;td&gt;</span>C+<span class="kw">&lt;/td&gt;&lt;td&gt;</span>A<span class="kw">&lt;/td&gt;&lt;/tr&gt;</span>
+    <span class="kw">&lt;tr&gt;&lt;td&gt;</span>Willis<span class="kw">&lt;/td&gt;&lt;td&gt;</span>Sydney<span class="kw">&lt;/td&gt;&lt;td&gt;</span>C-<span class="kw">&lt;/td&gt;&lt;td&gt;</span>D<span class="kw">&lt;/td&gt;&lt;td&gt;</span>F<span class="kw">&lt;/td&gt;&lt;/tr&gt;</span>
+    <span class="kw">&lt;tr&gt;&lt;td&gt;</span>Wilson<span class="kw">&lt;/td&gt;&lt;td&gt;</span>Frank<span class="kw">&lt;/td&gt;&lt;td&gt;</span>B-<span class="kw">&lt;/td&gt;&lt;td&gt;</span>B+<span class="kw">&lt;/td&gt;&lt;td&gt;</span>A<span class="kw">&lt;/td&gt;&lt;/tr&gt;</span>
+  <span class="kw">&lt;/table&gt;</span>
+<span class="kw">&lt;/datagrid&gt;</span></code></pre>
+<pre><code>interface HTMLDataGridElement : HTMLElement {
+           attribute DataGridDataProvider data;
+  readonly attribute DataGridSelection selection;
+           attribute boolean multiple;
+           attribute boolean disabled;
+  void updateEverything();
+  void updateRowsChanged(in RowSpecification row, in unsigned long count);
+  void updateRowsInserted(in RowSpecification row, in unsigned long count);
+  void updateRowsRemoved(in RowSpecification row, in unsigned long count);
+  void updateRowChanged(in RowSpecification row);
+  void updateColumnChanged(in unsigned long column);
+  void updateCellChanged(in RowSpecification row, in unsigned long column);
+};</code></pre>
+<pre><code>interface DataGridDataProvider {
+  void initialize(in HTMLDataGridElement datagrid);
+  unsigned long getRowCount(in RowSpecification row);
+  unsigned long getChildAtPosition(in RowSpecification parentRow,
+      in unsigned long position);
+  unsigned long getColumnCount();
+  DOMString getCaptionText(in unsigned long column);
+  void getCaptionClasses(in unsigned long column, in DOMTokenList classes);
+  DOMString getRowImage(in RowSpecification row);
+  HTMLMenuElement getRowMenu(in RowSpecification row);
+  void getRowClasses(in RowSpecification row, in DOMTokenList classes);
+  DOMString getCellData(in RowSpecification row, in unsigned long column);
+  void getCellClasses(in RowSpecification row, in unsigned long column,
+      in DOMTokenList classes);
+  void toggleColumnSortState(in unsigned long column);
+  void setCellCheckedState(in RowSpecification row, in unsigned long column,
+      in long state);
+  void cycleCell(in RowSpecification row, in unsigned long column);
+  void editCell(in RowSpecification row, in unsigned long column, in DOMString data);
+};</code></pre>
+<ul>
+<li>標記：功能選單 - menu 與 command</li>
+</ul>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;menu&gt;</span>
+    <span class="kw">&lt;command</span><span class="ot"> onclick=</span><span class="st">&quot;alert(&#39;first command&#39;)&quot;</span><span class="ot">  label=</span><span class="st">&quot;Do 1st Command&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;command</span><span class="ot"> onclick=</span><span class="st">&quot;alert(&#39;second command&#39;)&quot;</span><span class="ot"> label=</span><span class="st">&quot;Do 2nd Command&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;command</span><span class="ot"> onclick=</span><span class="st">&quot;alert(&#39;third command&#39;)&quot;</span><span class="ot">  label=</span><span class="st">&quot;Do 3rd Command&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/menu&gt;</span></code></pre>
+<pre><code>&lt;menu type=&quot;toolbar&quot;&gt;
+    &lt;command onclick=&quot;insertTag(buttons, 0);&quot;  label=&quot;strong&quot; icon=&quot;bold.gif&quot;/&gt;
+    &lt;command onclick=&quot;insertTag(buttons, 1);&quot;  label=&quot;em&quot; icon=&quot;italic.gif&quot;/&gt;
+    &lt;command onclick=&quot;insertLink(buttons, 2);&quot; label=&quot;link&quot; icon=&quot;link.gif&quot;/&gt;
+    &lt;command onclick=&quot;insertTag(buttons, 3);&quot;  label=&quot;b-quote&quot; icon=&quot;blockquote.gif&quot;/&gt;
+    &lt;command onclick=&quot;insertTag(buttons, 4);&quot;  label=&quot;del&quot; icon=&quot;del.gif&quot;/&gt;
+    &lt;command onclick=&quot;insertTag(buttons, 5);&quot;  label=&quot;ins&quot; icon=&quot;insert.gif&quot;/&gt;
+    &lt;command onclick=&quot;insertImage(buttons);&quot;   label=&quot;img&quot; icon=&quot;image.gif&quot;/&gt;
+    &lt;command onclick=&quot;insertTag(buttons, 7);&quot;  label=&quot;ul&quot; icon=&quot;bullet.gif&quot;/&gt;
+    &lt;command onclick=&quot;insertTag(buttons, 8);&quot;  label=&quot;ol&quot; icon=&quot;number.gif&quot;/&gt;
+    &lt;command onclick=&quot;insertTag(buttons, 9);&quot;  label=&quot;li&quot; icon=&quot;item.gif&quot;/&gt;
+    &lt;command onclick=&quot;insertTag(buttons, 10);&quot; label=&quot;code&quot; icon=&quot;code.gif&quot;/&gt;
+    &lt;command onclick=&quot;insertTag(buttons, 11);&quot; label=&quot;cite&quot; icon=&quot;cite.gif&quot;/&gt;
+    &lt;command onclick=&quot;insertTag(buttons, 12);&quot; label=&quot;abbr&quot; icon=&quot;abbr.gif&quot;/&gt;
+    &lt;command onclick=&quot;insertTag(buttons, 13);&quot; label=&quot;acronym&quot; icon=&quot;acronym.gif&quot;/&gt;
+&lt;/menu&gt;</code></pre>
+<pre><code>&lt;menu type=&quot;popup&quot; label=&quot;Edit&quot;&gt;
+    &lt;command onclick=&quot;undo()&quot;   label=&quot;Undo&quot;/&gt;
+    &lt;command onclick=&quot;redo()&quot;   label=&quot;Redo&quot;/&gt;
+    &lt;command onclick=&quot;cut()&quot;    label=&quot;Cut&quot;/&gt;
+    &lt;command onclick=&quot;copy()&quot;   label=&quot;Copy&quot;/&gt;
+    &lt;command onclick=&quot;paste()&quot;  label=&quot;Paste&quot;/&gt;
+    &lt;command onclick=&quot;delete()&quot; label=&quot;Clear&quot;/&gt;
+&lt;/menu&gt;</code></pre>
+<p>檢視結果：<a href="http://dl.dropbox.com/u/6387819/html5/menu.htm">http://dl.dropbox.com/u/6387819/html5/menu.htm</a></p>
+<h2 id="結語"><a href="#結語">結語</a></h2>
+<p>假如 HTML5 真的大為流行，那麼就會形成一個跨平台的程式開發環境，這個平台將會跨越電腦、筆電、平板電腦、手機、PDA 等裝置。因此，您只要開發一個 HTML5 的網站，就可以讓所有上網裝置都可以使用您所開發的功能，這對程式設計師而言無疑有極大的魅力。</p>
+<p>由於 HTML5 已經讓瀏覽器具有網路作業系統的潛能，因此您的網站其實就是一個應用程式，而這個應用程式可以做 2D、3D 繪圖、衛星定位、存取資料庫等工作，您可以輕易的寫出多人網路線上 GPS 遊戲，以及大部分您在桌上型電腦所能寫出的應用程式，這實在是相當令人期待的一件事啊！</p>
+<h2 id="參考文獻"><a href="#參考文獻">參考文獻</a></h2>
+<ul>
+<li>The HTML5 test - How well does your browser support HTML5? -- <a href="http://html5test.com/">http://html5test.com/</a></li>
+<li>apple html5 (Apple 的 HTML5 推廣網站) -- <a href="http://www.apple.com/html5/">http://www.apple.com/html5/</a></li>
+<li>HTML5rocks -- <a href="http://www.html5rocks.com/">http://www.html5rocks.com/</a>
+<ul>
+<li>HTML5 教學投影片 -- <a href="http://slides.html5rocks.com/#slide1">http://slides.html5rocks.com/#slide1</a></li>
+<li>Google Html5rocks Playground -- <a href="http://playground.html5rocks.com/">http://playground.html5rocks.com/</a></li>
+<li>HTML5rocks Tutorial -- <a href="http://www.html5rocks.com/tutorials/">http://www.html5rocks.com/tutorials/</a></li>
+</ul></li>
+<li>HTML 5的5個相關網站 -- <a href="http://www.inside.com.tw/04/08/5sites-about-html5">http://www.inside.com.tw/04/08/5sites-about-html5</a>
+<ul>
+<li>&lt;http://html5demos.com/ HTML 5 Demos and Examples]</li>
+<li>&lt;http://canvaspaint.org/ Canvas Paint]</li>
+<li>&lt;http://html5gallery.com/ HTML5 Gallery]</li>
+<li>&lt;http://html5tutorial.net/ HTML5 Tutorial]</li>
+<li>&lt;http://www.youtube.com/html5 YouTube]</li>
+</ul></li>
+<li>RipCode 會是Flash在蘋果世界的救星嗎？ -- <a href="http://mag.udn.com/mag/digital/storypage.jsp?f_MAIN_ID=322&amp;f_SUB_ID=2920&amp;f_ART_ID=244207">http://mag.udn.com/mag/digital/storypage.jsp?f_MAIN_ID=322&amp;f_SUB_ID=2920&amp;f_ART_ID=244207</a></li>
+<li>HTML 5 預覽 -- <a href="http://www.mox.tw/forum/viewthread.php?tid=499">http://www.mox.tw/forum/viewthread.php?tid=499</a></li>
+<li>Google I/O大會第一天：HTML5應用大放異彩 -- <a href="http://mag.udn.com/mag/digital/storypage.jsp?f_MAIN_ID=320&amp;f_SUB_ID=2943&amp;f_ART_ID=249031">http://mag.udn.com/mag/digital/storypage.jsp?f_MAIN_ID=320&amp;f_SUB_ID=2943&amp;f_ART_ID=249031</a></li>
+<li>Google I/O 2010 - Keynote Day 1 - Full Length -- <a href="http://www.youtube.com/watch?v=a46hJYtsP-8&amp;feature=channel">http://www.youtube.com/watch?v=a46hJYtsP-8&amp;feature=channel</a></li>
+<li><a href="http://zh.wikipedia.org/zh/HTML_5">http://zh.wikipedia.org/zh/HTML_5</a></li>
+</ul>
+</div>
+<div id="footer">
+<a href="http://ccckmit.wikidot.com">陳鍾誠</a>衍生自<a href="http://zh.wikipedia.org/">維基百科</a>之作品：採用 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/ ">創作共用：姓名標示、相同方式分享</a> <a href="license.html">授權</a>
+</div>
+</body>
+</html>

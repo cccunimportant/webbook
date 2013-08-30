@@ -1,0 +1,351 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" href="../css/book.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+  <h1><a href="index.htm">電子書：Web 程式設計</a></h1>
+  <table id="bar" border="0" style="border:0;"><tr style="border:0;">
+    <td style="text-align:left;border:0;"> <a href="book.html">目錄</a> | <a href="download.html">下載</a> | <a href="course.html">課程</a> | <a href="forum.html">討論</a> | <a href="exam.html">測驗</a></td>
+    <td style="text-align:right;border:0;"><a href="http://ccckmit.wikidot.com/">陳鍾誠</a> 於 <a href="http://www.nqu.edu.tw/">金門大學</a></td>
+  </tr></table>
+</div>
+<div id="content">
+<div id="TOC">
+<ul>
+<li><a href="#node.js----表單資料的處理">Node.js -- 表單資料的處理</a><ul>
+<li><a href="#web-的表單資料">Web 的表單資料</a></li>
+<li><a href="#get-的處理">GET 的處理</a></li>
+<li><a href="#post-的處理">POST 的處理</a></li>
+<li><a href="#網路記事本">網路記事本</a></li>
+</ul></li>
+</ul>
+</div>
+<h1 id="node.js----表單資料的處理"><a href="#node.js----表單資料的處理">Node.js -- 表單資料的處理</a></h1>
+<h2 id="web-的表單資料"><a href="#web-的表單資料">Web 的表單資料</a></h2>
+<p>在「HTML 網頁設計」這個章節裏，我們曾經介紹過 form 這個標記的用法，以及包含於其中的一群表單標記，讓我們再次複習一下這個主題。</p>
+<p>在 HTML 當中，表單 (Form) 是指可以讓使用者進行輸入的元件，其語法是用 <code>&lt;form&gt; ...&lt;/form&gt;</code> 夾住一堆的輸入元件，這些輸入元件包含 input (輸入)、 textarea (文字區)、 select (選項) 等，其中的 input 還可以根據其 type 欄位顯示成 checkbox, color, date, datetime, datetime-local, email, file, hidden, image, month, number, password, radio, range, reset, search, submit, tel, text, time, url, week 等各種不同的輸入欄形式，以下是一個表單的範例。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;form</span><span class="ot"> action=</span><span class="st">&quot;signup&quot;</span><span class="ot"> method=</span><span class="st">&quot;post&quot;</span><span class="kw">&gt;</span>
+帳號: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> name=</span><span class="st">&quot;user&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+密碼: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;password&quot;</span><span class="ot"> name=</span><span class="st">&quot;password&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+信箱: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;email&quot;</span><span class="ot"> name=</span><span class="st">&quot;email&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+生日: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;date&quot;</span><span class="ot"> name=</span><span class="st">&quot;birthday&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+照片: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;file&quot;</span><span class="ot"> name=</span><span class="st">&quot;picture&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+性別: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;radio&quot;</span><span class="ot"> name=</span><span class="st">&quot;sex&quot;</span><span class="ot"> value=</span><span class="st">&quot;male&quot;</span><span class="ot"> checked</span><span class="kw">/&gt;</span> 男
+      <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;radio&quot;</span><span class="ot"> name=</span><span class="st">&quot;sex&quot;</span><span class="ot"> value=</span><span class="st">&quot;female&quot;</span><span class="kw">/&gt;</span> 女<span class="kw">&lt;br/&gt;</span>
+血型: <span class="kw">&lt;select</span><span class="ot"> name=</span><span class="st">&quot;BloodType&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;option</span><span class="ot"> value=</span><span class="st">&quot;A&quot;</span><span class="kw">&gt;</span>A 型<span class="kw">&lt;/option&gt;</span>
+        <span class="kw">&lt;option</span><span class="ot"> value=</span><span class="st">&quot;B&quot;</span><span class="kw">&gt;</span>B 型<span class="kw">&lt;/option&gt;</span>
+        <span class="kw">&lt;option</span><span class="ot"> value=</span><span class="st">&quot;AB&quot;</span><span class="kw">&gt;</span>AB 型<span class="kw">&lt;/option&gt;</span>
+        <span class="kw">&lt;option</span><span class="ot"> value=</span><span class="st">&quot;O&quot;</span><span class="kw">&gt;</span>O 型<span class="kw">&lt;/option&gt;</span>
+      <span class="kw">&lt;/select&gt;</span> <span class="kw">&lt;br/&gt;</span>
+自我介紹： <span class="kw">&lt;br/&gt;</span>
+<span class="kw">&lt;textarea</span><span class="ot"> name=</span><span class="st">&quot;AboutMe&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;/textarea&gt;</span> <span class="kw">&lt;br/&gt;</span>
+
+<span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="ot"> value=</span><span class="st">&quot;送出&quot;</span><span class="kw">/&gt;&lt;input</span><span class="ot"> type=</span><span class="st">&quot;reset&quot;</span><span class="ot"> value=</span><span class="st">&quot;清除&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+<span class="kw">&lt;/form&gt;</span></code></pre>
+<p>檢視檔案：<a href="https://dl.dropbox.com/u/101584453/wp/code/form.htm">https://dl.dropbox.com/u/101584453/wp/code/form.htm</a></p>
+<div class="figure">
+<img src="../img/form.jpg" alt="表單的顯示結果" /><p class="caption">表單的顯示結果</p>
+</div>
+<p>在上述的範例中，當 submit 類型的送出鈕被按下後，瀏覽器會將這些填寫的資訊，以先前所說的 GET/POST 方式，發送給伺服器，如果 method 欄位是 GET，那麼會採用在 HTTP 表頭網址處傳送 singup?user=xxx&amp;password=xxx .....這樣的形式送出，這種方式會將密碼顯示在瀏覽器的網址列上，比較容易被看到，若 method 欄位是 POST，則會在 HTTP 表頭尾端加上 user=xxx&amp;password=xxx ... 的資訊，不會在網址列上被看到。當然、如果有人監控網路上訊息的話，還是會看得到這些輸入資訊。</p>
+<p>若要更安全，則必須採用 HTTPS 的 SSL 方式傳遞，這種方式會對訊息加密編碼，就比較不會有輸入訊息外洩的危險。</p>
+<p>node.js 對於 GET/POST 訊息的處理，是以 url 與 querystring 為基礎，然後還有個額外的套件 express 可以進行方便的進階處理，以下我們將介紹這些主題。</p>
+<h2 id="get-的處理"><a href="#get-的處理">GET 的處理</a></h2>
+<p>node.js 在處理 GET 表單訊息時，最基礎的方式是使用 url.parse() 與 querystring.parse() 等兩個函數為基礎的，以下是一個簡單的範例。</p>
+<p>檔案：httpget.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">http = <span class="fu">require</span>(<span class="st">&#39;http&#39;</span>);
+qs = <span class="fu">require</span>(<span class="st">&#39;querystring&#39;</span>);
+url = <span class="fu">require</span>(<span class="st">&#39;url&#39;</span>);
+util = <span class="fu">require</span>(<span class="st">&#39;util&#39;</span>);
+
+format = <span class="kw">function</span>() {
+    <span class="kw">return</span> <span class="ot">util</span>.<span class="ot">format</span>.<span class="fu">apply</span>(<span class="kw">null</span>, arguments);
+};
+
+log = <span class="ot">console</span>.<span class="fu">log</span>;
+ip   = <span class="st">&quot;127.0.0.1&quot;</span>;
+port = <span class="dv">8080</span>;
+
+server = <span class="ot">http</span>.<span class="fu">createServer</span>(<span class="kw">function</span> (req, res) {
+  <span class="kw">var</span> path = <span class="ot">url</span>.<span class="fu">parse</span>(<span class="ot">req</span>.<span class="fu">url</span>),
+      parameter = <span class="ot">qs</span>.<span class="fu">parse</span>(<span class="ot">path</span>.<span class="fu">query</span>);
+
+  <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&#39;Content-Type&#39;</span>: <span class="st">&#39;text/plain&#39;</span>});
+  <span class="ot">res</span>.<span class="fu">write</span>(<span class="fu">format</span>(<span class="st">&quot;path=%j</span><span class="ch">\n</span><span class="st">&quot;</span>, path));
+  <span class="ot">res</span>.<span class="fu">write</span>(<span class="fu">format</span>(<span class="st">&quot;parameter=%j</span><span class="ch">\n</span><span class="st">&quot;</span>, parameter));
+  <span class="ot">res</span>.<span class="fu">end</span>();
+});
+
+<span class="ot">server</span>.<span class="fu">listen</span>(port, ip);
+
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="fu">format</span>(<span class="st">&quot;Server running at http://%s:%d</span><span class="ch">\n</span><span class="st">&quot;</span>, ip, port));</code></pre>
+<p>執行結果：</p>
+<pre><code>D:\Dropbox\Public\wp\code&gt;node httpget
+Server running at http://127.0.0.1:8080
+</code></pre>
+<div class="figure">
+<img src="../img/http_get.jpg" />
+</div>
+<p>由於 GET 的傳送方式是透過網址欄，因此您只要在網址上進行修改，就可以看到上述程式會有不同的執行結果。</p>
+<h2 id="post-的處理"><a href="#post-的處理">POST 的處理</a></h2>
+<p>對於 POST 訊息而言，就無法透過修改網址的方式測試了，要示範如何用 node.js 處理 post 訊息，我們必須先有一個 包含表單的 HTML 網頁，然後在 form 欄位內指定 <code>method=&quot;POST&quot;</code> ，這樣當您填完按下 submit 送出鈕時，網頁中所 填寫的資訊就會附加在 HTTP 表頭的尾部傳送出去。</p>
+<p>檔案：httppost.htm</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+<span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;utf-8&quot;</span> <span class="kw">/&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+  <span class="kw">&lt;body&gt;</span> 
+    <span class="kw">&lt;form</span><span class="ot"> id=</span><span class="st">&quot;signup&quot;</span><span class="ot"> method=</span><span class="st">&quot;POST&quot;</span><span class="ot"> action=</span><span class="st">&quot;http://localhost:8080/post&quot;</span><span class="kw">&gt;</span>
+      <span class="kw">&lt;label&gt;</span>帳號：<span class="kw">&lt;/label&gt;&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> id=</span><span class="st">&quot;user&quot;</span><span class="ot"> name=</span><span class="st">&quot;user&quot;</span><span class="ot"> value=</span><span class="st">&quot;ccc&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+      <span class="kw">&lt;label&gt;</span>密碼：<span class="kw">&lt;/label&gt;&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> id=</span><span class="st">&quot;password&quot;</span><span class="ot"> name=</span><span class="st">&quot;password&quot;</span><span class="ot"> value=</span><span class="st">&quot;1234567&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+      <span class="kw">&lt;label&gt;</span>標題：<span class="kw">&lt;/label&gt;&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> id=</span><span class="st">&quot;title&quot;</span><span class="ot"> name=</span><span class="st">&quot;title&quot;</span><span class="ot"> size=</span><span class="st">&quot;80&quot;</span><span class="ot"> value=</span><span class="st">&quot;當您死後，您在意的是公墓裏的那塊牌子，還是 facebook 上的日誌與照片呢？&quot;</span><span class="kw">/&gt;&lt;br&gt;</span>
+      <span class="kw">&lt;textarea</span><span class="ot"> name=</span><span class="st">&quot;text&quot;</span><span class="ot"> rows=</span><span class="st">30</span><span class="ot"> cols=</span><span class="st">80</span><span class="kw">&gt;</span>
+如果我死了！我不會在意自己被葬在哪裡，公墓裏有沒有一個骨灰罈或牌子！
+
+但是我會在意自己的「照片、錄影、網誌、facebook、YouTube上的影片、電子書、以及我所創辦的程式人雜誌」是否有人接手、整理或出版。
+
+我不希望死後 facebook 上的資訊就被視為靜止戶而刪除，我不希望網誌上的資訊雜亂無章，我不希望數位相機的照片與錄影從此消失，我不希望那些美好的記憶在家人的腦海裡逐漸模糊！
+
+我希望這些資訊可以變成我的日記、著作，有人幫我剪接這些影片，在喪禮上可以回顧我的一生，我希望我的小孩有空時能透過這些資訊瞭解我，甚至是與已經身在天堂的我對話，當他有的生命遇到疑問時，可以從我的人生經驗當中得到啟發，或者些許的指引與安慰！
+
+如果我的老婆小孩經濟困難，我希望可以從我的數位遺產中找到有價值出版的作品，幫助他們度過難關，如果他們的經濟情況不錯，我希望這些價值就捐獻給公益團體。
+
+要完成這些事，就必須要有一個組織，提供「數位遺產管理」的服務。這需要有一些工具可以擷取出這些數位遺產，需要一些人力可以幫組織與整理，並且需要服務人員對家屬提供適當的協助。所以我想，這需要一整個公司，甚至整個供應鏈的配合。
+
+這是一個全新的領域 -- 「數位殯葬業 + 數位遺產管理事業」，當您抱怨網路行業都已經被 Google 、Facebook 、淘寶等公司壟斷的時候，實體的世界當中仍然有很多的創業機會，等著您去開發！
+      <span class="kw">&lt;/textarea&gt;&lt;br/&gt;</span>
+      <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="ot"> value=</span><span class="st">&quot;送出&quot;</span> <span class="kw">/&gt;</span>
+    <span class="kw">&lt;/form&gt;</span>
+  <span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<div class="figure">
+<img src="../img/httppost_htm.jpg" />
+</div>
+<p>接著、我們就可以用請求參數 req 的 <code>on(&quot;data&quot;, ...)</code> 事件與接收資料，然後在 <code>on(&quot;end&quot;, ...)</code> 事件 時完成接收並處理 POST 訊息，如以下程式所示。</p>
+<p>檔案：httppost.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">http = <span class="fu">require</span>(<span class="st">&#39;http&#39;</span>);
+qs = <span class="fu">require</span>(<span class="st">&#39;querystring&#39;</span>);
+url = <span class="fu">require</span>(<span class="st">&#39;url&#39;</span>);
+util = <span class="fu">require</span>(<span class="st">&#39;util&#39;</span>);
+
+format = <span class="kw">function</span>() {
+    <span class="kw">return</span> <span class="ot">util</span>.<span class="ot">format</span>.<span class="fu">apply</span>(<span class="kw">null</span>, arguments);
+};
+
+log = <span class="ot">console</span>.<span class="fu">log</span>;
+ip   = <span class="st">&quot;127.0.0.1&quot;</span>;
+port = <span class="dv">8080</span>;
+
+server = <span class="ot">http</span>.<span class="fu">createServer</span>(<span class="kw">function</span> (req, res) {
+  <span class="kw">var</span> path = <span class="ot">url</span>.<span class="fu">parse</span>(<span class="ot">req</span>.<span class="fu">url</span>, <span class="kw">true</span>),
+      parameter = <span class="ot">qs</span>.<span class="fu">parse</span>(<span class="ot">path</span>.<span class="fu">query</span>);
+
+  <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&#39;Content-Type&#39;</span>: <span class="st">&#39;text/plain&#39;</span>});
+  formData = <span class="st">&#39;&#39;</span>;
+  <span class="ot">req</span>.<span class="fu">on</span>(<span class="st">&quot;data&quot;</span>, <span class="kw">function</span>(data) {
+    <span class="kw">return</span> formData += data;
+  });
+  <span class="ot">req</span>.<span class="fu">on</span>(<span class="st">&quot;end&quot;</span>, <span class="kw">function</span>() {
+    <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&quot;Content-Type&quot;</span>:<span class="st">&quot;text/html; charset=utf-8&quot;</span>});
+    post = <span class="ot">qs</span>.<span class="fu">parse</span>(formData);
+    <span class="fu">log</span>(<span class="fu">format</span>(<span class="st">&quot;post=%j</span><span class="ch">\n</span><span class="st">&quot;</span>, post));
+    user = <span class="ot">post</span>.<span class="fu">user</span>;
+    password = <span class="ot">post</span>.<span class="fu">password</span>;
+    title = <span class="fu">decodeURIComponent</span>(<span class="ot">post</span>.<span class="fu">title</span>);
+    text  = <span class="fu">decodeURIComponent</span>(<span class="ot">post</span>.<span class="fu">text</span>);
+    <span class="ot">res</span>.<span class="fu">write</span>(<span class="st">&quot;user=&quot;</span>+user+<span class="st">&quot;&lt;br/&gt;&quot;</span>);
+    <span class="ot">res</span>.<span class="fu">write</span>(<span class="st">&quot;password=&quot;</span>+password+<span class="st">&quot;&lt;br/&gt;&quot;</span>);
+    <span class="ot">res</span>.<span class="fu">write</span>(<span class="st">&quot;title=&quot;</span>+title+<span class="st">&quot;&lt;br/&gt;&quot;</span>);
+    <span class="ot">res</span>.<span class="fu">write</span>(<span class="st">&quot;text=&quot;</span>+text+<span class="st">&quot;&lt;br/&gt;&quot;</span>);
+    <span class="ot">res</span>.<span class="fu">end</span>();
+  });
+});
+
+<span class="ot">server</span>.<span class="fu">listen</span>(port, ip);
+
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="fu">format</span>(<span class="st">&quot;Server (POST test) running at http://%s:%d</span><span class="ch">\n</span><span class="st">&quot;</span>, ip, port));</code></pre>
+<p>執行結果：</p>
+<pre><code>user=ccc
+password=1234567
+title=當您死後，您在意的是公墓裏的那塊牌子，還是 facebook 上的日誌與照片呢？
+text=如果我死了！我不會在意自己被葬在哪裡，公墓裏有沒有一個骨灰罈或牌子！ 但是我會在意
+...
+...
+等著您去開發！ </code></pre>
+<div class="figure">
+<img src="../img/httppost.jpg" />
+</div>
+<h2 id="網路記事本"><a href="#網路記事本">網路記事本</a></h2>
+<p>接著、讓我們用一個完整的「網路記事本」範例，來說明 node.js 的表單處理過程，在這個範例中， 我們用了 express 這個套件，以便能更方便的處理網址所對應的不同功能，在執行程式前，請先用 下列指令安裝 express 套件。</p>
+<pre><code>$ npm install express -g</code></pre>
+<p>整個網路記事本的專案，您可以從下列網址下載：</p>
+<p>網路記事本 (下載點)：<a href="https://dl.dropboxusercontent.com/u/101584453/wp/code/noteserver1.zip">noteserver1.zip</a></p>
+<p>以下是該程式的執行過程：</p>
+<pre><code>D:\Dropbox\Public\wp\code\noteserver1&gt;node NoteServer.js
+start NoteServer
+
+
+note ifidie.txt
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot; /&gt;
+&lt;/head&gt;
+....
+</code></pre>
+<p>以下是該程式的一些執行畫面，當您在網址上輸入以下內容時，您將可以編輯 ifidie.txt 這個檔案。</p>
+<pre><code>http://127.0.0.1/note/ifidie.txt</code></pre>
+<div class="figure">
+<img src="../img/Note_Edit1.jpg" alt="編輯已存在的檔案 ifidie.txt" /><p class="caption">編輯已存在的檔案 ifidie.txt</p>
+</div>
+<p>編輯完後送出，您可以看到下列儲存訊息，此時如果您在點選 ifidie.txt 這個超連結，就能回到編輯畫面，繼續編輯其內容。</p>
+<div class="figure">
+<img src="../img/Note_Edit1.jpg" alt="編輯完後的儲存訊息 ifidie.txt" /><p class="caption">編輯完後的儲存訊息 ifidie.txt</p>
+</div>
+<p>假如您輸入一個原本不存在的檔案名稱時，那麼內容就會顯示「檔案不存在，您可修改本文後存檔！」，然後您同樣可以編輯後 按下「送出」鍵儲存，此時上述程式將會建立一個新的 <code>abc.txt</code> 檔案，其內容即為您所輸入的內容。</p>
+<div class="figure">
+<img src="../img/Note_Edit_new.jpg" alt="編輯不存在的檔案 abc.txt" /><p class="caption">編輯不存在的檔案 abc.txt</p>
+</div>
+<p>上述網路記事本的完整程式碼如下所示：</p>
+<p>檔案：NoteServer.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> path = <span class="fu">require</span>(<span class="st">&#39;path&#39;</span>);
+<span class="kw">var</span> fs = <span class="fu">require</span>(<span class="st">&quot;fs&quot;</span>);
+<span class="kw">var</span> qs = <span class="fu">require</span>(<span class="st">&#39;querystring&#39;</span>);
+<span class="kw">var</span> express = <span class="fu">require</span>(<span class="st">&quot;express&quot;</span>);
+<span class="kw">var</span> app = <span class="fu">express</span>();    
+<span class="ot">app</span>.<span class="fu">listen</span>(<span class="dv">80</span>);
+
+<span class="kw">var</span> noteTemplate = <span class="st">&quot;&quot;</span>;
+
+<span class="ot">fs</span>.<span class="fu">readFile</span>(<span class="st">&quot;note.htm&quot;</span>, <span class="st">&quot;utf8&quot;</span>, <span class="kw">function</span>(err, file) {
+    noteTemplate = file;
+});
+
+<span class="ot">fs</span>.<span class="fu">readFile</span>(<span class="st">&quot;save.htm&quot;</span>, <span class="st">&quot;utf8&quot;</span>, <span class="kw">function</span>(err, file) {
+    saveTemplate = file;
+});
+
+<span class="kw">var</span> error = <span class="kw">function</span>(err, res) {
+    <span class="kw">if</span> (err) {
+        <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">404</span>, {<span class="st">&#39;Content-Type&#39;</span>: <span class="st">&#39;text/plain&#39;</span>});
+        <span class="ot">res</span>.<span class="fu">end</span>();
+    }
+}
+
+<span class="kw">var</span> response = <span class="kw">function</span>(res, type, text) {
+    <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&#39;Content-Type&#39;</span>: type});
+    <span class="ot">res</span>.<span class="fu">write</span>(text);
+    <span class="ot">console</span>.<span class="fu">log</span>(text);
+    <span class="ot">res</span>.<span class="fu">end</span>();
+}
+    
+<span class="ot">app</span>.<span class="fu">post</span>(<span class="st">&#39;/save/:path&#39;</span>, <span class="kw">function</span>(req, res){
+    <span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&#39;save &#39;</span> + <span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>);
+    <span class="kw">var</span> path = <span class="st">&quot;./&quot;</span>+<span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>;
+    formData = <span class="st">&#39;&#39;</span>;
+    <span class="ot">req</span>.<span class="fu">on</span>(<span class="st">&quot;data&quot;</span>, <span class="kw">function</span> (chunk) {
+        formData += chunk;
+    });
+
+    <span class="ot">req</span>.<span class="fu">on</span>(<span class="st">&quot;end&quot;</span>, <span class="kw">function</span> () {
+        form = <span class="ot">qs</span>.<span class="fu">parse</span>(formData);
+        <span class="ot">fs</span>.<span class="fu">writeFile</span>(path, <span class="ot">form</span>.<span class="fu">note</span>, <span class="kw">function</span> (err) {
+          <span class="kw">if</span> (!err)
+            <span class="fu">response</span>(res, <span class="st">&quot;text/html&quot;</span>, <span class="ot">saveTemplate</span>.<span class="fu">replace</span>(<span class="st">&quot;[[?path?]]&quot;</span>, <span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>)
+            .<span class="fu">replace</span>(<span class="st">&quot;[[?path?]]&quot;</span>, <span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>)
+            .<span class="fu">replace</span>(<span class="st">&quot;[[?path?]]&quot;</span>, <span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>).<span class="fu">replace</span>(<span class="st">&quot;[[?fileText?]]&quot;</span>, <span class="ot">form</span>.<span class="fu">note</span>));
+        });
+    }); 
+});
+
+<span class="ot">app</span>.<span class="fu">get</span>(<span class="st">&#39;/note/:path&#39;</span>, <span class="kw">function</span>(req, res){
+    <span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&#39;note &#39;</span> + <span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>);
+    <span class="kw">var</span> path = <span class="st">&quot;./&quot;</span>+<span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>;
+    <span class="ot">fs</span>.<span class="fu">readFile</span>(path, <span class="st">&quot;utf8&quot;</span>, <span class="kw">function</span>(err, file) {
+        <span class="kw">if</span> (err)
+            <span class="fu">response</span>(res, <span class="st">&quot;text/html&quot;</span>, <span class="ot">noteTemplate</span>.<span class="fu">replace</span>(<span class="st">&quot;[[?path?]]&quot;</span>, <span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>)
+            .<span class="fu">replace</span>(<span class="st">&quot;[[?path?]]&quot;</span>, <span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>).<span class="fu">replace</span>(<span class="st">&quot;[[?fileText?]]&quot;</span>, <span class="st">&quot;檔案不存在，您可修改本文後存檔！&quot;</span>));
+        <span class="kw">else</span>
+            <span class="fu">response</span>(res, <span class="st">&quot;text/html&quot;</span>, <span class="ot">noteTemplate</span>.<span class="fu">replace</span>(<span class="st">&quot;[[?path?]]&quot;</span>, <span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>)
+            .<span class="fu">replace</span>(<span class="st">&quot;[[?path?]]&quot;</span>, <span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>).<span class="fu">replace</span>(<span class="st">&quot;[[?fileText?]]&quot;</span>, file));
+    });
+});
+
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&#39;start NoteServer</span><span class="ch">\n</span><span class="st">&#39;</span>);</code></pre>
+<p>檔案：note.htm</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+<span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;utf-8&quot;</span> <span class="kw">/&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+  <span class="kw">&lt;body&gt;</span> 
+    <span class="kw">&lt;form</span><span class="ot"> method=</span><span class="st">&quot;POST&quot;</span><span class="ot"> action=</span><span class="st">&quot;/save/[[?path?]]&quot;</span><span class="kw">&gt;</span>
+      <span class="kw">&lt;label&gt;</span>檔案路徑：[[?path?]]<span class="kw">&lt;/label&gt;&lt;br&gt;</span>
+      <span class="kw">&lt;textarea</span><span class="ot"> name=</span><span class="st">&quot;note&quot;</span><span class="ot"> rows=</span><span class="st">30</span><span class="ot"> cols=</span><span class="st">80</span><span class="kw">&gt;</span>
+[[?fileText?]]      
+      <span class="kw">&lt;/textarea&gt;&lt;br/&gt;</span>
+      <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="ot"> value=</span><span class="st">&quot;送出&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;/form&gt;</span>
+  <span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>檔案：save.htm</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt; 
+save:path=&lt;a href=&quot;/note/[[?path?]]&quot;&gt;[[?path?]]&lt;/a&gt;
+&lt;pre&gt;
+[[?fileText?]]      
+&lt;/pre&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>檔案：ifidie.txt</p>
+<pre><code>如果我死了！我不會在意自己被葬在哪裡，公墓裏有沒有一個骨灰罈或牌子！
+
+但是我會在意自己的「照片、錄影、網誌、facebook、YouTube上的影片、電子書、以及我所創辦的程式人雜誌」是否有人接手、整理或出版。
+
+我不希望死後 facebook 上的資訊就被視為靜止戶而刪除，我不希望網誌上的資訊雜亂無章，我不希望數位相機的照片與錄影從此消失，我不希望那些美好的記憶在家人的腦海裡逐漸模糊！
+
+我希望這些資訊可以變成我的日記、著作，有人幫我剪接這些影片，在喪禮上可以回顧我的一生，我希望我的小孩有空時能透過這些資訊瞭解我，甚至是與已經身在天堂的我對話，當他有的生命遇到疑問時，可以從我的人生經驗當中得到啟發，或者些許的指引與安慰！
+
+如果我的老婆小孩經濟困難，我希望可以從我的數位遺產中找到有價值出版的作品，幫助他們度過難關，如果他們的經濟情況不錯，我希望這些價值就捐獻給公益團體。
+
+要完成這些事，就必須要有一個組織，提供「數位遺產管理」的服務。這需要有一些工具可以擷取出這些數位遺產，需要一些人力可以幫組織與整理，並且需要服務人員對家屬提供適當的協助。所以我想，這需要一整個公司，甚至整個供應鏈的配合。
+
+這是一個全新的領域 -- 「數位殯葬業 + 數位遺產管理事業」，當您抱怨網路行業都已經被 Google 、Facebook 、淘寶等公司壟斷的時候，實體的世界當中仍然有很多的創業機會，等著您去開發！</code></pre>
+</div>
+<div id="footer">
+<a href="http://ccckmit.wikidot.com">陳鍾誠</a>衍生自<a href="http://zh.wikipedia.org/">維基百科</a>之作品：採用 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/ ">創作共用：姓名標示、相同方式分享</a> <a href="license.html">授權</a>
+</div>
+</body>
+</html>

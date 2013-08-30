@@ -1,0 +1,503 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" href="../css/book.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+  <h1><a href="index.htm">電子書：Web 程式設計</a></h1>
+  <table id="bar" border="0" style="border:0;"><tr style="border:0;">
+    <td style="text-align:left;border:0;"> <a href="book.html">目錄</a> | <a href="download.html">下載</a> | <a href="course.html">課程</a> | <a href="forum.html">討論</a> | <a href="exam.html">測驗</a></td>
+    <td style="text-align:right;border:0;"><a href="http://ccckmit.wikidot.com/">陳鍾誠</a> 於 <a href="http://www.nqu.edu.tw/">金門大學</a></td>
+  </tr></table>
+</div>
+<div id="content">
+<div id="TOC">
+<ul>
+<li><a href="#javascript-的字串處理">JavaScript 的字串處理</a><ul>
+<li><a href="#字串物件-string">字串物件 String</a></li>
+<li><a href="#正規表達式">正規表達式</a></li>
+<li><a href="#eval-函數">eval 函數</a></li>
+<li><a href="#參考文獻">參考文獻</a></li>
+</ul></li>
+</ul>
+</div>
+<h1 id="javascript-的字串處理"><a href="#javascript-的字串處理">JavaScript 的字串處理</a></h1>
+<h2 id="字串物件-string"><a href="#字串物件-string">字串物件 String</a></h2>
+<p>String 物件的成員</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">屬性/函數</th>
+<th align="left">說明</th>
+<th align="left">範例</th>
+<th align="left">結果</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">constructor</td>
+<td align="left">傳回建構函數</td>
+<td align="left">&quot;Hello&quot;.constructor</td>
+<td align="left">function String() { [native code] }</td>
+</tr>
+<tr class="even">
+<td align="left">length</td>
+<td align="left">傳回長度</td>
+<td align="left">&quot;Hello&quot;.length</td>
+<td align="left">function String() { [native code] }</td>
+</tr>
+<tr class="odd">
+<td align="left">prototype</td>
+<td align="left">傳回原型</td>
+<td align="left">&quot;Hello&quot;.prototype</td>
+<td align="left">undefined</td>
+</tr>
+<tr class="even">
+<td align="left">charAt()</td>
+<td align="left">傳回第 i 個字元</td>
+<td align="left">&quot;Hello&quot;.charAt(1)</td>
+<td align="left">e</td>
+</tr>
+<tr class="odd">
+<td align="left">charCodeAt()</td>
+<td align="left">傳回第 i 個字元的 Unicode</td>
+<td align="left">&quot;Hello&quot;.charCodeAt(1)</td>
+<td align="left">101</td>
+</tr>
+<tr class="even">
+<td align="left">concat()</td>
+<td align="left">連接兩個以上的字串</td>
+<td align="left">&quot;Hello&quot;.concat(&quot; World&quot;, &quot; !&quot;)</td>
+<td align="left">Hello World !</td>
+</tr>
+<tr class="odd">
+<td align="left">fromCharCode()</td>
+<td align="left">將 Unicode 代碼轉為字元</td>
+<td align="left">&quot;Hello&quot;.fromCharCode(101, 102)</td>
+<td align="left">ef</td>
+</tr>
+<tr class="even">
+<td align="left">indexOf()</td>
+<td align="left">傳回子字串的位置</td>
+<td align="left">&quot;Hello&quot;.indexOf(&quot;el&quot;)</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">lastIndexOf()</td>
+<td align="left">傳回子字串的位置 (倒著掃瞄)</td>
+<td align="left">&quot;Hello&quot;.lastIndexof(&quot;l&quot;)</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">match()</td>
+<td align="left">搜尋正規表達式</td>
+<td align="left">&quot;Hello&quot;.match(&quot;[aeiou]&quot;)</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="left">replace()</td>
+<td align="left">取代正規表達式</td>
+<td align="left">&quot;Hello&quot;.replace(&quot;l&quot;, &quot;L&quot;)</td>
+<td align="left">HeLLo</td>
+</tr>
+<tr class="even">
+<td align="left">search()</td>
+<td align="left">搜尋正規表達式</td>
+<td align="left">&quot;Hello&quot;.search(&quot;[aeiou]&quot;)</td>
+<td align="left">e</td>
+</tr>
+<tr class="odd">
+<td align="left">slice()</td>
+<td align="left">切出字串</td>
+<td align="left">&quot;Hello&quot;.slice(-3)</td>
+<td align="left">llo</td>
+</tr>
+<tr class="even">
+<td align="left">split()</td>
+<td align="left">分割字串</td>
+<td align="left">&quot;Hello&quot;.split(&quot;e&quot;)</td>
+<td align="left">H,llo</td>
+</tr>
+<tr class="odd">
+<td align="left">substr()</td>
+<td align="left">取出 from 長 len 的子字串</td>
+<td align="left">&quot;Hello&quot;.substr(2,2)</td>
+<td align="left">ll</td>
+</tr>
+<tr class="even">
+<td align="left">substring()</td>
+<td align="left">取出 from 到 to 的子字串</td>
+<td align="left">&quot;Hello&quot;.substring(2,4)</td>
+<td align="left">llo</td>
+</tr>
+<tr class="odd">
+<td align="left">toLowerCase()</td>
+<td align="left">轉為小寫</td>
+<td align="left">&quot;Hello&quot;.toLowerCase()</td>
+<td align="left">hello</td>
+</tr>
+<tr class="even">
+<td align="left">toUpperCase()</td>
+<td align="left">轉為大寫</td>
+<td align="left">&quot;Hello&quot;.toUpperCase()</td>
+<td align="left">HELLO</td>
+</tr>
+<tr class="odd">
+<td align="left">valueOf()</td>
+<td align="left">傳回原型值</td>
+<td align="left">&quot;Hello&quot;.valueOf()</td>
+<td align="left">Hello</td>
+</tr>
+</tbody>
+</table>
+<p>程式範例</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="kw">var</span> s = <span class="st">&quot;Hello&quot;</span>;
+<span class="er">document.write(&quot;s = &#39;Hello&#39;&quot;);</span>
+<span class="er">document.write(&quot;s.constructor = &quot;+s.constructor+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.length = &quot;+s.length+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.prototype = &quot;+s.prototype+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.charAt(1) = &quot;+s.charAt(1)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.charCodeAt(1) = &quot;+s.charCodeAt(1)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.concat(&#39; World&#39;, &#39; !&#39;) = &quot;+s.concat(&#39; World&#39;, &#39; !&#39;)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;String.fromCharCode(72,69,76,76,79) = &quot;+String.fromCharCode(72,69,76,76,79)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.indexOf(&#39;el&#39;) = &quot;+s.indexOf(&#39;el&#39;)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.lastIndexOf(&#39;l&#39;) = &quot;+s.lastIndexOf(&#39;l&#39;)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.match(&#39;[aeiou]&#39;) = &quot;+s.match(&#39;[aeiou]&#39;)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.replace(&#39;l&#39;, &#39;L&#39;) = &quot;+s.replace(&#39;l&#39;, &#39;L&#39;)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.search(&#39;[aeiou]&#39;) = &quot;+s.search(&#39;[aeiou]&#39;)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.slice(2,4) = &quot;+s.slice(2,4)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.slice(2) = &quot;+s.slice(2)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.slice(-3) = &quot;+s.slice(-3)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.split(&#39;e&#39;) = &quot;+s.split(&#39;e&#39;)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.substr(2,2) = &quot;+s.substr(2,2)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.substring(2,4) = &quot;+s.substr(2,4)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.toLowerCase() = &quot;+s.toLowerCase()+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.toUpperCase() = &quot;+s.toUpperCase()+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.valueOf() = &quot;+s.valueOf()+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="kw">&lt;/script&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>執行結果</p>
+<pre><code>s = &#39;Hello&#39;s.constructor = function String() { [native code] }
+s.length = 5
+s.prototype = undefined
+s.charAt(1) = e
+s.charCodeAt(1) = 101
+s.concat(&#39; World&#39;, &#39; !&#39;) = Hello World !
+String.fromCharCode(72,69,76,76,79) = HELLO
+s.indexOf(&#39;el&#39;) = 1
+s.lastIndexOf(&#39;l&#39;) = 3
+s.match(&#39;[aeiou]&#39;) = e
+s.replace(&#39;l&#39;, &#39;L&#39;) = HeLlo
+s.search(&#39;[aeiou]&#39;) = 1
+s.slice(2,4) = ll
+s.slice(2) = llo
+s.slice(-3) = llo
+s.split(&#39;e&#39;) = H,llo
+s.substr(2,2) = ll
+s.substring(2,4) = llo
+s.toLowerCase() = hello
+s.toUpperCase() = HELLO
+s.valueOf() = Hello</code></pre>
+<h2 id="正規表達式"><a href="#正規表達式">正規表達式</a></h2>
+<p>正規語法 (Regular Grammar) 是一種相當簡單的語法，這種語法被 Perl 語言成功的用於字串比對，接著成為重要的程式設計工具。 此種標準的正規語法後來被稱為正則表達式 (Regular Expression)。目前，大部分的語言都已納入正則表達式的函式庫， 正規表達是可以說是程式設計師必定要瞭解的工具，也就是常識的一部分。系統程式設計師更應該要瞭解正則表達式， 因為正規語法是程式語言當中，用來描述基本詞彙 (Vocabulary)，並據以建構詞彙掃描器 (Lexer) 的基礎語法， Lexer 是編譯器的基本元件之一。</p>
+<p>假如我們要用正則表達式描述整數數字，那麼，可以用 [0123456789]+ 這個表達式，其中的中括號 [ 與 ] 會框住一群 字元，用來代表字元群，加號 + 所代表的是重複 1 次或以上，因此，該表達式就可以描述像 3702451 這樣的數字。 然而，在正則表達式中，為了更方便撰寫，於是允許用 [0-9]+ 這樣的式子表達同樣的概念，其中的 0-9 其實就 代表了 0123456789 等字元，這是一種簡便的縮寫法。甚至，可以再度縮短後以 []+ 代表，其中的 就代表 數字所成的字元集合。</p>
+<p>利用範例學習是理解正則表達式的有效方法，表格 1 就顯示了一些具有代表性的正則表達式範例。</p>
+<p>表格 1. 正則表達式的範例</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">語法 正</th>
+<th align="left">規表達式 範</th>
+<th align="left">例</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">整數 [0</td>
+<td align="left">-9]+ 37</td>
+<td align="left">04</td>
+</tr>
+<tr class="even">
+<td align="left">有小數點的實數 [</td>
+<td align="left">0-9]+.[0-9]+ 7</td>
+<td align="left">.93</td>
+</tr>
+<tr class="odd">
+<td align="left">英文詞彙</td>
+<td align="left">[A-Za-z]+</td>
+<td align="left">Code</td>
+</tr>
+<tr class="even">
+<td align="left">變數名稱</td>
+<td align="left">[A-Za-z_][A-Za-z0-9_]*</td>
+<td align="left">_counter</td>
+</tr>
+<tr class="odd">
+<td align="left">Email</td>
+<td align="left">[a-zA-Z0-9_]+@[a-zA-Z0-9._]+</td>
+<td align="left">ccc@kmit.edu.tw</td>
+</tr>
+<tr class="even">
+<td align="left">URL</td>
+<td align="left">http://[a-zA-Z0-9./_]+</td>
+<td align="left">http://ccc.kmit.edu.tw/mybook/</td>
+</tr>
+</tbody>
+</table>
+<p>為了協助讀者理解這些範例，我們有必要對範例中的一些正規表達式符號進行說明。</p>
+<p>在實數的範例中，使用 . 代表小數點符號 .，不熟悉正則表達式的讀者一定覺得奇怪，為何要加上斜線符號   呢？ 這是因為在正則表達式當中，有許多符號具有特殊意義，例如點符號 . 是用來表示任意字元的，星號 * 是代表 0 次 或以上，加號 + 代表一次或以上，在正則表達式當中，有許多這類的特殊字元，因此用斜線   代表跳出字元，就像 C 語言當中 printf 函數內的用途一樣。因此，當我們看到   符號時，必須繼續向後看，才能知道其所代表的意義。 表格 2 列出了正則表達式當中大部份的重要符號之意義，以供讀者參考。</p>
+<p>表格 2. 正則表達式當中的符號之意義</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">字元 描</th>
+<th align="left">述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">^</td>
+<td align="left">比對開始位置</td>
+</tr>
+<tr class="even">
+<td align="left">$</td>
+<td align="left">比對結束位置。</td>
+</tr>
+<tr class="odd">
+<td align="left">*</td>
+<td align="left">零次或以上</td>
+</tr>
+<tr class="even">
+<td align="left">+</td>
+<td align="left">一次或以上</td>
+</tr>
+<tr class="odd">
+<td align="left">?</td>
+<td align="left">零次或一次</td>
+</tr>
+<tr class="even">
+<td align="left">{n}</td>
+<td align="left">n 次。</td>
+</tr>
+<tr class="odd">
+<td align="left">{n,}</td>
+<td align="left">n 次或以上</td>
+</tr>
+<tr class="even">
+<td align="left">{n,m}</td>
+<td align="left">n 到 m 次</td>
+</tr>
+<tr class="odd">
+<td align="left">?</td>
+<td align="left">非貪婪模式</td>
+</tr>
+<tr class="even">
+<td align="left">.</td>
+<td align="left">比對除&quot;&quot;之外字元</td>
+</tr>
+<tr class="odd">
+<td align="left">(?:pattern)</td>
+<td align="left">比對 pattern 樣式</td>
+</tr>
+<tr class="even">
+<td align="left">(?=pattern)</td>
+<td align="left">正向預查，例如，&quot;Windows (?=95|98|NT|2000)&quot; 可比對到 &quot;Windows 2000&quot; 中的 &quot;Windows&quot;，但不能比對 Windows XP 中的 Windows。</td>
+</tr>
+<tr class="odd">
+<td align="left">(?!pattern)</td>
+<td align="left">負向預查，例如 &quot;Windows(?!95|98|NT|2000)&quot; 能比對 &quot;Windows XP&quot;中的 &quot;Windows&quot;，但不能比對 &quot;Windows 2000&quot; 中 的&quot;Windows&quot;。</td>
+</tr>
+<tr class="even">
+<td align="left">x|y</td>
+<td align="left">比對 x 或 y。</td>
+</tr>
+<tr class="odd">
+<td align="left">[xyz]</td>
+<td align="left">包含 xyz 等字元。</td>
+</tr>
+<tr class="even">
+<td align="left">[^xyz]</td>
+<td align="left">不包含 xyz 等字元。</td>
+</tr>
+<tr class="odd">
+<td align="left">[a-z]</td>
+<td align="left">字元範圍 a-z。</td>
+</tr>
+<tr class="even">
+<td align="left">[^a-z]</td>
+<td align="left">不包含字元範圍 a-z。</td>
+</tr>
+<tr class="odd">
+<td align="left">\b</td>
+<td align="left">比對一個單詞邊界，也就是指單詞和空格間的位置。例如，&quot;er&quot;可以比對&quot;never&quot;中的&quot;er&quot;，但不能比對&quot;verb&quot;中的&quot;er&quot;。</td>
+</tr>
+<tr class="even">
+<td align="left">\B</td>
+<td align="left">比對非單詞邊界。&quot;er&quot;能比對&quot;verb&quot;中的&quot;er&quot;，但不能比對&quot;never&quot;中的&quot;er&quot;。</td>
+</tr>
+<tr class="odd">
+<td align="left">\cx</td>
+<td align="left">比對由x指明的控制字元。例如，-M或回車符。x的值必須為A-Z或a-z之一。否則，將c視為一個原義的&quot;c&quot;字元。</td>
+</tr>
+<tr class="even">
+<td align="left">\d</td>
+<td align="left">比對一個數位字元。等價於[0-9]。</td>
+</tr>
+<tr class="odd">
+<td align="left">\D</td>
+<td align="left">比對一個非數位字元。等價於[^0-9]。</td>
+</tr>
+<tr class="even">
+<td align="left">\f</td>
+<td align="left">比對一個換頁符。等價於0c和。</td>
+</tr>
+<tr class="odd">
+<td align="left">\n</td>
+<td align="left">比對一個分行符號。等價於0a和。</td>
+</tr>
+<tr class="even">
+<td align="left">\r</td>
+<td align="left">比對一個回車符。等價於0d和。</td>
+</tr>
+<tr class="odd">
+<td align="left">\s</td>
+<td align="left">比對任何空白字元，包括空格、定位字元、換頁符等等。等價於[]。</td>
+</tr>
+<tr class="even">
+<td align="left">\S</td>
+<td align="left">比對任何非空白字元。等價於[^\f\n\r\t\v]。</td>
+</tr>
+<tr class="odd">
+<td align="left">\t</td>
+<td align="left">比對一個定位字元。等價於09和。</td>
+</tr>
+<tr class="even">
+<td align="left">\v</td>
+<td align="left">比對一個垂直定位字元。等價於0b和。</td>
+</tr>
+<tr class="odd">
+<td align="left">\w</td>
+<td align="left">比對包括底線的任何單詞字元。等價於&quot;[A-Za-z0-9_]&quot;。</td>
+</tr>
+<tr class="even">
+<td align="left">\W</td>
+<td align="left">比對任何非單詞字元。等價於&quot;[^A-Za-z0-9_]&quot;。</td>
+</tr>
+<tr class="odd">
+<td align="left">\xn</td>
+<td align="left">比對n，其中n為十六進位轉義值。十六進位轉義值必須為確定的兩個數位長。例如，&quot;41&quot;比對&quot;A&quot;。&quot;041&quot;則等價於&quot;04&quot;&amp;&quot;1&quot;。規則運算式中可以使用ASCII編碼。</td>
+</tr>
+<tr class="even">
+<td align="left">\num</td>
+<td align="left">比對num，其中num是一個正整數。對所獲取的比對的引用。例如，&quot;(.)&quot;比對兩個連續的相同字元。</td>
+</tr>
+<tr class="odd">
+<td align="left">\n</td>
+<td align="left">標識一個八進制轉義值或一個向後引用。如果，則n為向後引用。否則，如果n為八進位數字(0-7)，則n為一個八進制轉義值。</td>
+</tr>
+<tr class="even">
+<td align="left">\nm</td>
+<td align="left">標識一個八進制轉義值或一個向後引用。 如果，則nm為向後引用。如果，則n為一個後跟文字m的向後引用。如果前面的條件都不滿足，若n和m均為八進位數字(0-7)，則將比對八進制轉義值nm。</td>
+</tr>
+<tr class="odd">
+<td align="left">\nml</td>
+<td align="left">如果n為八進位數字(0-3)，且m和l均為八進位數字(0-7)，則比對八進制轉義值nml。</td>
+</tr>
+<tr class="even">
+<td align="left">\un</td>
+<td align="left">比對n，其中n是一個用四個十六進位數位表示的Unicode字元。例如，00A9比對版權符號（©）。</td>
+</tr>
+</tbody>
+</table>
+<p>正則表達式在許多語言當中 (像是 Java, C#, Ruby, Python 等) 都已經有支援良好的函式庫。</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">&lt;html&gt;
+&lt;body&gt;
+
+&lt;script type=<span class="st">&quot;text/javascript&quot;</span>&gt;
+<span class="ot">document</span>.<span class="fu">write</span>(<span class="st">&quot;&lt;pre&gt;</span><span class="ch">\n</span><span class="st">&quot;</span>);
+<span class="ot">String</span>.<span class="ot">prototype</span>.<span class="fu">trim</span> = <span class="kw">function</span>() { <span class="kw">return</span> <span class="kw">this</span>.<span class="fu">replace</span>(<span class="ot">/</span><span class="fl">(</span><span class="ot">^</span><span class="bn">\s</span><span class="fl">*)|(</span><span class="bn">\s</span><span class="fl">*</span><span class="ot">$</span><span class="fl">)</span><span class="ot">/g</span>, <span class="st">&quot;&quot;</span>); }
+<span class="ot">document</span>.<span class="fu">write</span>(<span class="st">&quot;&#39; abc &#39;.trim()=|&quot;</span>+<span class="st">&#39; abc &#39;</span>.<span class="fu">trim</span>()+<span class="st">&quot;|</span><span class="ch">\n</span><span class="st">&quot;</span>);
+<span class="kw">var</span> re = <span class="kw">new</span> <span class="fu">RegExp</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d+&quot;</span>, <span class="st">&quot;gi&quot;</span>);
+<span class="kw">var</span> str = <span class="st">&quot;name:john age:20 birthday:1990/8/31&quot;</span>;
+<span class="kw">var</span> m = <span class="kw">null</span>;
+<span class="kw">while</span> (m = <span class="ot">re</span>.<span class="fu">exec</span>(str))
+  <span class="ot">document</span>.<span class="fu">write</span>(m + <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>);
+<span class="kw">var</span> p = <span class="fu">parse</span>(str);
+<span class="ot">document</span>.<span class="fu">write</span>(<span class="st">&quot;p.name=&quot;</span>+<span class="ot">p</span>.<span class="fu">name</span>+<span class="st">&quot; age=&quot;</span>+<span class="ot">p</span>.<span class="fu">age</span>+<span class="st">&quot; year=&quot;</span>+<span class="ot">p</span>.<span class="fu">year</span>+<span class="st">&quot; month=&quot;</span>+<span class="ot">p</span>.<span class="fu">month</span>+<span class="st">&quot; day=&quot;</span>+<span class="ot">p</span>.<span class="fu">day</span>);
+<span class="ot">document</span>.<span class="fu">write</span>(<span class="st">&quot;&lt;/pre&gt;</span><span class="ch">\n</span><span class="st">&quot;</span>);
+
+<span class="kw">function</span> <span class="fu">parse</span>(data) {
+    <span class="kw">var</span> e=<span class="kw">new</span> <span class="fu">RegExp</span>(<span class="st">&quot;name:(</span><span class="ch">\\</span><span class="st">w+) age:(</span><span class="ch">\\</span><span class="st">d+) birthday:(</span><span class="ch">\\</span><span class="st">d+)/(</span><span class="ch">\\</span><span class="st">d+)/(</span><span class="ch">\\</span><span class="st">d+)&quot;</span>, <span class="st">&quot;gi&quot;</span>);
+
+    <span class="kw">if</span> (<span class="ot">data</span>.<span class="fu">match</span>(e)) {
+        <span class="kw">return</span>  {<span class="dt">exp</span>: RegExp[<span class="st">&#39;$&amp;&#39;</span>],
+                <span class="dt">name</span>: <span class="ot">RegExp</span>.<span class="fu">$1</span>,
+                <span class="dt">age</span>:<span class="ot">RegExp</span>.<span class="fu">$2</span>,
+                <span class="dt">year</span>:<span class="ot">RegExp</span>.<span class="fu">$3</span>,
+                <span class="dt">month</span>:<span class="ot">RegExp</span>.<span class="fu">$4</span>,
+                <span class="dt">day</span>:<span class="ot">RegExp</span>.<span class="fu">$5</span>};
+    }
+    <span class="kw">else</span> {
+        <span class="kw">return</span> <span class="kw">null</span>;
+    }
+}
+&lt;<span class="ot">/script&gt;</span>
+
+<span class="ot">&lt;/body</span>&gt;
+&lt;<span class="ot">/html&gt;</span></code></pre>
+<p>執行結果</p>
+<pre><code>&#39; abc &#39;.trim()=|abc|
+20
+1990
+8
+31
+p.name=john age=20 year=1990 month=8 day=31</code></pre>
+<h2 id="eval-函數"><a href="#eval-函數">eval 函數</a></h2>
+<pre class="sourceCode JavaScript"><code class="sourceCode javascript">&lt;script type=<span class="st">&quot;text/javascript&quot;</span>&gt;
+<span class="kw">var</span> a=<span class="dv">3</span>, b=<span class="dv">5</span>;
+<span class="fu">alert</span>(<span class="st">&#39;a+b=&#39;</span>+<span class="fu">eval</span>(<span class="st">&#39;a+b&#39;</span>));
+&lt;<span class="ot">/script&gt;</span></code></pre>
+<h2 id="參考文獻"><a href="#參考文獻">參考文獻</a></h2>
+<ul>
+<li>Wikipedia:Regular expression -- http://en.wikipedia.org/wiki/Regular_expression</li>
+<li>維基百科:正規表式 -- http://zh.wikipedia.org/zh-tw/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F</li>
+<li>鳥哥的 Linux 私房菜:第十二章、正規表示法與文件格式化處理 -- http://linux.vbird.org/linux_basic/0330regularex.php</li>
+<li>石頭閒語:Regular Expression (RegExp) in JavaScript -- http://blog.roodo.com/rocksaying/archives/2670695.html</li>
+<li>字串樣版 Regexp: 兼談長線學習投資 -- http://www.cyut.edu.tw/~ckhung/b/re/</li>
+<li>在 C 程式中，使用 Regex (Regular Expression) library -- http://blog.roodo.com/rocksaying/archives/3866523.html</li>
+</ul>
+</div>
+<div id="footer">
+<a href="http://ccckmit.wikidot.com">陳鍾誠</a>衍生自<a href="http://zh.wikipedia.org/">維基百科</a>之作品：採用 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/ ">創作共用：姓名標示、相同方式分享</a> <a href="license.html">授權</a>
+</div>
+</body>
+</html>

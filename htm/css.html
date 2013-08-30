@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" href="../css/book.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+  <h1><a href="index.htm">電子書：Web 程式設計</a></h1>
+  <table id="bar" border="0" style="border:0;"><tr style="border:0;">
+    <td style="text-align:left;border:0;"> <a href="book.html">目錄</a> | <a href="download.html">下載</a> | <a href="course.html">課程</a> | <a href="forum.html">討論</a> | <a href="exam.html">測驗</a></td>
+    <td style="text-align:right;border:0;"><a href="http://ccckmit.wikidot.com/">陳鍾誠</a> 於 <a href="http://www.nqu.edu.tw/">金門大學</a></td>
+  </tr></table>
+</div>
+<div id="content">
+<div id="TOC">
+<ul>
+<li><a href="#css-版面設計">CSS 版面設計</a><ul>
+<li><a href="#css-簡介">CSS 簡介</a></li>
+<li><a href="#路徑-tag-id-與-class">路徑, tag, id 與 class</a></li>
+<li><a href="#一個實用的-css-的範例">一個實用的 CSS 的範例</a></li>
+<li><a href="#參考文獻">參考文獻</a></li>
+</ul></li>
+</ul>
+</div>
+<h1 id="css-版面設計"><a href="#css-版面設計">CSS 版面設計</a></h1>
+<h2 id="css-簡介"><a href="#css-簡介">CSS 簡介</a></h2>
+<p>在前一章當中，我們介紹了 HTML 的語法，我們可以透過 HTML 的表格排出某些格式，但是卻很難讓整個頁面足夠美觀。</p>
+<p>舉例而言，假如我們想讓表格的標頭欄以黑底白字的方式顯示，那麼就得靠 CSS 來幫忙了。</p>
+<p>CSS 是 Cascading Style Sheets 的簡稱，中文可翻譯為「串接樣式表」，CSS 主要是用來設定 HTML 的顯示版面，包含「字體、大小、顏色、邊框、背景」等等，一個好的 CSS 可以讓您的網頁變得很美觀，而且不需要大幅修改網頁的內容，只要加入一個 CSS 引用即可。</p>
+<p>當套用不同的 CSS 時，網頁的風格就可以產生完全不同的感覺，這讓你的網頁可以輕易的更換成不同的版型。事實上、當您在 blogspot 或 wordpress 網誌平台套用不同版型的時候，只不過是更換了 CSS 樣版而已。</p>
+<p>在 HTML 當中，CSS 有兩種寫法，一種是內嵌式的寫法，另一種是外連式的寫法。</p>
+<p>為了說明 CSS 的語法，先讓我們回顧一下，一個簡單沒有格式化的 HTML 表格，其寫法如下：</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;head&gt;&lt;meta</span><span class="ot"> charset=</span><span class="st">&#39;utf-8&#39;</span><span class="kw">&gt;&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+<span class="kw">&lt;table&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;</span>欄 1<span class="kw">&lt;/th&gt;&lt;th&gt;</span>欄 2<span class="kw">&lt;/th&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;</span>列 1<span class="kw">&lt;/th&gt;&lt;td&gt;</span>1,1<span class="kw">&lt;/td&gt;&lt;td&gt;</span>1,2<span class="kw">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;</span>列 2<span class="kw">&lt;/th&gt;&lt;td&gt;</span>2,1<span class="kw">&lt;/td&gt;&lt;td&gt;</span>2,2<span class="kw">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;/table&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>檢視檔案：<a href="https://dl.dropbox.com/u/101584453/wp/code/table.htm">https://dl.dropbox.com/u/101584453/wp/code/table.htm</a></p>
+<p>如果我們將上述表格的 th 部分，都加上 <code>style=&quot;background-color:black; color:white;&quot;</code> 這樣的 CSS 語法，那麼我們就會得到一個黑底白字的表格。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;head&gt;&lt;meta</span><span class="ot"> charset=</span><span class="st">&#39;utf-8&#39;</span><span class="kw">&gt;&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+<span class="kw">&lt;table&gt;</span>
+<span class="kw">&lt;tr&gt;</span>
+<span class="kw">&lt;th</span><span class="ot"> style=</span><span class="st">&quot;background-color:black; color:white;&quot;</span><span class="kw">&gt;&lt;/th&gt;</span>
+<span class="kw">&lt;th</span><span class="ot"> style=</span><span class="st">&quot;background-color:black; color:white;&quot;</span><span class="kw">&gt;</span>欄 1<span class="kw">&lt;/th&gt;</span>
+<span class="kw">&lt;th</span><span class="ot"> style=</span><span class="st">&quot;background-color:black; color:white;&quot;</span><span class="kw">&gt;</span>欄 2<span class="kw">&lt;/th&gt;</span>
+<span class="kw">&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;</span>
+<span class="kw">&lt;th</span><span class="ot"> style=</span><span class="st">&quot;background-color:black; color:white;&quot;</span><span class="kw">&gt;</span>列 1<span class="kw">&lt;/th&gt;</span>
+<span class="kw">&lt;td&gt;</span>1,1<span class="kw">&lt;/td&gt;</span>
+<span class="kw">&lt;td&gt;</span>1,2<span class="kw">&lt;/td&gt;</span>
+<span class="kw">&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;</span>
+<span class="kw">&lt;th</span><span class="ot"> style=</span><span class="st">&quot;background-color:black; color:white;&quot;</span><span class="kw">&gt;</span>列 2<span class="kw">&lt;/th&gt;</span>
+<span class="kw">&lt;td&gt;</span>2, 1<span class="kw">&lt;/td&gt;</span>
+<span class="kw">&lt;td&gt;</span>2, 2<span class="kw">&lt;/td&gt;</span>
+<span class="kw">&lt;/tr&gt;</span>
+<span class="kw">&lt;/table&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>檢視檔案：<a href="https://dl.dropbox.com/u/101584453/wp/code/table_css_embed.htm">https://dl.dropbox.com/u/101584453/wp/code/table_css_embed.htm</a></p>
+<p>我們使用 CSS 排版前與排版後的結果可以對照如下：</p>
+<div class="figure">
+<img src="../img/table_css_embed.jpg" alt="表單的顯示結果" /><p class="caption">表單的顯示結果</p>
+</div>
+<p>您可以看到在這種寫法當中，我們幾乎都一直在 th 重複撰寫 <code>style=&quot;background-color:black; color:white;&quot;</code> 這一行文字，總共重複了 5 次，這顯然是很浪費時間的行為。</p>
+<p>如果我們可以改用統一的方式，寫出「對於所有 th 而言，我都要用 background-color:black; color:white; 這樣的方式顯示」那不就簡單多了嗎？</p>
+<p>是的、CSS 確實可以讓您這樣做，讓我們將上述範例修改成統一設定格式的版本，如下所示。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+<span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&#39;utf-8&#39;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;style&gt;</span>
+th <span class="kw">{</span> <span class="kw">background-color:</span><span class="dt">black</span><span class="kw">;</span> <span class="kw">color:</span><span class="dt">white</span><span class="kw">;</span> <span class="kw">}</span>
+<span class="kw">&lt;/style&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+<span class="kw">&lt;table&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;</span>欄 1<span class="kw">&lt;/th&gt;&lt;th&gt;</span>欄 2<span class="kw">&lt;/th&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;</span>列 1<span class="kw">&lt;/th&gt;&lt;td&gt;</span>1,1<span class="kw">&lt;/td&gt;&lt;td&gt;</span>1,2<span class="kw">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;</span>列 2<span class="kw">&lt;/th&gt;&lt;td&gt;</span>2,1<span class="kw">&lt;/td&gt;&lt;td&gt;</span>2,2<span class="kw">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;/table&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>上述統一將 CSS 寫在 <code>&lt;head&gt;&lt;style&gt;...&lt;/style&gt;&lt;/head&gt;</code> 裏的這種寫法，比起內嵌式的顯然簡短多了，這種寫法正是 CSS 的精華之所在。</p>
+<p>但是、如果我們想要對整個網站的所有檔案，都套用同一種格式的話，那麼在每個 HTML 的頭部都要嵌入一整套 CSS 語法，那就不太方便了，萬一我們想要改變版面格式，不就每個 HTML 檔案都要更改，這顯然還不夠好用。</p>
+<p>要解決這個問題，可以將表頭的 CSS 獨立到一個檔案中，然後再用連結的方式引用，這樣只要修改那個 CSS 檔案，整個網站的風格就跟著改變，所以上述檔案就可以改寫如下。</p>
+<p>檔案：table_css.htm</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+<span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&#39;utf-8&#39;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> type=</span><span class="st">&quot;text/css&quot;</span><span class="ot"> href=</span><span class="st">&quot;mystyle.css&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+<span class="kw">&lt;table&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;</span>欄 1<span class="kw">&lt;/th&gt;&lt;th&gt;</span>欄 2<span class="kw">&lt;/th&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;</span>列 1<span class="kw">&lt;/th&gt;&lt;td&gt;</span>1,1<span class="kw">&lt;/td&gt;&lt;td&gt;</span>1,2<span class="kw">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;</span>列 2<span class="kw">&lt;/th&gt;&lt;td&gt;</span>2,1<span class="kw">&lt;/td&gt;&lt;td&gt;</span>2,2<span class="kw">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;/table&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>檔案：mystyle.css</p>
+<pre class="sourceCode css"><code class="sourceCode css">th <span class="kw">{</span> <span class="kw">background-color:</span><span class="dt">black</span><span class="kw">;</span> <span class="kw">color:</span><span class="dt">white</span><span class="kw">;</span> <span class="kw">}</span></code></pre>
+<p>透過這種方式，我們就可以為網頁設計統一的風格，也比較容易更換網頁的排版風格了，這就是 CSS 語法的用途了。</p>
+<p>當然、上述的網頁還不夠好看，如果我們將 mystyle.css 修改如下，您就會發現表格變得好看多了。</p>
+<pre class="sourceCode css"><code class="sourceCode css">table <span class="kw">{</span> <span class="kw">border-collapse:</span> <span class="dt">collapse</span><span class="kw">;</span> <span class="kw">border:</span> <span class="dt">1px</span> <span class="dt">solid</span> <span class="dt">#373737</span><span class="kw">;</span> <span class="kw">}</span>
+th <span class="kw">{</span> <span class="kw">background-color:</span><span class="dt">black</span><span class="kw">;</span> <span class="kw">color:</span><span class="dt">white</span><span class="kw">;</span> <span class="kw">padding:</span><span class="dt">10px</span><span class="kw">;</span> <span class="kw">margin:</span><span class="dt">10px</span><span class="kw">;</span> <span class="kw">}</span>
+td <span class="kw">{</span> <span class="kw">padding:</span><span class="dt">10px</span><span class="kw">;</span> <span class="kw">margin:</span><span class="dt">10px</span><span class="kw">;</span> <span class="kw">}</span></code></pre>
+<div class="figure">
+<img src="../img/table_css_ref.jpg" alt="較優美的表單顯示結果" /><p class="caption">較優美的表單顯示結果</p>
+</div>
+<h2 id="路徑-tag-id-與-class"><a href="#路徑-tag-id-與-class">路徑, tag, id 與 class</a></h2>
+<p>即使有了可以統一套用的方式，有時我們還是會感覺到不方便，舉例而言，如果我們想要對某個表格套上 A 格式，然後在對另一個表格套上 B 格式，這時採用上述方法就不太夠用了。</p>
+<p>為了解決這種問題，HTML 發展出了 id 與 class 這兩個屬性，我們可以根據 id 或 class 的名稱分別套用不同的 CSS 樣式。</p>
+<p>舉例而言，以下網頁中有兩個 div 框，我們可以分別為這兩個框套用不同的格式，其中 classA 前面加了點符號，成為「.classA」，代表要比對的是 class 屬性，如果想要比對的是 id 屬性，那麼就可以加上井字符號 # (像是範例中 #topbar 的情況)。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+<span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&#39;utf-8&#39;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;style&gt;</span>
+<span class="fl">#topbar</span> <span class="kw">{</span> <span class="kw">background-color:</span><span class="dt">gray</span><span class="kw">;</span> <span class="kw">color:</span><span class="dt">blue</span><span class="kw">;</span> <span class="kw">padding:</span><span class="dt">10px</span><span class="kw">;</span> <span class="kw">margin:</span><span class="dt">10px</span><span class="kw">;</span> <span class="kw">}</span>
+<span class="fl">.classA</span> <span class="kw">{</span> <span class="kw">background-color:</span><span class="dt">black</span><span class="kw">;</span> <span class="kw">color:</span><span class="dt">white</span><span class="kw">;</span> <span class="kw">padding:</span><span class="dt">10px</span><span class="kw">;</span> <span class="kw">margin:</span><span class="dt">10px</span><span class="kw">;</span> <span class="kw">}</span>
+<span class="fl">.classB</span> <span class="kw">{</span> <span class="kw">background-color:</span><span class="dt">blue</span><span class="kw">;</span> <span class="kw">color:</span><span class="dt">yellow</span><span class="kw">;</span> <span class="kw">padding:</span><span class="dt">10px</span><span class="kw">;</span> <span class="kw">margin:</span><span class="dt">10px</span><span class="kw">;</span> <span class="kw">}</span>
+<span class="kw">&lt;/style&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+
+<span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;topbar&quot;</span><span class="kw">&gt;</span>頂區塊<span class="kw">&lt;/div&gt;</span>
+
+<span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;classA&quot;</span><span class="kw">&gt;</span>A 區塊<span class="kw">&lt;/div&gt;</span>
+
+<span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;classB&quot;</span><span class="kw">&gt;</span>B 區塊<span class="kw">&lt;/div&gt;</span>
+
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>檢視檔案：<a href="https://dl.dropbox.com/u/101584453/wp/code/div_css.htm">https://dl.dropbox.com/u/101584453/wp/code/div_css.htm</a></p>
+<div class="figure">
+<img src="../img/div_css.jpg" alt="兩種 CSS class 的顯示結果" /><p class="caption">兩種 CSS class 的顯示結果</p>
+</div>
+<p>到目前，我們可以看到有三種 css 的指定方式，也就是「標記 tag、代號 id 與類別 class」，可以用 CSS 來定位。事實上、這些指定方式還可以互相串接，以下是一些範例：</p>
+<pre class="sourceCode css"><code class="sourceCode css"><span class="fl">.classA</span> table <span class="kw">{</span> <span class="er">...</span> <span class="kw">}</span>               // 套用到 class=<span class="st">&quot;classA&quot;</span> 內部的 table 標記
+<span class="fl">#topbar</span> <span class="kw">{</span> <span class="er">....</span><span class="kw">}</span>                     // 套用到 id=<span class="st">&quot;topbar&quot;</span> 的元素上
+<span class="fl">#topbar</span> table <span class="fl">.classA</span> a <span class="kw">{</span> <span class="er">....</span> <span class="kw">}</span>    // 套用到 table 內具有 class=<span class="st">&quot;classA&quot;</span> 類別裏的超<span class="fl">連結</span> a 標記上。</code></pre>
+<p>更棒的是、這些選取方式之間還可以共用，只要利用逗點符號「,」 分隔就可以了，以下是一些範例：</p>
+<pre class="sourceCode css"><code class="sourceCode css"><span class="fl">.classA</span>, <span class="fl">#topbar</span> <span class="kw">{</span> <span class="er">...</span> <span class="kw">}</span>            // 套用到 class=<span class="st">&quot;classA&quot;</span> 或 id=<span class="st">&quot;topbar&quot;</span> 的元素上
+<span class="fl">#topbar</span> a, <span class="fl">.classA</span> a <span class="kw">{</span> <span class="er">....</span><span class="kw">}</span>        // 套用到 id=<span class="st">&quot;topbar&quot;</span> 或 class=<span class="st">&quot;.classA&quot;</span> 裏的 a 元素上</code></pre>
+<h2 id="一個實用的-css-的範例"><a href="#一個實用的-css-的範例">一個實用的 CSS 的範例</a></h2>
+<p>如果您想進一步學習 CSS 的各個屬性與用法，請參考下列網址，我們將不一一說明這些屬性的用法。</p>
+<ul>
+<li><a href="http://www.w3schools.com/css/default.asp">http://www.w3schools.com/css/default.asp</a></li>
+</ul>
+<p>在此、筆者將自己常用的一個 CSS 檔案列出，讀者觀察後可以自行複製修改使用。</p>
+<pre class="sourceCode CSS"><code class="sourceCode css">html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video <span class="kw">{</span>
+  <span class="kw">margin:</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">padding:</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">border:</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">font:</span> <span class="dt">inherit</span><span class="kw">;</span>
+  <span class="kw">vertical-align:</span> <span class="dt">baseline</span><span class="kw">;</span>
+  <span class="kw">line-height:</span><span class="dt">160%</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+h1, h2, h3, h4, h5, h6 <span class="kw">{</span>
+  <span class="kw">color:</span><span class="dt">#333333</span><span class="kw">;</span>
+  <span class="kw">margin:</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">font-family:</span> <span class="st">&#39;標楷體&#39;</span>, <span class="st">&#39;Times New Roman&#39;</span><span class="kw">;</span>
+  <span class="kw">font-weight:</span> <span class="dt">bold</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+p <span class="kw">{</span>
+  <span class="kw">margin:</span> <span class="dt">10px</span> <span class="dt">0</span> <span class="dt">15px</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">font-size:</span><span class="dt">100%</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+li <span class="kw">{</span>
+  <span class="kw">font-size:</span><span class="dt">100%</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+footer p <span class="kw">{</span>
+  <span class="kw">color:</span> <span class="dt">#f2f2f2</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+a <span class="kw">{</span>
+  <span class="kw">text-decoration:</span> <span class="dt">none</span><span class="kw">;</span>
+  <span class="kw">color:</span> <span class="dt">#007edf</span><span class="kw">;</span>
+  <span class="kw">text-shadow:</span> <span class="dt">none</span><span class="kw">;</span>
+
+  <span class="kw">transition:</span> color <span class="dt">0.5s</span> ease<span class="kw">;</span>
+  <span class="kw">transition:</span> text-shadow <span class="dt">0.5s</span> ease<span class="kw">;</span>
+  <span class="kw">-webkit-transition:</span> color <span class="dt">0.5s</span> ease<span class="kw">;</span>
+  <span class="kw">-webkit-transition:</span> text-shadow <span class="dt">0.5s</span> ease<span class="kw">;</span>
+  <span class="kw">-moz-transition:</span> color <span class="dt">0.5s</span> ease<span class="kw">;</span>
+  <span class="kw">-moz-transition:</span> text-shadow <span class="dt">0.5s</span> ease<span class="kw">;</span>
+  <span class="kw">-o-transition:</span> color <span class="dt">0.5s</span> ease<span class="kw">;</span>
+  <span class="kw">-o-transition:</span> text-shadow <span class="dt">0.5s</span> ease<span class="kw">;</span>
+  <span class="kw">-ms-transition:</span> color <span class="dt">0.5s</span> ease<span class="kw">;</span>
+  <span class="kw">-ms-transition:</span> text-shadow <span class="dt">0.5s</span> ease<span class="kw">;</span>
+<span class="kw">}</span>
+
+table <span class="kw">{</span>
+  <span class="kw">border-collapse:</span> <span class="dt">collapse</span><span class="kw">;</span>
+  <span class="kw">border-spacing:</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">border:</span> <span class="dt">1px</span> <span class="dt">solid</span> <span class="dt">#373737</span><span class="kw">;</span>
+  <span class="kw">margin-bottom:</span> <span class="dt">20px</span><span class="kw">;</span>
+  <span class="kw">text-align:</span> <span class="dt">left</span><span class="kw">;</span>
+  <span class="kw">margin-left:</span><span class="dt">auto</span><span class="kw">;</span> 
+  <span class="kw">margin-right:</span><span class="dt">auto</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+th <span class="kw">{</span>
+    <span class="kw">padding:</span> <span class="dt">10px</span><span class="kw">;</span>
+    <span class="kw">background-color:</span><span class="dt">black</span><span class="kw">;</span>
+    <span class="kw">color:</span><span class="dt">white</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+td <span class="kw">{</span>
+  <span class="kw">padding:</span> <span class="dt">10px</span><span class="kw">;</span>
+  <span class="kw">border:</span> <span class="dt">1px</span> <span class="dt">solid</span> <span class="dt">#373737</span><span class="kw">;</span>
+<span class="kw">}</span>
+ 
+em <span class="kw">{</span> <span class="kw">font-weight:</span><span class="dt">bold</span><span class="kw">;</span> <span class="kw">}</span>
+
+<span class="fl">#topbar</span> <span class="kw">{</span>
+  <span class="kw">margin:</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">padding:</span> <span class="dt">1px</span><span class="kw">;</span>
+  <span class="kw">border:</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">font:</span> <span class="dt">inherit</span><span class="kw">;</span>
+  <span class="kw">vertical-align:</span> <span class="dt">baseline</span><span class="kw">;</span>
+  <span class="kw">background-color:</span><span class="dt">black</span><span class="kw">;</span>
+  <span class="kw">color:</span><span class="dt">white</span><span class="kw">;</span>
+  <span class="kw">color:</span><span class="dt">white</span><span class="kw">;</span>
+  <span class="kw">width:</span><span class="dt">95%</span><span class="kw">;</span>
+  <span class="kw">text-align:</span><span class="dt">right</span><span class="kw">;</span>
+  <span class="kw">font-weight:</span><span class="dt">bold</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+<span class="fl">#content</span> <span class="kw">{</span>
+  <span class="kw">margin:</span><span class="dt">10px</span><span class="kw">;</span>
+  <span class="kw">padding:</span><span class="dt">10px</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+pre <span class="kw">{</span>
+  <span class="kw">border:</span> <span class="dt">1px</span> <span class="dt">solid</span> <span class="dt">#373737</span><span class="kw">;</span>
+  <span class="kw">background-color:</span><span class="dt">#dddddd</span><span class="kw">;</span>
+  <span class="kw">color:</span><span class="dt">#333333</span><span class="kw">;</span>
+  <span class="kw">font-size:</span><span class="dt">medium</span><span class="kw">;</span>
+  <span class="kw">width:</span><span class="dt">95%</span><span class="kw">;</span>
+  <span class="kw">padding:</span><span class="dt">10px</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+img <span class="kw">{</span>
+  <span class="kw">border:</span> <span class="dt">1px</span> <span class="dt">solid</span> <span class="dt">#373737</span><span class="kw">;</span>
+  <span class="kw">margin-left:</span> <span class="dt">auto</span><span class="kw">;</span>
+  <span class="kw">margin-right:</span> <span class="dt">auto</span><span class="kw">;</span>
+  <span class="kw">display:</span> <span class="dt">block</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+<span class="fl">.figure</span> <span class="fl">.caption</span> <span class="kw">{</span>
+  <span class="kw">text-align:</span><span class="dt">center</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+<span class="fl">#footer</span> <span class="kw">{</span>
+  <span class="kw">text-align:</span><span class="dt">center</span><span class="kw">;</span>
+  <span class="kw">font-size:</span><span class="dt">small</span><span class="kw">;</span>
+  <span class="kw">color:</span><span class="dt">#666666</span><span class="kw">;</span>
+  <span class="kw">margin:</span> <span class="dt">10px</span><span class="kw">;</span>
+  <span class="kw">padding:</span> <span class="dt">10px</span><span class="kw">;</span>
+<span class="kw">}</span></code></pre>
+<h2 id="參考文獻"><a href="#參考文獻">參考文獻</a></h2>
+<ul>
+<li><a href="http://www.w3schools.com/css/default.asp">http://www.w3schools.com/css/default.asp</a></li>
+<li><a href="http://css.maxdesign.com.au/listutorial/">http://css.maxdesign.com.au/listutorial/</a></li>
+</ul>
+</div>
+<div id="footer">
+<a href="http://ccckmit.wikidot.com">陳鍾誠</a>衍生自<a href="http://zh.wikipedia.org/">維基百科</a>之作品：採用 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/ ">創作共用：姓名標示、相同方式分享</a> <a href="license.html">授權</a>
+</div>
+</body>
+</html>

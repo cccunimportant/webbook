@@ -1,0 +1,2620 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" href="../css/book.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+  <h1><a href="index.htm">電子書：Web 程式設計</a></h1>
+  <table id="bar" border="0" style="border:0;"><tr style="border:0;">
+    <td style="text-align:left;border:0;"> <a href="book.html">目錄</a> | <a href="download.html">下載</a> | <a href="course.html">課程</a> | <a href="forum.html">討論</a> | <a href="exam.html">測驗</a></td>
+    <td style="text-align:right;border:0;"><a href="http://ccckmit.wikidot.com/">陳鍾誠</a> 於 <a href="http://www.nqu.edu.tw/">金門大學</a></td>
+  </tr></table>
+</div>
+<div id="content">
+<div id="TOC">
+<ul>
+<li><a href="#web-程式簡介">Web 程式簡介</a><ul>
+<li><a href="#networkinternet-與-web">Network、Internet 與 Web</a></li>
+<li><a href="#web-的相關技術">Web 的相關技術</a></li>
+<li><a href="#html-與-http">HTML 與 HTTP</a></li>
+<li><a href="#參考文獻">參考文獻</a></li>
+<li><a href="#htmlcss-與-javascript">HTML、CSS 與 JavaScript</a></li>
+<li><a href="#簡易網頁">簡易網頁</a></li>
+<li><a href="#html-的表頭">HTML 的表頭</a></li>
+<li><a href="#格式化">格式化</a></li>
+<li><a href="#標題">標題</a></li>
+<li><a href="#影像-image">影像 Image</a></li>
+<li><a href="#表格-table">表格 Table</a></li>
+<li><a href="#項目-list">項目 list</a></li>
+<li><a href="#表單-form">表單 Form</a></li>
+<li><a href="#參考文獻-1">參考文獻</a></li>
+</ul></li>
+<li><a href="#css-版面設計">CSS 版面設計</a><ul>
+<li><a href="#css-簡介">CSS 簡介</a></li>
+<li><a href="#路徑-tag-id-與-class">路徑, tag, id 與 class</a></li>
+<li><a href="#一個實用的-css-的範例">一個實用的 CSS 的範例</a></li>
+<li><a href="#參考文獻-2">參考文獻</a></li>
+</ul></li>
+<li><a href="#javascript-語言基礎">JavaScript 語言基礎</a><ul>
+<li><a href="#javascript-基本語法">JavaScript 基本語法</a></li>
+<li><a href="#javascript-的物件導向語法">JavaScript 的物件導向語法</a></li>
+<li><a href="#javascript-的特殊技巧-closure-與匿名函數">JavaScript 的特殊技巧 – Closure 與匿名函數</a></li>
+<li><a href="#參考文獻-3">參考文獻</a></li>
+</ul></li>
+<li><a href="#javascript-的字串處理">JavaScript 的字串處理</a><ul>
+<li><a href="#字串物件-string">字串物件 String</a></li>
+<li><a href="#正規表達式">正規表達式</a></li>
+<li><a href="#eval-函數">eval 函數</a></li>
+<li><a href="#參考文獻-4">參考文獻</a></li>
+</ul></li>
+<li><a href="#動態網頁---javascript-在瀏覽器中控制-dom-網頁物件">動態網頁 - JavaScript 在瀏覽器中控制 DOM 網頁物件</a><ul>
+<li><a href="#javascriptbrowser-與-dom">JavaScript、Browser 與 DOM</a></li>
+<li><a href="#功能表程式">功能表程式</a></li>
+<li><a href="#html-編輯器">HTML 編輯器</a></li>
+<li><a href="#參考文獻-5">參考文獻</a></li>
+</ul></li>
+<li><a href="#node.js-命令列---讓-javascript-作為一般程式執行">Node.js 命令列 - 讓 JavaScript 作為一般程式執行</a><ul>
+<li><a href="#node.js-的安裝">Node.js 的安裝</a></li>
+<li><a href="#node.js-的互動操作環境">Node.js 的互動操作環境</a></li>
+<li><a href="#node.js-的命令列工具">Node.js 的命令列工具</a></li>
+<li><a href="#eval-函數-1">Eval 函數</a></li>
+<li><a href="#寫入檔案">寫入檔案</a></li>
+<li><a href="#模組定義與引用">模組定義與引用</a></li>
+<li><a href="#參考文獻-6">參考文獻</a></li>
+</ul></li>
+<li><a href="#node.js----web-程式">Node.js -- Web 程式</a><ul>
+<li><a href="#第一個-web-程式">第一個 Web 程式</a></li>
+<li><a href="#htmlserver">HtmlServer</a></li>
+<li><a href="#簡易-webserver">簡易 WebServer</a></li>
+<li><a href="#較完整的-webserver-非同步版">較完整的 WebServer (非同步版)</a></li>
+<li><a href="#參考文獻-7">參考文獻</a></li>
+</ul></li>
+<li><a href="#node.js----表單資料的處理">Node.js -- 表單資料的處理</a><ul>
+<li><a href="#web-的表單資料">Web 的表單資料</a></li>
+<li><a href="#get-的處理">GET 的處理</a></li>
+<li><a href="#post-的處理">POST 的處理</a></li>
+<li><a href="#網路記事本">網路記事本</a></li>
+</ul></li>
+<li><a href="#結語">結語</a></li>
+<li><a href="#附錄">附錄</a><ul>
+<li><a href="#目錄-含教學影片">目錄 (含教學影片)</a></li>
+<li><a href="#考題與解答">考題與解答</a></li>
+</ul></li>
+</ul>
+</div>
+<h1 id="web-程式簡介"><a href="#web-程式簡介">Web 程式簡介</a></h1>
+<h2 id="networkinternet-與-web"><a href="#networkinternet-與-web">Network、Internet 與 Web</a></h2>
+<p>在英文當中、Network、Internet 與 Web 這些名詞是區分得很清楚的，但是對於中文使用者而言，這三個名詞卻很難釐清，不過對於程式人員而言，區分這幾個名詞是很重要的是，特別是 Internet 與 Web 這兩個名詞，首先讓我們來看看這些名詞的差異。</p>
+<p>英文中的 Network 泛指任何的網路，包含像公路也叫做 Traffic Network，因此即使在電腦領域，Network 仍然泛指任何網路，包含區域網路、廣域網路、Internet、Ethernet 等等都是 Network。</p>
+<p>Internet 是指 1960 年代美國國防部 (Department of Defense, DoD) 所發展出來的那個網路，原本稱為 ARPANET，後來延伸到全世界之後，就稱為 Internet 了。</p>
+<p>1990 年 Tim Burner Lee 創造了 HTML 、URL、與全世界第一個 WebServer，從此開始創造出一個基於 Internet 的網路架構，這個網路架構被稱為 World Wide Web (簡稱為 Web 或 WWW)，後來在 1992 年當時 Marc Andreessen 招聘了一些程式員開發出一個稱為 Mosaic 的瀏覽器 (Browser, 也就是 Web 的 Client 介面) 之後，推動了 Web 的急速發展。</p>
+<p>所以，凡是透過瀏覽器接觸到的網路，通常就是 Web 。而不是透過瀏覽器接觸到網路的軟體，則通常是基於 Internet 的應用程式。所以您用 Internet Explorer, Firefox, Chrome, Safari 等瀏覽器所看到的網站，其實都是一個一個的 Web 程式所組成的，而那些不經過瀏覽器，而是要另外安裝的應用程式，像是 Skype、MSN 等，則是 Internet 應用程式。</p>
+<p>本書的焦點是 Web 的程式設計，也就是網站的設計，而非像 Skype、MSN 這樣的 Internet 應用程式。</p>
+<p>如果您想學習的是 Internet 應用程式的設計，筆者另外有寫一本採用 C# 的程式設計書籍，請參閱該書，該書的網址如下：</p>
+<ul>
+<li><a href="https://dl.dropbox.com/u/101584453/cs/htm/book.html">https://dl.dropbox.com/u/101584453/cs/htm/book.html</a></li>
+</ul>
+<h2 id="web-的相關技術"><a href="#web-的相關技術">Web 的相關技術</a></h2>
+<p>HTTP 是 Web 全球資訊網 (萬維網) 的基礎協定，該協定架構在 TCP/IP 架構之上，屬於應用層的協定。構成 HTTP 的主要兩個應用程式是瀏覽器 (Browser) 與網站 (Web Server)。HTTP 是一個典型的 Client-Server (客戶端-伺服端) 架構的協定，使用者透過 Client 端的瀏覽器連結到 Server 的伺服器，然後由伺服端將結果以 HTML 的網頁格式傳回。 HTML 的網頁當中包含了許多超連結 (Hyperlink)，這些超連結連接到某些網址 (URL)，於是使用者可以透過瀏覽器中的超連結，進一步點選其他的網頁，進行網路瀏覽的行為。</p>
+<p>絕大部分的使用者，現在都是使用 Internet Explorer, Firefox, Chrome, Safari 等瀏覽器在上網，因此所使用到的就是 Web 程式，本書的焦點也正是這種基於 Web 的程式技術。</p>
+<p>Web 相關的技術非常的多，其中最核心的部分是 HTTP/HTML/URL/CSS/JavaScript 等技術，而圍繞著這些核心技術上所發展出來的技術則難以數計，像是 PHP、ASP/ASP.NET、JSP、Ruby on Rail、Python/Dejango、Node.js、XML、JSON、XMLHTTP、AJAX、jQuery 等等，本書後面的章節將採用一個最少語言的架構，以 JavaScript 為核心，採用 HTML + CSS + JavaScript 為主要技術，並搭配 JavaScript 所衍生出的 jQuery 與 Node.js 等技術，以建構出完整的 Web 程式設計概念。</p>
+<pre><code>本書 = HTTP + HTML + CSS + JavaScript + jQuery + Node.js 所組成的 Web Programming 技術</code></pre>
+<p>其中、HTTP 是所有技術的起點，讓我們先來看看 HTTP 到底做了甚麼事。</p>
+<h2 id="html-與-http"><a href="#html-與-http">HTML 與 HTTP</a></h2>
+<p>當您用 Browser 看網站的時候，到底 Browser 傳遞什麼訊息給 Server，而 Server 又回傳神麼訊息給 Browser 呢？</p>
+<p>粗略的說、一個最簡單的 Web Server 之功能包含下列三個步驟：</p>
+<ul>
+<li>步驟一 : 接收瀏覽器所傳來的網址。</li>
+<li>步驟二 : 取出相對應的檔案。</li>
+<li>步驟三 : 將檔案內容傳回給瀏覽器。</li>
+</ul>
+<p>然而、在這個接收與傳回的過程中，所有的資訊都必須遵照固定的格式，規範這個接收/傳送格式的協定，稱為超文字傳送協定 (Hyper Text Transfer Protocol)，簡稱為 HTTP 協定。</p>
+<p>HTTP 協定格式的基礎，乃是建構在網址 URL 上的傳輸方式，早期只能用來傳送簡單的 HTML 檔案，後來經擴充後也可以傳送 其他類型的檔案，包含 影像、動畫、簡報、Word 文件等。</p>
+<p>在本文中，我們將先簡介 HTTP 協定的訊息內容，然後在介紹如何以 Java 語言實作 HTTP 協定，以建立一個簡單的 Web Server。</p>
+<h3 id="http-協定"><a href="#http-協定">HTTP 協定</a></h3>
+<p>當你在 Browser 上打上網址(URL)後， Browser 會傳出一個HTTP訊息給對應的 Web Server，Web Server 再接收到這個訊息後， 根據網址取出對應的檔案，並將該檔案以 HTTP 格式的訊息傳回給瀏覽器，以下是這個過程的一個範例。</p>
+<p>豬小弟上網，在瀏覽器中打上 http://ccc.kmit.edu.tw/index.htm，於是、瀏覽器傳送下列訊息給 ccc.kmit.edu.tw 這台電腦。</p>
+<pre><code>GET /index.htm HTTP/1.0
+Accept: image/gif, image/jpeg, application/msword, */*
+Accept-Language: zh-tw
+User-Agent: Mozilla/4.0
+Content-Length: 
+Host: ccc.kmit.edu.tw
+Cache-Control: max-age=259200
+Connection: keep-alive
+</code></pre>
+<p>當 ccc.kmit.edu.tw 電腦上的 Web Server 程式收到上述訊息後，會取出指定的路徑 /index.htm ，然後根據預設的網頁根目錄 (假設為 c:)，合成一個 c:.htm 的絕對路徑，接著從磁碟機中取出該檔案，並傳回下列訊息給豬小弟的瀏覽器。</p>
+<pre><code>HTTP/1.0 200 OK
+Content-Type: text/html
+Content-Length: 438
+&amp;lt;html&amp;gt;
+  ....
+&amp;lt;/html&amp;gt;</code></pre>
+<p>其中第一行 HTTP/1.0 200 OK 代表該網頁被成功傳回，第二行 Content-Type: text/html 代表傳回文件為 HTML 檔案， Content-Length: 438 代表該 HTML 檔案的大小為 438 位元組。</p>
+<p>換言之、 Browser 會傳遞一個包含網頁路徑的表頭資訊給 Server，而 Server 則會回傳一個 HTML 檔案給 Browser，這樣的傳送格式與規則，就稱為 HTTP 協定。</p>
+<p>在 Web 開始成長之後，這樣的模式就顯得有點不足了，因為很多網頁需要使用者填入一些欄位，像是帳號密碼等資訊，但是上述的表頭並沒有欄位資訊預留空間，於是為了回傳這些使用者填入的訊息，有人想到了可以在網址的後面補上參數，這種方式就稱為 GET 的參數傳送方式，以下是一個傳送帳號密碼的表頭訊息，其中的 ?user=ccc&amp;password=1234567 是 Browser 傳送給 Server 的參數。</p>
+<pre><code>GET /login?user=ccc&amp;password=1234567 HTTP/1.0
+Accept: image/gif, image/jpeg, application/msword, */*
+Accept-Language: zh-tw
+User-Agent: Mozilla/4.0
+Content-Length: 
+Host: ccc.kmit.edu.tw
+Cache-Control: max-age=259200
+Connection: keep-alive
+</code></pre>
+<p>但是後來，這些填入的欄位越來越多，傳送的參數訊息也越來越長，而這些訊息有些也不希望被顯示在網址列上讓大家看到，因此又發展出了另外一種參數傳遞方式，這種方式就稱為 POST，以下是POST訊息的一個範例。</p>
+<pre><code>POST /msg.php HTTP/1.0
+Accept: image/gif, image/jpeg, application/msword, */*
+Accept-Language: zh-tw
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/4.0
+Content-Length: 66
+Host: ccc.kmit.edu.tw
+Cache-Control: max-age=259200
+Connection: keep-alive
+
+user=ccc&amp;password=1234&amp;msg=Hello+%21+%0D%0AHow+are+you+%21%0D%0A++</code></pre>
+<p>上述表頭中的最後一句「user=ccc&amp;password=1234&amp;msg=Hello+%21+%0D%0AHow+are+you+%21%0D%0A++」是三個欄位參數被編碼後的結果，其中的 user 欄位值是 ccc，password 欄位值是 1234，而 msg 的值則是下列文章。</p>
+<pre><code>Hello !
+How are you !</code></pre>
+<p>POST 訊息與 GET 訊息不同的地方，除了在 HTTP 的訊息開頭改以 POST 取代 GET 之外，並且多了一個 Content-Length:66 的欄位，該欄位指示了訊息結尾會有 66 個位元組的填表資料，這些資料會被編碼後以文字模式在網路上傳遞。</p>
+<p>一但 Server 取得了 Browser 傳來的 GET 或 POST 訊息後，就可以根據其訊息以進行對應的動作，像是檢查帳號密碼是否正確、將某些訊息存入資料庫、然後在透過 HTML 的方式傳送回應畫面給 Browser，這種透過 HTTP 與 HTML 的簡單互動方式，正是由 World Wide Web 所帶來的核心技術，也讓全世界都捲入了這個影響深遠的網路革命當中。</p>
+<p>若您對 WebServer 的運作方式有興趣，可以參考筆者的三個程式與文章，這三個程式分別以 Java、C# 與 JavaScript/Node.js 寫成，這會讓您能夠更深入的體會 WebServer 與 HTTP 的運作原理。</p>
+<ul>
+<li>如何設計簡單的 WebServer? (Java 版) -- <a href="http://ccckmit.wikidot.com/code:webserver">http://ccckmit.wikidot.com/code:webserver</a></li>
+<li>如何設計簡單的 WebServer? (C# 版) -- <a href="http://cs0.wikidot.com/webserver">http://cs0.wikidot.com/webserver</a></li>
+<li>如何設計簡單的 WebServer? (JavaScript/Node.js 版) -- <a href="http://ccckmit.wikidot.com/js:nodewebserver">http://ccckmit.wikidot.com/js:nodewebserver</a></li>
+</ul>
+<p>註：curl 這個工具聽說很適合用來觀察各種協定的運作原理，不過筆者還沒用過，未來會了再寫出來給大家看看！ * <a href="http://curl.haxx.se/download.html">http://curl.haxx.se/download.html</a></p>
+<h2 id="參考文獻"><a href="#參考文獻">參考文獻</a></h2>
+<ul>
+<li>How Java Web Servers Work -- <a href="http://www.onjava.com/pub/a/onjava/2003/04/23/java_webserver.html">http://www.onjava.com/pub/a/onjava/2003/04/23/java_webserver.html</a></li>
+<li>JDK API : java.net.ServerSocket -- <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/net/ServerSocket.html">http://java.sun.com/j2se/1.4.2/docs/api/java/net/ServerSocket.html</a></li>
+<li>Hypertext Transfer Protocol (HTTP/1.0) -- <a href="http://www.w3.org/Protocols/HTTP/1.0/draft-ietf-http-spec.html">http://www.w3.org/Protocols/HTTP/1.0/draft-ietf-http-spec.html</a></li>
+</ul>
+<h2 id="htmlcss-與-javascript"><a href="#htmlcss-與-javascript">HTML、CSS 與 JavaScript</a></h2>
+<p>HTML、CSS 與 JavaScript 是讓 Web Browser 運作的三大技術，要學會 Web 程式設計的第一步，就是要學會這三項技術，在本章中，我們將從最基礎的 HTML 開始。</p>
+<p>如果您想要學習這些技術，筆者強烈的推薦您觀看 w3schools 這個網站，網址如下。</p>
+<ul>
+<li><a href="http://www.w3schools.com/">http://www.w3schools.com/</a></li>
+</ul>
+<p>學習 HTML、CSS、JavaScript 的順序，最好先從 HTML 開始，因為 HTML 最簡單，而且是整個 Web 技術的表現語言，學會 HTML 之後就可以學習 CSS，看看如何對 HTML 進行格式化套表呈現的動作，然後再進一步學習 JavaScript 這個小型程式語言，以便讓網頁更加動態，增強網頁的的互動功能。</p>
+<p>以下是 w3schools 當中這三個主題的網頁，如果您是一個程式設計師，相信您可以用很短的時間就學會這些主題。</p>
+<ul>
+<li><a href="http://www.w3schools.com/html/default.asp">http://www.w3schools.com/html/default.asp</a></li>
+<li><a href="http://www.w3schools.com/css/default.asp">http://www.w3schools.com/css/default.asp</a></li>
+<li><a href="http://www.w3schools.com/js/default.asp">http://www.w3schools.com/js/default.asp</a></li>
+</ul>
+<p>一但學會了 HTML、CSS、JavaScript 這三種技術，您就可以開始向 Server 端的技術邁進了。</p>
+<h2 id="簡易網頁"><a href="#簡易網頁">簡易網頁</a></h2>
+<p>HTML 網頁是一種純文字檔案，您只要用記事本這樣的文字編輯器就可以輕易的編出來，以下是一個範例：</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+Hello!
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>檢視檔案：<a href="https://dl.dropbox.com/u/101584453/wp/code/hello1.htm">https://dl.dropbox.com/u/101584453/wp/code/hello1.htm</a></p>
+<p>您可以看到在上述範例中，Hello! 訊息被夾在 <code>&lt;body&gt;</code> 與 <code>&lt;/body&gt;</code> 中間，而外層又有 <code>&lt;html&gt;</code> 與 <code>&lt;/html&gt;</code> 包覆，像這樣的結構稱為標記語言 (Markup Language)。</p>
+<p>如果我們在上述文件中再加上一句 <code>&lt;a href=&quot;http://tw.yahoo.com/&quot;&gt;Yahoo!&lt;/a&gt;</code> 這樣的標記，那麼網頁中將會出現 Yahoo! 這個詞彙，該詞彙通常是藍色文字，而且可以用滑鼠點擊，當您點擊之後網頁就會被導到 Yahoo 台灣的首頁，這種點選後會導入另一個網頁的機制是 Web 的最大特色，稱為 Hyperlink (超連結)，而那些被 <code>&lt;a&gt; &lt;/a&gt;</code> 標記起來的文字，就稱為 Hyper Text (超文字)。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+Hello! 
+<span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;http://tw.yahoo.com/&quot;</span><span class="kw">&gt;</span>Yahoo!<span class="kw">&lt;/a&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>(筆者註：標記 a 當中的 href 是 Hyperlink Reference (超連結引用) 的縮寫，而 a 則是 anchor (錨) 的意思)。</p>
+<p>檢視檔案：<a href="https://dl.dropbox.com/u/101584453/wp/code/hello2.htm">https://dl.dropbox.com/u/101584453/wp/code/hello2.htm</a></p>
+<p>而這也正是 HTML 之全名 Hyper Text Markup Language 的意義，也就是一種含有超連結的標記語言。</p>
+<p>由於 HTML 標記語言是有層次性的，因此在排版時我們經常都會使用縮排以凸顯出這種層次感，例如以上的範例經過縮排之後就變成了如下的情況。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+    <span class="kw">&lt;body&gt;</span>
+        Hello! 
+        <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;http://tw.yahoo.com/&quot;</span><span class="kw">&gt;</span>Yahoo!<span class="kw">&lt;/a&gt;</span>
+    <span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>檢視檔案：<a href="https://dl.dropbox.com/u/101584453/wp/code/hello3.htm">https://dl.dropbox.com/u/101584453/wp/code/hello3.htm</a></p>
+<p>這樣的結構看起來更加一目了然，能夠凸顯出每個層次之間的包含關係。</p>
+<h2 id="html-的表頭"><a href="#html-的表頭">HTML 的表頭</a></h2>
+<p>雖然上述範例已經是 HTML 網頁了，而且也通常可以正常檢視了，但是還不夠完整，一個完整的 HTML 網頁通常要包含足夠的表頭資訊，以便讓瀏覽器能正確的辨認這個網頁的類型與編碼方式，以下是一個範例：</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html&gt;</span>
+    <span class="kw">&lt;head&gt;</span>
+        <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&#39;utf-8&#39;</span><span class="kw">&gt;</span> 
+    <span class="kw">&lt;/head&gt;</span>
+    <span class="kw">&lt;body&gt;</span>
+        Hello! 你好！
+        <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;http://tw.yahoo.com/&quot;</span><span class="kw">&gt;</span>Yahoo!<span class="kw">&lt;/a&gt;</span>
+    <span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>檢視檔案：<a href="https://dl.dropbox.com/u/101584453/wp/code/hello4.htm">https://dl.dropbox.com/u/101584453/wp/code/hello4.htm</a></p>
+<div class="figure">
+<img src="../img/HtmlHello4.png" alt="圖、上述網頁的檢視畫面" /><p class="caption">圖、上述網頁的檢視畫面</p>
+</div>
+<p>其中第一句的 <code>&lt;!DOCTYPE html&gt;</code> 是告訴瀏覽器，這個文件是一個 HTML 檔案，而 <code>&lt;meta charset='utf-8'&gt;</code> 這句話，則是告訴瀏覽器這個文件的編碼是用 UTF-8 的格式。</p>
+<p>所以您必須將上述檔案，儲存成 unicode 的 UTF-8 格式，這樣網頁才能正確運作，否則就有可能出現亂碼的情況，以下是筆者使用 Notepad++ 設定 UTF-8 格式的情況。</p>
+<div class="figure">
+<img src="../img/NotepadUtf8.png" alt="圖、筆者使用 Notepad++ 設定 UTF-8 格式的畫面" /><p class="caption">圖、筆者使用 Notepad++ 設定 UTF-8 格式的畫面</p>
+</div>
+<h2 id="格式化"><a href="#格式化">格式化</a></h2>
+<p>從上述範例中，您可以看到即使我們在 HTML 的原始文字檔案中進行換行，但是呈現出來的結果卻沒有換行，如果您真的想要強制換行的話，在 HTML 當中必須用 <code>&lt;BR/&gt;</code> 這個標記，才能讓文字真正換行。</p>
+<p>但是強制換行並不是一個好的寫法，比較好的方法是用段落標記 <code>&lt;p&gt;...&lt;/p&gt;</code> 把您的段落包起來，這樣在段落結束後就會換行了。</p>
+<p>另外、還有 <code>&lt;b&gt;...&lt;/b&gt;</code> 標記 (也可以用 <code>&lt;strong&gt; ... &lt;/strong&gt;</code>) 可以讓文字變粗體，而 <code>&lt;i&gt;...&lt;/i&gt;</code> 指令則可以讓文字呈現斜體，<code>&lt;em&gt; ... &lt;/em&gt;</code> 標記可以強調文字，而 <code>&lt;code&gt;...&lt;/code&gt;</code> 可以讓文字以類似程式碼的字型輸出。</p>
+<p>若要讓文字變成上標，可以用 <code>&lt;sup&gt;...&lt;/sup&gt;</code>，或用 <code>&lt;sub&gt;...&lt;/sub&gt;</code> 則可以讓文字變下標，以下範例綜合的呈現了這些格式化標記的結果。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html&gt;</span>
+    <span class="kw">&lt;head&gt;</span>
+        <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&#39;utf-8&#39;</span><span class="kw">&gt;</span> 
+    <span class="kw">&lt;/head&gt;</span>
+    <span class="kw">&lt;body&gt;</span>
+      一般字體 (Plain Text) <span class="kw">&lt;BR/&gt;</span>
+      <span class="kw">&lt;i&gt;</span>斜體 (Italic)<span class="kw">&lt;/i&gt;</span> <span class="kw">&lt;BR/&gt;</span>
+      <span class="kw">&lt;b&gt;</span>粗體 (Bold)<span class="kw">&lt;/b&gt;</span> <span class="kw">&lt;BR/&gt;</span>
+      <span class="kw">&lt;p&gt;</span>
+        <span class="kw">&lt;strong&gt;</span>明顯 (Strong)<span class="kw">&lt;/strong&gt;</span>
+        <span class="kw">&lt;em&gt;</span>強調 (Emphasized)<span class="kw">&lt;/em&gt;</span>
+      <span class="kw">&lt;/p&gt;</span>
+      <span class="kw">&lt;p&gt;</span>
+        這是 <span class="kw">&lt;sup&gt;</span>上標<span class="kw">&lt;/sup&gt;</span> 與 <span class="kw">&lt;sub&gt;</span>下標<span class="kw">&lt;/sub&gt;</span> 的顯示情況！
+      <span class="kw">&lt;/p&gt;</span>
+    <span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>檢視檔案：<a href="https://dl.dropbox.com/u/101584453/wp/code/format.htm">https://dl.dropbox.com/u/101584453/wp/code/format.htm</a></p>
+<div class="figure">
+<img src="../img/HtmlFormat.png" alt="圖、各種格式標記的網頁檢視畫面" /><p class="caption">圖、各種格式標記的網頁檢視畫面</p>
+</div>
+<h2 id="標題"><a href="#標題">標題</a></h2>
+<p>HTML 的章節標題共有六種層次，從 h1 到 h6，通常 h1 代表最大的第一層標題，會用最大的字型顯示，而 h6 則是最小的第六層標題，會用最小的字型顯示。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;h1&gt;</span>第 1 層段落標題<span class="kw">&lt;/h1&gt;</span>
+<span class="kw">&lt;h2&gt;</span>第 2 層段落標題<span class="kw">&lt;/h2&gt;</span>
+<span class="kw">&lt;h3&gt;</span>第 3 層段落標題<span class="kw">&lt;/h3&gt;</span>
+<span class="kw">&lt;h4&gt;</span>第 4 層段落標題<span class="kw">&lt;/h4&gt;</span>
+<span class="kw">&lt;h5&gt;</span>第 5 層段落標題<span class="kw">&lt;/h5&gt;</span>
+<span class="kw">&lt;h6&gt;</span>第 6 層段落標題<span class="kw">&lt;/h6&gt;</span></code></pre>
+<p>而整個網頁的標題則是用 <code>&lt;title&gt;...&lt;/title&gt;</code> 進行標記，如下所示。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;title&gt;</span>網頁標題<span class="kw">&lt;/title&gt;</span></code></pre>
+<p>以下是這些標題的使用範例，您可以點選看看。</p>
+<p>檢視檔案：<a href="https://dl.dropbox.com/u/101584453/wp/code/header1_6.htm">https://dl.dropbox.com/u/101584453/wp/code/header1_6.htm</a></p>
+<div class="figure">
+<img src="../img/HtmlHeader1_6.png" alt="圖、Header 1-6 的網頁檢視畫面" /><p class="caption">圖、Header 1-6 的網頁檢視畫面</p>
+</div>
+<h2 id="影像-image"><a href="#影像-image">影像 Image</a></h2>
+<p>在 HTML 中，要顯示影像或圖片，只要使用 <code>&lt;img src=&quot;圖片相對路徑&quot;&gt;</code> 就行了。如果要指定大小，就可以加上 width 與 height 屬性，如以下範例所示。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;F7501.gif&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;F7501.gif&quot;</span><span class="ot"> width=</span><span class="st">&quot;200&quot;</span><span class="ot"> height=</span><span class="st">&quot;300&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;F7501.gif&quot;</span><span class="ot"> width=</span><span class="st">&quot;20%&quot;</span><span class="kw">/&gt;</span></code></pre>
+<p>上述第一個指令 <code>&lt;img src=&quot;F7501.jpg&quot;/&gt;</code> 會按照原圖大小顯示，而 <code>&lt;img src=&quot;F7501.jpg&quot; width=&quot;300&quot; height=&quot;500&quot;/&gt;</code> 則會將圖形縮放到寬度 200，高度 300 的大小，最後一個用 20% 代表縮放到寬度為瀏覽器畫面視窗的百分之二十那麼大。</p>
+<p>檢視檔案：<a href="https://dl.dropbox.com/u/101584453/wp/code/img.htm">https://dl.dropbox.com/u/101584453/wp/code/img.htm</a></p>
+<div class="figure">
+<img src="../img/HtmlImg.png" alt="圖、img 指令的網頁檢視畫面" /><p class="caption">圖、img 指令的網頁檢視畫面</p>
+</div>
+<p>評論：竟然趁機為自己的書打廣告，真是太惡劣了！....</p>
+<h2 id="表格-table"><a href="#表格-table">表格 Table</a></h2>
+<p>在 HTML 當中、有很多排版都是使用表格的方式製作的，例如「側欄、上方橫幅」等等，表格的語法如以下範例所示。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;table&gt;</span>
+<span class="kw">&lt;tr&gt;</span>
+<span class="kw">&lt;th&gt;&lt;/th&gt;</span>
+<span class="kw">&lt;th&gt;</span>欄 1<span class="kw">&lt;/th&gt;</span>
+<span class="kw">&lt;th&gt;</span>欄 2<span class="kw">&lt;/th&gt;</span>
+<span class="kw">&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;</span>
+<span class="kw">&lt;th&gt;</span>列 1<span class="kw">&lt;/th&gt;</span>
+<span class="kw">&lt;td&gt;</span>1,1<span class="kw">&lt;/td&gt;</span>
+<span class="kw">&lt;td&gt;</span>1,2<span class="kw">&lt;/td&gt;</span>
+<span class="kw">&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;</span>
+<span class="kw">&lt;th&gt;</span>列 2<span class="kw">&lt;/th&gt;</span>
+<span class="kw">&lt;td&gt;</span>2, 1<span class="kw">&lt;/td&gt;</span>
+<span class="kw">&lt;td&gt;</span>2, 2<span class="kw">&lt;/td&gt;</span>
+<span class="kw">&lt;/tr&gt;</span>
+<span class="kw">&lt;/table&gt;</span></code></pre>
+<p>表格的語法都是由 <code>&lt;table&gt;...&lt;/table&gt;</code> 所夾住的，其中 <code>&lt;tr&gt;...&lt;/tr&gt;</code> 會夾住一個列，而每個列又可以分成數個欄，這些欄可能用 <code>&lt;th&gt;..&lt;/th&gt;</code> 或 <code>&lt;td&gt;...&lt;/td&gt;</code> 夾住，其中 th 通常是用在標頭、而 td 則是用在內容。</p>
+<p>檢視檔案：<a href="https://dl.dropbox.com/u/101584453/wp/code/table.htm">https://dl.dropbox.com/u/101584453/wp/code/table.htm</a></p>
+<div class="figure">
+<img src="../img/table.jpg" alt="表格範例的顯示結果" /><p class="caption">表格範例的顯示結果</p>
+</div>
+<h2 id="項目-list"><a href="#項目-list">項目 list</a></h2>
+<p>HTML 的項目是用 <code>&lt;li&gt;...&lt;/li&gt;</code> 語法所框住的，如果在項目的外面加上 <code>&lt;ul&gt;...&lt;/ul&gt;</code> ，那就會顯示無編號的項目清單，若加上 <code>&lt;ol&gt;...&lt;/ol&gt;</code>，那就會顯示有編號的項目清單。</p>
+<p>無編號項目清單：</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;ul&gt;</span>
+<span class="kw">&lt;li&gt;</span>項目 1<span class="kw">&lt;/li&gt;</span>
+<span class="kw">&lt;li&gt;</span>項目 2<span class="kw">&lt;/li&gt;</span>
+<span class="kw">&lt;/ul&gt;</span></code></pre>
+<p>有編號項目清單：</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;ol&gt;</span>
+<span class="kw">&lt;li&gt;</span>項目 1<span class="kw">&lt;/li&gt;</span>
+<span class="kw">&lt;li&gt;</span>項目 2<span class="kw">&lt;/li&gt;</span>
+<span class="kw">&lt;/ol&gt;</span></code></pre>
+<p>檢視檔案：<a href="https://dl.dropbox.com/u/101584453/wp/code/list.htm">https://dl.dropbox.com/u/101584453/wp/code/list.htm</a></p>
+<div class="figure">
+<img src="../img/list.jpg" alt="項目清單的顯示結果" /><p class="caption">項目清單的顯示結果</p>
+</div>
+<h2 id="表單-form"><a href="#表單-form">表單 Form</a></h2>
+<p>在 HTML 當中，表單 (Form) 是指可以讓使用者進行輸入的元件，其語法是用 <code>&lt;form&gt; ...&lt;/form&gt;</code> 夾住一堆的輸入元件，這些輸入元件包含 input (輸入)、 textarea (文字區)、 select (選項) 等，其中的 input 還可以根據其 type 欄位顯示成 checkbox, color, date, datetime, datetime-local, email, file, hidden, image, month, number, password, radio, range, reset, search, submit, tel, text, time, url, week 等各種不同的輸入欄形式，以下是一個表單的範例。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;form</span><span class="ot"> action=</span><span class="st">&quot;signup&quot;</span><span class="ot"> method=</span><span class="st">&quot;post&quot;</span><span class="kw">&gt;</span>
+帳號: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> name=</span><span class="st">&quot;user&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+密碼: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;password&quot;</span><span class="ot"> name=</span><span class="st">&quot;password&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+信箱: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;email&quot;</span><span class="ot"> name=</span><span class="st">&quot;email&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+生日: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;date&quot;</span><span class="ot"> name=</span><span class="st">&quot;birthday&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+照片: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;file&quot;</span><span class="ot"> name=</span><span class="st">&quot;picture&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+性別: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;radio&quot;</span><span class="ot"> name=</span><span class="st">&quot;sex&quot;</span><span class="ot"> value=</span><span class="st">&quot;male&quot;</span><span class="ot"> checked</span><span class="kw">/&gt;</span> 男
+      <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;radio&quot;</span><span class="ot"> name=</span><span class="st">&quot;sex&quot;</span><span class="ot"> value=</span><span class="st">&quot;female&quot;</span><span class="kw">/&gt;</span> 女<span class="kw">&lt;br/&gt;</span>
+血型: <span class="kw">&lt;select</span><span class="ot"> name=</span><span class="st">&quot;BloodType&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;option</span><span class="ot"> value=</span><span class="st">&quot;A&quot;</span><span class="kw">&gt;</span>A 型<span class="kw">&lt;/option&gt;</span>
+        <span class="kw">&lt;option</span><span class="ot"> value=</span><span class="st">&quot;B&quot;</span><span class="kw">&gt;</span>B 型<span class="kw">&lt;/option&gt;</span>
+        <span class="kw">&lt;option</span><span class="ot"> value=</span><span class="st">&quot;AB&quot;</span><span class="kw">&gt;</span>AB 型<span class="kw">&lt;/option&gt;</span>
+        <span class="kw">&lt;option</span><span class="ot"> value=</span><span class="st">&quot;O&quot;</span><span class="kw">&gt;</span>O 型<span class="kw">&lt;/option&gt;</span>
+      <span class="kw">&lt;/select&gt;</span> <span class="kw">&lt;br/&gt;</span>
+自我介紹： <span class="kw">&lt;br/&gt;</span>
+<span class="kw">&lt;textarea</span><span class="ot"> name=</span><span class="st">&quot;AboutMe&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;/textarea&gt;</span> <span class="kw">&lt;br/&gt;</span>
+
+<span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="ot"> value=</span><span class="st">&quot;送出&quot;</span><span class="kw">/&gt;&lt;input</span><span class="ot"> type=</span><span class="st">&quot;reset&quot;</span><span class="ot"> value=</span><span class="st">&quot;清除&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+<span class="kw">&lt;/form&gt;</span></code></pre>
+<p>檢視檔案：<a href="https://dl.dropbox.com/u/101584453/wp/code/form.htm">https://dl.dropbox.com/u/101584453/wp/code/form.htm</a></p>
+<div class="figure">
+<img src="../img/form.jpg" alt="表單的顯示結果" /><p class="caption">表單的顯示結果</p>
+</div>
+<p>在上述的範例中，當 submit 類型的送出鈕被按下後，瀏覽器會將這些填寫的資訊，以第一章所說的 GET/POST 方式，發送給伺服器，如果 method 欄位是 GET，那麼會採用在 HTTP 表頭網址處傳送 singup?user=xxx&amp;password=xxx .....這樣的形式送出，這種方式會將密碼顯示在瀏覽器的網址列上，比較容易被看到，若 method 欄位是 POST，則會在 HTTP 表頭尾端加上 user=xxx&amp;password=xxx ... 的資訊，不會在網址列上被看到。當然、如果有人監控網路上訊息的話，還是會看得到這些輸入資訊。</p>
+<p>若要更安全，則必須採用 HTTPS 的 SSL 方式傳遞，這種方式會對訊息加密編碼，就比較不會有輸入訊息外洩的危險。</p>
+<h2 id="參考文獻-1"><a href="#參考文獻-1">參考文獻</a></h2>
+<ul>
+<li>W3School : HTML Turorial -- <a href="http://www.w3schools.com/html/default.asp">http://www.w3schools.com/html/default.asp</a></li>
+</ul>
+<h1 id="css-版面設計"><a href="#css-版面設計">CSS 版面設計</a></h1>
+<h2 id="css-簡介"><a href="#css-簡介">CSS 簡介</a></h2>
+<p>在前一章當中，我們介紹了 HTML 的語法，我們可以透過 HTML 的表格排出某些格式，但是卻很難讓整個頁面足夠美觀。</p>
+<p>舉例而言，假如我們想讓表格的標頭欄以黑底白字的方式顯示，那麼就得靠 CSS 來幫忙了。</p>
+<p>CSS 是 Cascading Style Sheets 的簡稱，中文可翻譯為「串接樣式表」，CSS 主要是用來設定 HTML 的顯示版面，包含「字體、大小、顏色、邊框、背景」等等，一個好的 CSS 可以讓您的網頁變得很美觀，而且不需要大幅修改網頁的內容，只要加入一個 CSS 引用即可。</p>
+<p>當套用不同的 CSS 時，網頁的風格就可以產生完全不同的感覺，這讓你的網頁可以輕易的更換成不同的版型。事實上、當您在 blogspot 或 wordpress 網誌平台套用不同版型的時候，只不過是更換了 CSS 樣版而已。</p>
+<p>在 HTML 當中，CSS 有兩種寫法，一種是內嵌式的寫法，另一種是外連式的寫法。</p>
+<p>為了說明 CSS 的語法，先讓我們回顧一下，一個簡單沒有格式化的 HTML 表格，其寫法如下：</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;head&gt;&lt;meta</span><span class="ot"> charset=</span><span class="st">&#39;utf-8&#39;</span><span class="kw">&gt;&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+<span class="kw">&lt;table&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;</span>欄 1<span class="kw">&lt;/th&gt;&lt;th&gt;</span>欄 2<span class="kw">&lt;/th&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;</span>列 1<span class="kw">&lt;/th&gt;&lt;td&gt;</span>1,1<span class="kw">&lt;/td&gt;&lt;td&gt;</span>1,2<span class="kw">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;</span>列 2<span class="kw">&lt;/th&gt;&lt;td&gt;</span>2,1<span class="kw">&lt;/td&gt;&lt;td&gt;</span>2,2<span class="kw">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;/table&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>檢視檔案：<a href="https://dl.dropbox.com/u/101584453/wp/code/table.htm">https://dl.dropbox.com/u/101584453/wp/code/table.htm</a></p>
+<p>如果我們將上述表格的 th 部分，都加上 <code>style=&quot;background-color:black; color:white;&quot;</code> 這樣的 CSS 語法，那麼我們就會得到一個黑底白字的表格。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;head&gt;&lt;meta</span><span class="ot"> charset=</span><span class="st">&#39;utf-8&#39;</span><span class="kw">&gt;&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+<span class="kw">&lt;table&gt;</span>
+<span class="kw">&lt;tr&gt;</span>
+<span class="kw">&lt;th</span><span class="ot"> style=</span><span class="st">&quot;background-color:black; color:white;&quot;</span><span class="kw">&gt;&lt;/th&gt;</span>
+<span class="kw">&lt;th</span><span class="ot"> style=</span><span class="st">&quot;background-color:black; color:white;&quot;</span><span class="kw">&gt;</span>欄 1<span class="kw">&lt;/th&gt;</span>
+<span class="kw">&lt;th</span><span class="ot"> style=</span><span class="st">&quot;background-color:black; color:white;&quot;</span><span class="kw">&gt;</span>欄 2<span class="kw">&lt;/th&gt;</span>
+<span class="kw">&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;</span>
+<span class="kw">&lt;th</span><span class="ot"> style=</span><span class="st">&quot;background-color:black; color:white;&quot;</span><span class="kw">&gt;</span>列 1<span class="kw">&lt;/th&gt;</span>
+<span class="kw">&lt;td&gt;</span>1,1<span class="kw">&lt;/td&gt;</span>
+<span class="kw">&lt;td&gt;</span>1,2<span class="kw">&lt;/td&gt;</span>
+<span class="kw">&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;</span>
+<span class="kw">&lt;th</span><span class="ot"> style=</span><span class="st">&quot;background-color:black; color:white;&quot;</span><span class="kw">&gt;</span>列 2<span class="kw">&lt;/th&gt;</span>
+<span class="kw">&lt;td&gt;</span>2, 1<span class="kw">&lt;/td&gt;</span>
+<span class="kw">&lt;td&gt;</span>2, 2<span class="kw">&lt;/td&gt;</span>
+<span class="kw">&lt;/tr&gt;</span>
+<span class="kw">&lt;/table&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>檢視檔案：<a href="https://dl.dropbox.com/u/101584453/wp/code/table_css_embed.htm">https://dl.dropbox.com/u/101584453/wp/code/table_css_embed.htm</a></p>
+<p>我們使用 CSS 排版前與排版後的結果可以對照如下：</p>
+<div class="figure">
+<img src="../img/table_css_embed.jpg" alt="表單的顯示結果" /><p class="caption">表單的顯示結果</p>
+</div>
+<p>您可以看到在這種寫法當中，我們幾乎都一直在 th 重複撰寫 <code>style=&quot;background-color:black; color:white;&quot;</code> 這一行文字，總共重複了 5 次，這顯然是很浪費時間的行為。</p>
+<p>如果我們可以改用統一的方式，寫出「對於所有 th 而言，我都要用 background-color:black; color:white; 這樣的方式顯示」那不就簡單多了嗎？</p>
+<p>是的、CSS 確實可以讓您這樣做，讓我們將上述範例修改成統一設定格式的版本，如下所示。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+<span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&#39;utf-8&#39;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;style&gt;</span>
+th <span class="kw">{</span> <span class="kw">background-color:</span><span class="dt">black</span><span class="kw">;</span> <span class="kw">color:</span><span class="dt">white</span><span class="kw">;</span> <span class="kw">}</span>
+<span class="kw">&lt;/style&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+<span class="kw">&lt;table&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;</span>欄 1<span class="kw">&lt;/th&gt;&lt;th&gt;</span>欄 2<span class="kw">&lt;/th&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;</span>列 1<span class="kw">&lt;/th&gt;&lt;td&gt;</span>1,1<span class="kw">&lt;/td&gt;&lt;td&gt;</span>1,2<span class="kw">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;</span>列 2<span class="kw">&lt;/th&gt;&lt;td&gt;</span>2,1<span class="kw">&lt;/td&gt;&lt;td&gt;</span>2,2<span class="kw">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;/table&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>上述統一將 CSS 寫在 <code>&lt;head&gt;&lt;style&gt;...&lt;/style&gt;&lt;/head&gt;</code> 裏的這種寫法，比起內嵌式的顯然簡短多了，這種寫法正是 CSS 的精華之所在。</p>
+<p>但是、如果我們想要對整個網站的所有檔案，都套用同一種格式的話，那麼在每個 HTML 的頭部都要嵌入一整套 CSS 語法，那就不太方便了，萬一我們想要改變版面格式，不就每個 HTML 檔案都要更改，這顯然還不夠好用。</p>
+<p>要解決這個問題，可以將表頭的 CSS 獨立到一個檔案中，然後再用連結的方式引用，這樣只要修改那個 CSS 檔案，整個網站的風格就跟著改變，所以上述檔案就可以改寫如下。</p>
+<p>檔案：table_css.htm</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+<span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&#39;utf-8&#39;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> type=</span><span class="st">&quot;text/css&quot;</span><span class="ot"> href=</span><span class="st">&quot;mystyle.css&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+<span class="kw">&lt;table&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;</span>欄 1<span class="kw">&lt;/th&gt;&lt;th&gt;</span>欄 2<span class="kw">&lt;/th&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;</span>列 1<span class="kw">&lt;/th&gt;&lt;td&gt;</span>1,1<span class="kw">&lt;/td&gt;&lt;td&gt;</span>1,2<span class="kw">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;</span>列 2<span class="kw">&lt;/th&gt;&lt;td&gt;</span>2,1<span class="kw">&lt;/td&gt;&lt;td&gt;</span>2,2<span class="kw">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;/table&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>檔案：mystyle.css</p>
+<pre class="sourceCode css"><code class="sourceCode css">th <span class="kw">{</span> <span class="kw">background-color:</span><span class="dt">black</span><span class="kw">;</span> <span class="kw">color:</span><span class="dt">white</span><span class="kw">;</span> <span class="kw">}</span></code></pre>
+<p>透過這種方式，我們就可以為網頁設計統一的風格，也比較容易更換網頁的排版風格了，這就是 CSS 語法的用途了。</p>
+<p>當然、上述的網頁還不夠好看，如果我們將 mystyle.css 修改如下，您就會發現表格變得好看多了。</p>
+<pre class="sourceCode css"><code class="sourceCode css">table <span class="kw">{</span> <span class="kw">border-collapse:</span> <span class="dt">collapse</span><span class="kw">;</span> <span class="kw">border:</span> <span class="dt">1px</span> <span class="dt">solid</span> <span class="dt">#373737</span><span class="kw">;</span> <span class="kw">}</span>
+th <span class="kw">{</span> <span class="kw">background-color:</span><span class="dt">black</span><span class="kw">;</span> <span class="kw">color:</span><span class="dt">white</span><span class="kw">;</span> <span class="kw">padding:</span><span class="dt">10px</span><span class="kw">;</span> <span class="kw">margin:</span><span class="dt">10px</span><span class="kw">;</span> <span class="kw">}</span>
+td <span class="kw">{</span> <span class="kw">padding:</span><span class="dt">10px</span><span class="kw">;</span> <span class="kw">margin:</span><span class="dt">10px</span><span class="kw">;</span> <span class="kw">}</span></code></pre>
+<div class="figure">
+<img src="../img/table_css_ref.jpg" alt="較優美的表單顯示結果" /><p class="caption">較優美的表單顯示結果</p>
+</div>
+<h2 id="路徑-tag-id-與-class"><a href="#路徑-tag-id-與-class">路徑, tag, id 與 class</a></h2>
+<p>即使有了可以統一套用的方式，有時我們還是會感覺到不方便，舉例而言，如果我們想要對某個表格套上 A 格式，然後在對另一個表格套上 B 格式，這時採用上述方法就不太夠用了。</p>
+<p>為了解決這種問題，HTML 發展出了 id 與 class 這兩個屬性，我們可以根據 id 或 class 的名稱分別套用不同的 CSS 樣式。</p>
+<p>舉例而言，以下網頁中有兩個 div 框，我們可以分別為這兩個框套用不同的格式，其中 classA 前面加了點符號，成為「.classA」，代表要比對的是 class 屬性，如果想要比對的是 id 屬性，那麼就可以加上井字符號 # (像是範例中 #topbar 的情況)。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+<span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&#39;utf-8&#39;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;style&gt;</span>
+<span class="fl">#topbar</span> <span class="kw">{</span> <span class="kw">background-color:</span><span class="dt">gray</span><span class="kw">;</span> <span class="kw">color:</span><span class="dt">blue</span><span class="kw">;</span> <span class="kw">padding:</span><span class="dt">10px</span><span class="kw">;</span> <span class="kw">margin:</span><span class="dt">10px</span><span class="kw">;</span> <span class="kw">}</span>
+<span class="fl">.classA</span> <span class="kw">{</span> <span class="kw">background-color:</span><span class="dt">black</span><span class="kw">;</span> <span class="kw">color:</span><span class="dt">white</span><span class="kw">;</span> <span class="kw">padding:</span><span class="dt">10px</span><span class="kw">;</span> <span class="kw">margin:</span><span class="dt">10px</span><span class="kw">;</span> <span class="kw">}</span>
+<span class="fl">.classB</span> <span class="kw">{</span> <span class="kw">background-color:</span><span class="dt">blue</span><span class="kw">;</span> <span class="kw">color:</span><span class="dt">yellow</span><span class="kw">;</span> <span class="kw">padding:</span><span class="dt">10px</span><span class="kw">;</span> <span class="kw">margin:</span><span class="dt">10px</span><span class="kw">;</span> <span class="kw">}</span>
+<span class="kw">&lt;/style&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+
+<span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;topbar&quot;</span><span class="kw">&gt;</span>頂區塊<span class="kw">&lt;/div&gt;</span>
+
+<span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;classA&quot;</span><span class="kw">&gt;</span>A 區塊<span class="kw">&lt;/div&gt;</span>
+
+<span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;classB&quot;</span><span class="kw">&gt;</span>B 區塊<span class="kw">&lt;/div&gt;</span>
+
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>檢視檔案：<a href="https://dl.dropbox.com/u/101584453/wp/code/div_css.htm">https://dl.dropbox.com/u/101584453/wp/code/div_css.htm</a></p>
+<div class="figure">
+<img src="../img/div_css.jpg" alt="兩種 CSS class 的顯示結果" /><p class="caption">兩種 CSS class 的顯示結果</p>
+</div>
+<p>到目前，我們可以看到有三種 css 的指定方式，也就是「標記 tag、代號 id 與類別 class」，可以用 CSS 來定位。事實上、這些指定方式還可以互相串接，以下是一些範例：</p>
+<pre class="sourceCode css"><code class="sourceCode css"><span class="fl">.classA</span> table <span class="kw">{</span> <span class="er">...</span> <span class="kw">}</span>               // 套用到 class=<span class="st">&quot;classA&quot;</span> 內部的 table 標記
+<span class="fl">#topbar</span> <span class="kw">{</span> <span class="er">....</span><span class="kw">}</span>                     // 套用到 id=<span class="st">&quot;topbar&quot;</span> 的元素上
+<span class="fl">#topbar</span> table <span class="fl">.classA</span> a <span class="kw">{</span> <span class="er">....</span> <span class="kw">}</span>    // 套用到 table 內具有 class=<span class="st">&quot;classA&quot;</span> 類別裏的超<span class="fl">連結</span> a 標記上。</code></pre>
+<p>更棒的是、這些選取方式之間還可以共用，只要利用逗點符號「,」 分隔就可以了，以下是一些範例：</p>
+<pre class="sourceCode css"><code class="sourceCode css"><span class="fl">.classA</span>, <span class="fl">#topbar</span> <span class="kw">{</span> <span class="er">...</span> <span class="kw">}</span>            // 套用到 class=<span class="st">&quot;classA&quot;</span> 或 id=<span class="st">&quot;topbar&quot;</span> 的元素上
+<span class="fl">#topbar</span> a, <span class="fl">.classA</span> a <span class="kw">{</span> <span class="er">....</span><span class="kw">}</span>        // 套用到 id=<span class="st">&quot;topbar&quot;</span> 或 class=<span class="st">&quot;.classA&quot;</span> 裏的 a 元素上</code></pre>
+<h2 id="一個實用的-css-的範例"><a href="#一個實用的-css-的範例">一個實用的 CSS 的範例</a></h2>
+<p>如果您想進一步學習 CSS 的各個屬性與用法，請參考下列網址，我們將不一一說明這些屬性的用法。</p>
+<ul>
+<li><a href="http://www.w3schools.com/css/default.asp">http://www.w3schools.com/css/default.asp</a></li>
+</ul>
+<p>在此、筆者將自己常用的一個 CSS 檔案列出，讀者觀察後可以自行複製修改使用。</p>
+<pre class="sourceCode CSS"><code class="sourceCode css">html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video <span class="kw">{</span>
+  <span class="kw">margin:</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">padding:</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">border:</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">font:</span> <span class="dt">inherit</span><span class="kw">;</span>
+  <span class="kw">vertical-align:</span> <span class="dt">baseline</span><span class="kw">;</span>
+  <span class="kw">line-height:</span><span class="dt">160%</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+h1, h2, h3, h4, h5, h6 <span class="kw">{</span>
+  <span class="kw">color:</span><span class="dt">#333333</span><span class="kw">;</span>
+  <span class="kw">margin:</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">font-family:</span> <span class="st">&#39;標楷體&#39;</span>, <span class="st">&#39;Times New Roman&#39;</span><span class="kw">;</span>
+  <span class="kw">font-weight:</span> <span class="dt">bold</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+p <span class="kw">{</span>
+  <span class="kw">margin:</span> <span class="dt">10px</span> <span class="dt">0</span> <span class="dt">15px</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">font-size:</span><span class="dt">100%</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+li <span class="kw">{</span>
+  <span class="kw">font-size:</span><span class="dt">100%</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+footer p <span class="kw">{</span>
+  <span class="kw">color:</span> <span class="dt">#f2f2f2</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+a <span class="kw">{</span>
+  <span class="kw">text-decoration:</span> <span class="dt">none</span><span class="kw">;</span>
+  <span class="kw">color:</span> <span class="dt">#007edf</span><span class="kw">;</span>
+  <span class="kw">text-shadow:</span> <span class="dt">none</span><span class="kw">;</span>
+
+  <span class="kw">transition:</span> color <span class="dt">0.5s</span> ease<span class="kw">;</span>
+  <span class="kw">transition:</span> text-shadow <span class="dt">0.5s</span> ease<span class="kw">;</span>
+  <span class="kw">-webkit-transition:</span> color <span class="dt">0.5s</span> ease<span class="kw">;</span>
+  <span class="kw">-webkit-transition:</span> text-shadow <span class="dt">0.5s</span> ease<span class="kw">;</span>
+  <span class="kw">-moz-transition:</span> color <span class="dt">0.5s</span> ease<span class="kw">;</span>
+  <span class="kw">-moz-transition:</span> text-shadow <span class="dt">0.5s</span> ease<span class="kw">;</span>
+  <span class="kw">-o-transition:</span> color <span class="dt">0.5s</span> ease<span class="kw">;</span>
+  <span class="kw">-o-transition:</span> text-shadow <span class="dt">0.5s</span> ease<span class="kw">;</span>
+  <span class="kw">-ms-transition:</span> color <span class="dt">0.5s</span> ease<span class="kw">;</span>
+  <span class="kw">-ms-transition:</span> text-shadow <span class="dt">0.5s</span> ease<span class="kw">;</span>
+<span class="kw">}</span>
+
+table <span class="kw">{</span>
+  <span class="kw">border-collapse:</span> <span class="dt">collapse</span><span class="kw">;</span>
+  <span class="kw">border-spacing:</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">border:</span> <span class="dt">1px</span> <span class="dt">solid</span> <span class="dt">#373737</span><span class="kw">;</span>
+  <span class="kw">margin-bottom:</span> <span class="dt">20px</span><span class="kw">;</span>
+  <span class="kw">text-align:</span> <span class="dt">left</span><span class="kw">;</span>
+  <span class="kw">margin-left:</span><span class="dt">auto</span><span class="kw">;</span> 
+  <span class="kw">margin-right:</span><span class="dt">auto</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+th <span class="kw">{</span>
+    <span class="kw">padding:</span> <span class="dt">10px</span><span class="kw">;</span>
+    <span class="kw">background-color:</span><span class="dt">black</span><span class="kw">;</span>
+    <span class="kw">color:</span><span class="dt">white</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+td <span class="kw">{</span>
+  <span class="kw">padding:</span> <span class="dt">10px</span><span class="kw">;</span>
+  <span class="kw">border:</span> <span class="dt">1px</span> <span class="dt">solid</span> <span class="dt">#373737</span><span class="kw">;</span>
+<span class="kw">}</span>
+ 
+em <span class="kw">{</span> <span class="kw">font-weight:</span><span class="dt">bold</span><span class="kw">;</span> <span class="kw">}</span>
+
+<span class="fl">#topbar</span> <span class="kw">{</span>
+  <span class="kw">margin:</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">padding:</span> <span class="dt">1px</span><span class="kw">;</span>
+  <span class="kw">border:</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">font:</span> <span class="dt">inherit</span><span class="kw">;</span>
+  <span class="kw">vertical-align:</span> <span class="dt">baseline</span><span class="kw">;</span>
+  <span class="kw">background-color:</span><span class="dt">black</span><span class="kw">;</span>
+  <span class="kw">color:</span><span class="dt">white</span><span class="kw">;</span>
+  <span class="kw">color:</span><span class="dt">white</span><span class="kw">;</span>
+  <span class="kw">width:</span><span class="dt">95%</span><span class="kw">;</span>
+  <span class="kw">text-align:</span><span class="dt">right</span><span class="kw">;</span>
+  <span class="kw">font-weight:</span><span class="dt">bold</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+<span class="fl">#content</span> <span class="kw">{</span>
+  <span class="kw">margin:</span><span class="dt">10px</span><span class="kw">;</span>
+  <span class="kw">padding:</span><span class="dt">10px</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+pre <span class="kw">{</span>
+  <span class="kw">border:</span> <span class="dt">1px</span> <span class="dt">solid</span> <span class="dt">#373737</span><span class="kw">;</span>
+  <span class="kw">background-color:</span><span class="dt">#dddddd</span><span class="kw">;</span>
+  <span class="kw">color:</span><span class="dt">#333333</span><span class="kw">;</span>
+  <span class="kw">font-size:</span><span class="dt">medium</span><span class="kw">;</span>
+  <span class="kw">width:</span><span class="dt">95%</span><span class="kw">;</span>
+  <span class="kw">padding:</span><span class="dt">10px</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+img <span class="kw">{</span>
+  <span class="kw">border:</span> <span class="dt">1px</span> <span class="dt">solid</span> <span class="dt">#373737</span><span class="kw">;</span>
+  <span class="kw">margin-left:</span> <span class="dt">auto</span><span class="kw">;</span>
+  <span class="kw">margin-right:</span> <span class="dt">auto</span><span class="kw">;</span>
+  <span class="kw">display:</span> <span class="dt">block</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+<span class="fl">.figure</span> <span class="fl">.caption</span> <span class="kw">{</span>
+  <span class="kw">text-align:</span><span class="dt">center</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+<span class="fl">#footer</span> <span class="kw">{</span>
+  <span class="kw">text-align:</span><span class="dt">center</span><span class="kw">;</span>
+  <span class="kw">font-size:</span><span class="dt">small</span><span class="kw">;</span>
+  <span class="kw">color:</span><span class="dt">#666666</span><span class="kw">;</span>
+  <span class="kw">margin:</span> <span class="dt">10px</span><span class="kw">;</span>
+  <span class="kw">padding:</span> <span class="dt">10px</span><span class="kw">;</span>
+<span class="kw">}</span></code></pre>
+<h2 id="參考文獻-2"><a href="#參考文獻-2">參考文獻</a></h2>
+<ul>
+<li><a href="http://www.w3schools.com/css/default.asp">http://www.w3schools.com/css/default.asp</a></li>
+<li><a href="http://css.maxdesign.com.au/listutorial/">http://css.maxdesign.com.au/listutorial/</a></li>
+</ul>
+<h1 id="javascript-語言基礎"><a href="#javascript-語言基礎">JavaScript 語言基礎</a></h1>
+<p>JavaScript 是目前在瀏覽器上唯一通用的程式語言，這種語言經常遭受到許多誤解，像是 「JavaScript 就是 Java 語言的簡化版」、「JavaScript 語言很難用」、「JavaScript 語言設計很差勁」等等。</p>
+<p>然而，這些誤解其實是我們不瞭解 JavaScript 所造成的。如果您用心去瞭解 JavaScript，您會發現這是一個「簡單、輕巧又優美」的語言，其原型導向的設計方式，用很簡單的概念達成了物件導向語言的功能，真的很適合做為瀏覽器上的共通語言。</p>
+<p>JavaScript 雖然是一種物件導向語言，但是更精確的說，JavaScript 事實上是一種「原型導向」的語言，其中每個物件的 _prototype 欄位都可以指向他的原型，然後用來 clone (自體繁殖) 出新的物件，您可以用 function 型態宣告一個物件，如此該物件就自動具有建構函數了，這種做法是非常簡單、奇特、但卻又彈性十足的方法。</p>
+<p>雖然 JavaScript 語言有許多優點，但是也有不少缺點，例如有些語法的邏輯很奇怪，而且 JavaScript 的物件導向並非像 Java, C#, Ruby 等語言那樣傳統，而是採用原型導向的方式，這讓傳統物件導向的使用者在學習 JavaScript 時會感到困難。不過一但您理解了原型導向的精神之後，就會發現這種方法真的有不少優點了。為了較深入的理解 JavaScript ，讓我們先來看看 JavaScript 的歷史！</p>
+<p>Web 技術在 1990 年開始成形，早期網際網路只有文字，沒有圖像、音效，且操作非常繁瑣。當時還是大學生的馬克·安德生（Marc Andreessen）被伊利諾伊大學的電腦應用中心聘為臨時工作人員，馬克·安德生提出設計一種簡單的瀏覽程式想法，能方便的檢索網路資料，於是招聘了幾個程式設計師花了六週的時間開發。於是誕生了 Mosaic 瀏覽器。 Mosaic的出現，算是點燃了後期網際網路熱潮的火種。後來在1994年4月，馬克.安德生和Silicon Graphics公司的創始人吉姆·克拉克（Jim Clark）在美國加州設立了一家公司，進一步改善瀏覽器技術，並且創造出了 Netscape 瀏覽器。</p>
+<p>當時瀏覽器只能顯示文字與圖片，無法做出像功能表這樣需要即時互動的網頁，於是 Netscape 公司的Brendan Eich設計出了 LiveScript，這是一種動態、弱型別、基於原型的語言，用來寫一些讓網頁可以動起來的小程式。</p>
+<p>由於Netscape在與昇陽（Sun）合作的關係，所以 Netscape 將 LiveScript 改名為JavaScript，後來甲骨文 (Oracle) 公司買下了昇陽，所以 JavaScript是甲骨文公司的註冊商標。為了避免侵犯商標權，於是 Ecma國際（前身為歐洲電腦製造商協會）將其以JavaScript為基礎所制定的語言改稱為 ECMAScript。所以現在我們所說的 JavaScript，其真正意義其實應該是 ECMAScript。</p>
+<p>現在、JavaScript 已經成為一種非常重要的程式語言，JavaScript 除了用在瀏覽器之外，也被用在許多其他領域，像是您可以用 node.js 在 Server端撰寫 JavaScript 的程式，也可以在 Unity3D 當中用 JavaScript 撰寫遊戲程式，更可以在 Tatinum 當中用 JavaScript 撰寫手機的 APP 然後放到 iPhone, iPad 或 Android 上面去執行。</p>
+<h2 id="javascript-基本語法"><a href="#javascript-基本語法">JavaScript 基本語法</a></h2>
+<p>JavaScript 最常被嵌入到 HTML 網頁中，以便讓網頁顯式出一些特別的動態效果，因此含有 JavaScript 的網頁通常也被稱為動態網頁，以下是一個 HTML 內嵌 JavaScript 的簡單範例與顯示結果。</p>
+<p>原始碼</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="kw">var</span> x =<span class="dv">5</span>, y=<span class="dv">7</span>;
+<span class="kw">var</span> s = <span class="st">&quot;Hello! &quot;</span>
+t = s + x;
+z = x * y;
+<span class="er">document.write(&quot;&lt;pre&gt;x=&quot;+x+&quot;\ny=&quot;+y+&quot;\ns=&quot;+s+&quot;\nt=&quot;+t+&quot;\nz=&quot;+z+&quot;&lt;/pre&gt;&quot;);</span>
+<span class="kw">&lt;/script&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>執行結果</p>
+<p>JavaScript 的 if 語法也很簡單，基本上與 C 、Java、C# 等語言都相同，以下是一個簡單的範例。</p>
+<p>原始碼</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="kw">var</span> score = <span class="dv">61</span>;
+<span class="kw">if</span> (score &gt;= <span class="dv">60</span>)
+<span class="er">  document.write(&quot;及格&quot;);</span>
+<span class="kw">else</span>
+<span class="er">  document.write(&quot;不及格&quot;);</span>
+<span class="kw">&lt;/script&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>執行結果</p>
+<p>JavaScript 的迴圈語法也是繼承 C 語言的，以下是一個範例：</p>
+<p>原始碼</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="kw">for</span> (i=<span class="dv">1</span>;i&lt;=<span class="dv">10</span>;i++) {
+  <span class="kw">if</span> (i == <span class="dv">3</span>) <span class="kw">continue</span>;
+  <span class="kw">if</span> (i == <span class="dv">8</span>) <span class="kw">break</span>;
+  <span class="ot">document</span>.<span class="fu">write</span>(<span class="st">&quot;i=&quot;</span>+i+<span class="st">&quot;&lt;BR/&gt;&quot;</span>);
+}
+<span class="kw">&lt;/script&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>執行結果</p>
+<p>在 JavaScript 當中，函數的定義有兩種寫法，一種是正常的函數宣告，另一種是把函數當變數的指定方法。事實上，JavaScript 的函數也是一種基本型態，具有這種特點的語言通常稱為函數式語言。這種特性非常好用，因為在函數式語言當中，函數在也不是次等公民，而是一種基本型態，以下是一個 JavaScript 的函數宣告範例。</p>
+<p>原始碼</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="co">// 第一種寫法，將匿名函數指定給變數。</span>
+<span class="kw">var</span> add = <span class="kw">function</span>(a,b) {     
+  <span class="kw">return</span> a+b;
+}
+<span class="co">// 第二種寫法，直接宣告函數，該函式是一個函數物件</span>
+<span class="er">function sub(a,b) {         </span>
+  <span class="kw">return</span> a-b;
+}
+<span class="er">document.write(&quot;add(3,5)=&quot;+add(3,5) +&quot; sub(7,2)=&quot;+sub(7,2));</span>
+<span class="kw">&lt;/script&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>執行結果</p>
+<p>在 JavaScript 當中，您若要宣告一個陣列時，可以採用 var a = new Array() 的方法，建立一個陣列物件，然後用 a[i] 這樣的方法，存取陣列中的元素。</p>
+<p>原始碼</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="kw">var</span> x;
+<span class="er">var friends = new Array();</span>
+<span class="er">friends[0] = &quot;John&quot;;</span>
+<span class="er">friends[1] = &quot;Mary&quot;;</span>
+<span class="er">friends[2] = &quot;George&quot;;</span>
+<span class="kw">for</span> (p <span class="kw">in</span> friends) {
+  <span class="ot">document</span>.<span class="fu">write</span>(p + <span class="st">&quot;:&quot;</span>+ friends[p] + <span class="st">&quot;&lt;br/&gt;&quot;</span>);
+}
+<span class="kw">&lt;/script&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>執行結果</p>
+<h2 id="javascript-的物件導向語法"><a href="#javascript-的物件導向語法">JavaScript 的物件導向語法</a></h2>
+<p>雖然說，JavaScript 也能實作很好的物件導向功能，但是如果我們說 JavaScript 是一種物件導向語言，那麼會很容易造成混淆。因為 JavaScript 的物件導向非常非常的特別，與 Java, C++, C# 等語言的物件導向實作方法有很大的不同。</p>
+<p>嚴格的說，JavaScript 是一種原型導向語言，原型導向是一種特別簡單的物件導向實作機制，以下是幾個 JavaScript 的物件範例：</p>
+<pre class="sourceCode JavaScript"><code class="sourceCode javascript">obj = <span class="kw">new</span> <span class="fu">Object</span>()
+<span class="ot">obj</span>.<span class="fu">x</span> = <span class="dv">3</span>;        <span class="co">// 為 obj 新增一個欄位 x，其值設定為 3</span>
+<span class="ot">obj</span>.<span class="fu">y</span> = <span class="dv">5</span>;        <span class="co">// 為 obj 新增一個欄位 y，其值設定為 5</span>
+<span class="ot">obj</span>.<span class="fu">z</span> = <span class="ot">obj</span>.<span class="fu">x</span> + <span class="ot">obj</span>.<span class="fu">y</span>;    <span class="co">// 為 obj 新增一個欄位 z，其值設定為 x+y</span></code></pre>
+<p>對於曾經使用像 Java 這種傳統物件導向語言的人而言，會感覺到上述的程式很奇特，因為 obj 一開始只是一個空物件，並沒有包含任何的欄位，但是我們透過指定的方式，動態的為物件增添了 x, y, z 等欄位。</p>
+<p>物件導向基本上有三大特性，1.封裝 2. 繼承 3. 多型，瞭解這三個特性的實作方式，通常就可以學會一種語言的物件導向語法了，以下我們將分別針對 JavaScript 中的這三大特性進行介紹。</p>
+<h3 id="javascript-物件的封裝"><a href="#javascript-物件的封裝">JavaScript 物件的封裝</a></h3>
+<p>物件導向中的封裝特性，是指將「資料」與「函數」封入一種稱為「物件」的結構當中，以下是 JavaScript 的一個物件範例，其中 x, y 是資料，而 sum 則是函數，這些成員都被封裝在 obj 這樣一個建構函數當中，因此我們呼叫 var o = new obj() 這個指令時，就會建立一個新的物件，並傳回給 o 變數。</p>
+<p>程式範例: object.htm</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="er">function obj() {</span>
+  <span class="kw">this</span>.<span class="fu">x</span> = <span class="dv">3</span>;        <span class="co">// 第一種寫法，為 obj 新增一個欄位 x，其值設定為 3</span>
+  <span class="kw">this</span>[<span class="st">&quot;y&quot;</span>] = <span class="dv">5</span>;     <span class="co">// 第二種寫法，為 obj 新增一個欄位 y，其值設定為 5</span>
+  <span class="kw">this</span>.<span class="fu">sum</span> = <span class="kw">function</span>() { <span class="kw">return</span> <span class="kw">this</span>.<span class="fu">x</span> + <span class="kw">this</span>.<span class="fu">y</span>; } <span class="co">// 為 obj 新增一個欄位 add，其值為一個匿名函數</span>
+}
+
+<span class="er">var o = new obj();</span>
+
+<span class="er">document.write(&quot;o[&#39;x&#39;]=&quot;+o[&#39;x&#39;]+&quot; y=&quot;+o.y+&quot; sum()=&quot;+o.sum());</span>
+<span class="kw">&lt;/script&gt;</span>
+
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>執行結果</p>
+<div class="figure">
+<img src="../img/jsObjectOutput.jpg" />
+</div>
+<h3 id="javascript-物件的繼承"><a href="#javascript-物件的繼承">JavaScript 物件的繼承</a></h3>
+<p>物件導向中的繼承特性，是指「子物件」可以繼承「父物件」的資料與函數，並且進行修改，這樣我們就不需要重複的實作父物件已經有的函數，或者定義父物件已經有的資料，以達成程式碼重用的目的。</p>
+<p>以下範例中的 Student 物件就繼承了 Person 物件，其方法是在 Student 物件的建構函數中，指定 this.prototype = Person 以達到繼承的目的，然後再呼叫 this.prototype(name, age) 以呼叫父物件的建構函數，建立出 name, age, toStr() 物件內容。</p>
+<p>程式範例: inheritance.htm</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="er">function Person(name, age) {</span>
+  <span class="kw">this</span>.<span class="fu">name</span> = name;
+  <span class="kw">this</span>.<span class="fu">age</span> = age;
+  <span class="kw">this</span>.<span class="fu">toStr</span> = <span class="kw">function</span>() { 
+    <span class="kw">return</span> <span class="st">&quot;Person:name=&quot;</span>+<span class="kw">this</span>.<span class="fu">name</span>+<span class="st">&quot; age=&quot;</span>+<span class="kw">this</span>.<span class="fu">age</span>; 
+  }
+}
+<span class="er">var john = new Person(&quot;John&quot;, 40);</span>
+
+<span class="er">document.write(&quot;john.toStr()=&quot;+john.toStr()+&quot;&lt;BR/&gt;&quot;);</span>
+
+<span class="er">function Student(name, age, grade) {</span>
+  <span class="kw">this</span>.<span class="fu">prototype</span> = Person;
+<span class="er">  this.prototype(name, age);</span>
+  <span class="kw">this</span>.<span class="fu">grade</span> = grade;
+  <span class="kw">this</span>.<span class="fu">toStr</span> = <span class="kw">function</span>() { 
+    <span class="kw">return</span> <span class="st">&quot;Student:name=&quot;</span>+<span class="kw">this</span>.<span class="fu">name</span>+<span class="st">&quot; age=&quot;</span>+<span class="kw">this</span>.<span class="fu">age</span>+<span class="st">&quot; grade=&quot;</span>+<span class="kw">this</span>.<span class="fu">grade</span>; 
+  }
+}
+
+<span class="er">var tony = new Student(&quot;Tony&quot;, 19, &quot;Freshman&quot;);</span>
+
+<span class="er">document.write(&quot;tony.toStr()=&quot;+tony.toStr()+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="kw">&lt;/script&gt;</span>
+
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>執行結果</p>
+<div class="figure">
+<img src="../img/jsInheritanceOutput.jpg" />
+</div>
+<h3 id="javascript-物件的多型"><a href="#javascript-物件的多型">JavaScript 物件的多型</a></h3>
+<p>物件導向中的多型特性，是指當不同的「子物件」繼承同一個「父物件」時，我們可以透過宣告父物件容器，卻將內容指向子物件的方式，以便呼叫到不同子物件中的對應函數。</p>
+<p>以下範例中的 var array = [ john, tony ] 這一行，其中的 john 是 Person 類型的物件，tony 是 Student 類型的物件，但是由於 Student 繼承了 Person，而且兩者都有 toStr() 函數，因此當我們用 for (i in array) ... array[i].toStr() ... 這樣的方式呼叫 array[i].toStr() 時，對 john 物件會呼叫到 Person 的 toStr(), 而對 tony 物件會呼叫到 Student 的 toStr(), 這樣就達到了多型的結果。</p>
+<p>程式範例: polymorphism.htm</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+ 
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="er">function Person(name, age) {</span>
+  <span class="kw">this</span>.<span class="fu">name</span> = name;
+  <span class="kw">this</span>.<span class="fu">age</span> = age;
+  <span class="kw">this</span>.<span class="fu">toStr</span> = <span class="kw">function</span>() { 
+    <span class="kw">return</span> <span class="st">&quot;Person:name=&quot;</span>+<span class="kw">this</span>.<span class="fu">name</span>+<span class="st">&quot; age=&quot;</span>+<span class="kw">this</span>.<span class="fu">age</span>; 
+  }
+}
+<span class="er">var john = new Person(&quot;John&quot;, 40);</span>
+ 
+<span class="er">function Student(name, age, grade) {</span>
+  <span class="kw">this</span>.<span class="fu">prototype</span> = Person;
+<span class="er">  this.prototype(name, age);</span>
+  <span class="kw">this</span>.<span class="fu">grade</span> = grade;
+  <span class="kw">this</span>.<span class="fu">toStr</span> = <span class="kw">function</span>() { 
+    <span class="kw">return</span> <span class="st">&quot;Student:name=&quot;</span>+<span class="kw">this</span>.<span class="fu">name</span>+<span class="st">&quot; age=&quot;</span>+<span class="kw">this</span>.<span class="fu">age</span>+<span class="st">&quot; grade=&quot;</span>+<span class="kw">this</span>.<span class="fu">grade</span>; 
+  }
+}
+ 
+<span class="er">var tony = new Student(&quot;Tony&quot;, 19, &quot;Freshman&quot;);</span>
+ 
+<span class="kw">var</span> array = [ john, tony ];
+ 
+<span class="kw">for</span> (i <span class="kw">in</span> array)
+<span class="er">  document.write(&quot;array[&quot;+i+&quot;].toStr()=&quot;+array[i].toStr()+&quot;&lt;BR/&gt;&quot;);</span>
+&lt;<span class="ot">/script&gt;</span>
+<span class="ot"> </span>
+<span class="ot">&lt;/body</span>&gt;
+&lt;<span class="ot">/html&gt;</span></code></pre>
+<p>執行結果</p>
+<div class="figure">
+<img src="../img/jsPolymorphismOutput.jpg" />
+</div>
+<h3 id="javascript-物件的精簡表示法----json-物件資料交換格式"><a href="#javascript-物件的精簡表示法----json-物件資料交換格式">JavaScript 物件的精簡表示法 -- JSON 物件資料交換格式</a></h3>
+<p>如果我們想直接在程式中宣告一個複雜的物件，可以使用 JavaScript 中的 {...} 與 [...] 的語法組合，用簡單的語法建構出整個物件。這種格式也常被用在網頁程式的資料交換當中，因此有一個很特別的名稱叫 JSON （Javascript Object Notation）。</p>
+<p>目前網路上最常使用的資料交換格式是 XML，但是 XML 文件很繁瑣且囉嗦，讓使用者撰寫不方便，而且不容易嵌入網頁中進行處理。為了讓網頁上的共通程式語言 JavaScript 可以輕易的交換資料，網頁程式的設計者也常用 JSON 取代 XML 進行資料交換。</p>
+<p>以下是一個採用 JSON 格式的朋友資料範例，該範例中有兩個朋友，一個是 John, 22 歲，另一個是 Mary, 28 歲。</p>
+<pre class="sourceCode JavaScript"><code class="sourceCode javascript">{
+  <span class="st">&quot;friends&quot;</span>: [
+     {<span class="st">&quot;name&quot;</span>: <span class="st">&quot;John&quot;</span>, <span class="st">&quot;age&quot;</span>: <span class="dv">22</span> }
+     {<span class="st">&quot;name&quot;</span>: <span class="st">&quot;Mary&quot;</span>, <span class="st">&quot;age&quot;</span>: <span class="dv">28</span> }
+  ]
+}</code></pre>
+<p>程式範例：json.htm</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+
+<span class="kw">var</span> george = {
+  <span class="st">&quot;name&quot;</span>: <span class="st">&quot;George&quot;</span>,
+  <span class="st">&quot;age&quot;</span>: <span class="dv">25</span>,
+  <span class="st">&quot;friends&quot;</span>: [
+     {<span class="st">&quot;name&quot;</span>: <span class="st">&quot;John&quot;</span>, <span class="st">&quot;age&quot;</span>: <span class="dv">22</span> },
+     {<span class="st">&quot;name&quot;</span>: <span class="st">&quot;Mary&quot;</span>, <span class="st">&quot;age&quot;</span>: <span class="dv">28</span> }
+  ]
+};
+
+<span class="er">document.write(&quot;george.age=&quot;+george.age+&quot;&lt;br/&gt;&quot;);</span>
+<span class="er">document.write(&quot;george.friends:\n&lt;ol&gt;&quot;);</span>
+<span class="kw">var</span> friends = <span class="ot">george</span>.<span class="fu">friends</span>;
+<span class="kw">for</span> (i <span class="kw">in</span> friends)
+<span class="er">  document.write(&quot;&lt;li&gt;&quot;+friends[i].name+&quot; is &quot;+friends[i].age+&quot;years old!&lt;/li&gt;&quot;);</span>
+<span class="er">document.write(&quot;&lt;/ol&gt;&quot;);</span>
+&lt;<span class="ot">/script&gt;</span>
+<span class="ot"> </span>
+<span class="ot">&lt;/body</span>&gt;
+&lt;<span class="ot">/html&gt;</span></code></pre>
+<p>執行結果</p>
+<div class="figure">
+<img src="../img/jsJsonOutput.jpg" />
+</div>
+<p>以上我們簡單的介紹了 JavaScript 的物件導向功能，這種物件導向的實作方式由於是以原型為核心的，因此筆者喜歡稱 JavaScript 為原型導向 (prototype oriented) 的語言，雖然並不是很多人使用「原型導向」這個用法。</p>
+<h2 id="javascript-的特殊技巧-closure-與匿名函數"><a href="#javascript-的特殊技巧-closure-與匿名函數">JavaScript 的特殊技巧 – Closure 與匿名函數</a></h2>
+<p>在以下的程式中，我們同時展示了 JavaScript 當中的全域變數、區域變數與匿名函數、Closure 等機制。在本文中，我們會用這個程式逐步解釋一些 JavaScript 語言中重要但詭異的概念。</p>
+<p>很多語言都有全域變數與區域變數之分，在 JavaScript 當中看來也是如此，但事實上 JavaScript 的全域變數其實只是最外層領域的區域變數而已，在瀏覽器當中，這個最外層領域就是 window，所以以下程式中最後一部分的 sum 與 windows.sum 都同樣是 8。</p>
+<p>程式：closure.htm</p>
+<pre class="sourceCode Html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="kw">var</span> sum = <span class="dv">0</span>;
+<span class="er">function add(x) {</span>
+  sum += x;
+<span class="er">  document.write(&quot;typeof:x=&quot;+typeof x+&quot; y=&quot;+typeof y+&quot; z=&quot;+typeof z+&quot; sum=&quot;+typeof sum+&quot;&lt;br/&gt;&quot;);</span>
+  <span class="kw">var</span> y = <span class="dv">2</span>;
+  <span class="kw">return</span> <span class="kw">function</span>() {
+    <span class="kw">var</span> z = x+y;
+    <span class="ot">document</span>.<span class="fu">write</span>(<span class="st">&quot;value :x=&quot;</span>+x+<span class="st">&quot; y=&quot;</span>+y+<span class="st">&quot; z=&quot;</span>+z+<span class="st">&quot; sum=&quot;</span>+sum+<span class="st">&quot;&lt;br/&gt;&quot;</span>);
+    <span class="ot">document</span>.<span class="fu">write</span>(<span class="st">&quot;typeof:x=&quot;</span>+<span class="kw">typeof</span> x+<span class="st">&quot; y=&quot;</span>+<span class="kw">typeof</span> y+<span class="st">&quot; z=&quot;</span>+<span class="kw">typeof</span> z+<span class="st">&quot; sum=&quot;</span>+<span class="kw">typeof</span> sum+<span class="st">&quot;&lt;br/&gt;&lt;br/&gt;&quot;</span>);
+  }
+}
+
+<span class="er">f = add(3);</span>
+<span class="er">f();</span>
+
+<span class="er">add(5)();</span>
+
+<span class="er">document.write(&quot;typeof:x=&quot;+typeof x+&quot; y=&quot;+typeof y+&quot; z=&quot;+typeof z+&quot; sum=&quot;+typeof sum+&quot;&lt;br/&gt;&lt;br/&gt;&quot;);</span>
+
+<span class="kw">&lt;/script&gt;</span>
+
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="er">document.write(&quot;sum=&quot;+sum+&quot; window.sum=&quot;+window.sum);</span>
+<span class="kw">&lt;/script&gt;</span>
+
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>因此、JavaScript 可以說沒有全域變數的概念，全域變數的只不過是最外層物件的區域變數罷了。</p>
+<p>在 JavaScript 每一層領域當中，都可以定義區域變數，例如在上述範例中，sum 是最外層變數，因此所有的程式區段都可以存取這個變數。</p>
+<p>參數也是一種區域變數，像是 add(x) 當中的 x，也有領域慨念，其作用範圍僅適用於 add 裏面。而 add 當中所定義的區域變數 y，則只有在定義之後才會生效，因此其領域範圍是從 <code>var y=2;</code> 這行程式開始，一直到 add 函數結束為止。</p>
+<p>JavaScript 當中的函數，可以沒有名稱，這種函數稱為匿名函數，像是上述範例的函數 add 中，就傳回了一個匿名函數，如下所示：</p>
+<pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span class="kw">function</span> <span class="fu">add</span>(x) {
+  sum += x;
+  <span class="ot">document</span>.<span class="fu">write</span>(<span class="st">&quot;typeof:x=&quot;</span>+<span class="kw">typeof</span> x+<span class="st">&quot; y=&quot;</span>+<span class="kw">typeof</span> y+<span class="st">&quot; z=&quot;</span>+<span class="kw">typeof</span> z+<span class="st">&quot; sum=&quot;</span>+<span class="kw">typeof</span> sum+<span class="st">&quot;&lt;br/&gt;&quot;</span>);
+  <span class="kw">var</span> y = <span class="dv">2</span>;
+  <span class="kw">return</span> <span class="kw">function</span>() {
+    <span class="kw">var</span> z = sum+x+y;
+    <span class="ot">document</span>.<span class="fu">write</span>(<span class="st">&quot;value :x=&quot;</span>+x+<span class="st">&quot; y=&quot;</span>+y+<span class="st">&quot; z=&quot;</span>+z+<span class="st">&quot; sum=&quot;</span>+sum+<span class="st">&quot;&lt;br/&gt;&quot;</span>);
+    <span class="ot">document</span>.<span class="fu">write</span>(<span class="st">&quot;typeof:x=&quot;</span>+<span class="kw">typeof</span> x+<span class="st">&quot; y=&quot;</span>+<span class="kw">typeof</span> y+<span class="st">&quot; z=&quot;</span>+<span class="kw">typeof</span> z+<span class="st">&quot; sum=&quot;</span>+<span class="kw">typeof</span> sum+<span class="st">&quot;&lt;br/&gt;&lt;br/&gt;&quot;</span>);
+  }
+}</code></pre>
+<p>變數 z 是該匿名函數的區域變數，由於設定為 sum+x+y，因此存取了外層的 y、x 與更外層的 sum，領域的存取規則是內層可以存取外層的變數，但是外層卻不能存取內層的變數。</p>
+<p>筆者認為，JavaScript 中的一個最特別且強大的特性，莫過於函數既可以塞給一般變數，也可以當參數傳遞。例如以下程式區段就是用 f 去接收 add(x) 函數所傳回來的匿名函數，然後再用 f() 函數去執行這個匿名函數而已。</p>
+<pre class="sourceCode JavaScript"><code class="sourceCode javascript">f = <span class="fu">add</span>(<span class="dv">3</span>);
+<span class="fu">f</span>();
+
+<span class="fu">add</span>(<span class="dv">5</span>)();</code></pre>
+<p>上列程式碼的最後一行 <code>add(5)()</code>，只不過是將這兩個動作合起來一起作，也就是呼叫 add(5) 後，傳回值是個匿名函數，然後再用「匿名函數()」這樣的方法呼叫函數，去執行該匿名函數而已。(這個功能有點像 C 當中的函數指標)</p>
+<p>在上述的 closure.htm 程式中，還有個很特別的地方，就是這些匿名函數被傳回來後，就已經回到了最外層的領域範圍了 (window)，那麼當該匿名函數執行時，照理說由於 x, y 屬於內層 add 函數的區域變數，應該會存取不到才對，但為何程式執行結果卻都還是正常，沒有發生錯誤呢？</p>
+<p>這牽涉到 JavaScript 當中一個非常特別的機制，稱為 Closure (閉包)。</p>
+<p>閉包與 JavaScript 的領域 (Scope) 特性有關，因為 JavaScript 採用 Lexical Scope，也就是變數作用範圍依照程式定義時的上下文 (Context) 所決定，而不是根據執行時期的上下文所決定的。</p>
+<p>因此，上述匿名函數所服從的領域規則，仍然是定義時的領域，也就是 add 函數的子領域，而不是執行時期 window 的子領域，因此仍然可以正確存取 x,y,z 等變數，不會發生錯誤。</p>
+<h2 id="參考文獻-3"><a href="#參考文獻-3">參考文獻</a></h2>
+<ul>
+<li>Node.js 中文電子書 » JavaScript 與 NodeJS
+<ul>
+<li><a href="http://book.nodejs.tw/zh-tw/node_javascript.html#scope-closure">http://book.nodejs.tw/zh-tw/node_javascript.html#scope-closure</a></li>
+</ul></li>
+<li>[图解] 你不知道的 JavaScript - “this”
+<ul>
+<li><a href="http://www.cnblogs.com/ruxpinsp1/archive/2008/04/20/1162463.html">http://www.cnblogs.com/ruxpinsp1/archive/2008/04/20/1162463.html</a></li>
+</ul></li>
+<li>Javascript - 淺談this與Closure
+<ul>
+<li><a href="http://blog.darkthread.net/post-2009-03-11-js-this-and-closure.aspx">http://blog.darkthread.net/post-2009-03-11-js-this-and-closure.aspx</a></li>
+</ul></li>
+<li>The this keyword
+<ul>
+<li><a href="http://www.quirksmode.org/js/this.html">http://www.quirksmode.org/js/this.html</a></li>
+</ul></li>
+<li>JavaScript中的closure好難懂，它和匿名函式有什麼不同?
+<ul>
+<li><a href="http://ithelp.ithome.com.tw/question/10000477">http://ithelp.ithome.com.tw/question/10000477</a></li>
+</ul></li>
+</ul>
+<h1 id="javascript-的字串處理"><a href="#javascript-的字串處理">JavaScript 的字串處理</a></h1>
+<h2 id="字串物件-string"><a href="#字串物件-string">字串物件 String</a></h2>
+<p>String 物件的成員</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">屬性/函數</th>
+<th align="left">說明</th>
+<th align="left">範例</th>
+<th align="left">結果</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">constructor</td>
+<td align="left">傳回建構函數</td>
+<td align="left">&quot;Hello&quot;.constructor</td>
+<td align="left">function String() { [native code] }</td>
+</tr>
+<tr class="even">
+<td align="left">length</td>
+<td align="left">傳回長度</td>
+<td align="left">&quot;Hello&quot;.length</td>
+<td align="left">function String() { [native code] }</td>
+</tr>
+<tr class="odd">
+<td align="left">prototype</td>
+<td align="left">傳回原型</td>
+<td align="left">&quot;Hello&quot;.prototype</td>
+<td align="left">undefined</td>
+</tr>
+<tr class="even">
+<td align="left">charAt()</td>
+<td align="left">傳回第 i 個字元</td>
+<td align="left">&quot;Hello&quot;.charAt(1)</td>
+<td align="left">e</td>
+</tr>
+<tr class="odd">
+<td align="left">charCodeAt()</td>
+<td align="left">傳回第 i 個字元的 Unicode</td>
+<td align="left">&quot;Hello&quot;.charCodeAt(1)</td>
+<td align="left">101</td>
+</tr>
+<tr class="even">
+<td align="left">concat()</td>
+<td align="left">連接兩個以上的字串</td>
+<td align="left">&quot;Hello&quot;.concat(&quot; World&quot;, &quot; !&quot;)</td>
+<td align="left">Hello World !</td>
+</tr>
+<tr class="odd">
+<td align="left">fromCharCode()</td>
+<td align="left">將 Unicode 代碼轉為字元</td>
+<td align="left">&quot;Hello&quot;.fromCharCode(101, 102)</td>
+<td align="left">ef</td>
+</tr>
+<tr class="even">
+<td align="left">indexOf()</td>
+<td align="left">傳回子字串的位置</td>
+<td align="left">&quot;Hello&quot;.indexOf(&quot;el&quot;)</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">lastIndexOf()</td>
+<td align="left">傳回子字串的位置 (倒著掃瞄)</td>
+<td align="left">&quot;Hello&quot;.lastIndexof(&quot;l&quot;)</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">match()</td>
+<td align="left">搜尋正規表達式</td>
+<td align="left">&quot;Hello&quot;.match(&quot;[aeiou]&quot;)</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="left">replace()</td>
+<td align="left">取代正規表達式</td>
+<td align="left">&quot;Hello&quot;.replace(&quot;l&quot;, &quot;L&quot;)</td>
+<td align="left">HeLLo</td>
+</tr>
+<tr class="even">
+<td align="left">search()</td>
+<td align="left">搜尋正規表達式</td>
+<td align="left">&quot;Hello&quot;.search(&quot;[aeiou]&quot;)</td>
+<td align="left">e</td>
+</tr>
+<tr class="odd">
+<td align="left">slice()</td>
+<td align="left">切出字串</td>
+<td align="left">&quot;Hello&quot;.slice(-3)</td>
+<td align="left">llo</td>
+</tr>
+<tr class="even">
+<td align="left">split()</td>
+<td align="left">分割字串</td>
+<td align="left">&quot;Hello&quot;.split(&quot;e&quot;)</td>
+<td align="left">H,llo</td>
+</tr>
+<tr class="odd">
+<td align="left">substr()</td>
+<td align="left">取出 from 長 len 的子字串</td>
+<td align="left">&quot;Hello&quot;.substr(2,2)</td>
+<td align="left">ll</td>
+</tr>
+<tr class="even">
+<td align="left">substring()</td>
+<td align="left">取出 from 到 to 的子字串</td>
+<td align="left">&quot;Hello&quot;.substring(2,4)</td>
+<td align="left">llo</td>
+</tr>
+<tr class="odd">
+<td align="left">toLowerCase()</td>
+<td align="left">轉為小寫</td>
+<td align="left">&quot;Hello&quot;.toLowerCase()</td>
+<td align="left">hello</td>
+</tr>
+<tr class="even">
+<td align="left">toUpperCase()</td>
+<td align="left">轉為大寫</td>
+<td align="left">&quot;Hello&quot;.toUpperCase()</td>
+<td align="left">HELLO</td>
+</tr>
+<tr class="odd">
+<td align="left">valueOf()</td>
+<td align="left">傳回原型值</td>
+<td align="left">&quot;Hello&quot;.valueOf()</td>
+<td align="left">Hello</td>
+</tr>
+</tbody>
+</table>
+<p>程式範例</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="kw">var</span> s = <span class="st">&quot;Hello&quot;</span>;
+<span class="er">document.write(&quot;s = &#39;Hello&#39;&quot;);</span>
+<span class="er">document.write(&quot;s.constructor = &quot;+s.constructor+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.length = &quot;+s.length+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.prototype = &quot;+s.prototype+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.charAt(1) = &quot;+s.charAt(1)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.charCodeAt(1) = &quot;+s.charCodeAt(1)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.concat(&#39; World&#39;, &#39; !&#39;) = &quot;+s.concat(&#39; World&#39;, &#39; !&#39;)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;String.fromCharCode(72,69,76,76,79) = &quot;+String.fromCharCode(72,69,76,76,79)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.indexOf(&#39;el&#39;) = &quot;+s.indexOf(&#39;el&#39;)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.lastIndexOf(&#39;l&#39;) = &quot;+s.lastIndexOf(&#39;l&#39;)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.match(&#39;[aeiou]&#39;) = &quot;+s.match(&#39;[aeiou]&#39;)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.replace(&#39;l&#39;, &#39;L&#39;) = &quot;+s.replace(&#39;l&#39;, &#39;L&#39;)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.search(&#39;[aeiou]&#39;) = &quot;+s.search(&#39;[aeiou]&#39;)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.slice(2,4) = &quot;+s.slice(2,4)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.slice(2) = &quot;+s.slice(2)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.slice(-3) = &quot;+s.slice(-3)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.split(&#39;e&#39;) = &quot;+s.split(&#39;e&#39;)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.substr(2,2) = &quot;+s.substr(2,2)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.substring(2,4) = &quot;+s.substr(2,4)+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.toLowerCase() = &quot;+s.toLowerCase()+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.toUpperCase() = &quot;+s.toUpperCase()+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="er">document.write(&quot;s.valueOf() = &quot;+s.valueOf()+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="kw">&lt;/script&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>執行結果</p>
+<pre><code>s = &#39;Hello&#39;s.constructor = function String() { [native code] }
+s.length = 5
+s.prototype = undefined
+s.charAt(1) = e
+s.charCodeAt(1) = 101
+s.concat(&#39; World&#39;, &#39; !&#39;) = Hello World !
+String.fromCharCode(72,69,76,76,79) = HELLO
+s.indexOf(&#39;el&#39;) = 1
+s.lastIndexOf(&#39;l&#39;) = 3
+s.match(&#39;[aeiou]&#39;) = e
+s.replace(&#39;l&#39;, &#39;L&#39;) = HeLlo
+s.search(&#39;[aeiou]&#39;) = 1
+s.slice(2,4) = ll
+s.slice(2) = llo
+s.slice(-3) = llo
+s.split(&#39;e&#39;) = H,llo
+s.substr(2,2) = ll
+s.substring(2,4) = llo
+s.toLowerCase() = hello
+s.toUpperCase() = HELLO
+s.valueOf() = Hello</code></pre>
+<h2 id="正規表達式"><a href="#正規表達式">正規表達式</a></h2>
+<p>正規語法 (Regular Grammar) 是一種相當簡單的語法，這種語法被 Perl 語言成功的用於字串比對，接著成為重要的程式設計工具。 此種標準的正規語法後來被稱為正則表達式 (Regular Expression)。目前，大部分的語言都已納入正則表達式的函式庫， 正規表達是可以說是程式設計師必定要瞭解的工具，也就是常識的一部分。系統程式設計師更應該要瞭解正則表達式， 因為正規語法是程式語言當中，用來描述基本詞彙 (Vocabulary)，並據以建構詞彙掃描器 (Lexer) 的基礎語法， Lexer 是編譯器的基本元件之一。</p>
+<p>假如我們要用正則表達式描述整數數字，那麼，可以用 [0123456789]+ 這個表達式，其中的中括號 [ 與 ] 會框住一群 字元，用來代表字元群，加號 + 所代表的是重複 1 次或以上，因此，該表達式就可以描述像 3702451 這樣的數字。 然而，在正則表達式中，為了更方便撰寫，於是允許用 [0-9]+ 這樣的式子表達同樣的概念，其中的 0-9 其實就 代表了 0123456789 等字元，這是一種簡便的縮寫法。甚至，可以再度縮短後以 []+ 代表，其中的 就代表 數字所成的字元集合。</p>
+<p>利用範例學習是理解正則表達式的有效方法，表格 1 就顯示了一些具有代表性的正則表達式範例。</p>
+<p>表格 1. 正則表達式的範例</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">語法 正</th>
+<th align="left">規表達式 範</th>
+<th align="left">例</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">整數 [0</td>
+<td align="left">-9]+ 37</td>
+<td align="left">04</td>
+</tr>
+<tr class="even">
+<td align="left">有小數點的實數 [</td>
+<td align="left">0-9]+.[0-9]+ 7</td>
+<td align="left">.93</td>
+</tr>
+<tr class="odd">
+<td align="left">英文詞彙</td>
+<td align="left">[A-Za-z]+</td>
+<td align="left">Code</td>
+</tr>
+<tr class="even">
+<td align="left">變數名稱</td>
+<td align="left">[A-Za-z_][A-Za-z0-9_]*</td>
+<td align="left">_counter</td>
+</tr>
+<tr class="odd">
+<td align="left">Email</td>
+<td align="left">[a-zA-Z0-9_]+@[a-zA-Z0-9._]+</td>
+<td align="left">ccc@kmit.edu.tw</td>
+</tr>
+<tr class="even">
+<td align="left">URL</td>
+<td align="left">http://[a-zA-Z0-9./_]+</td>
+<td align="left">http://ccc.kmit.edu.tw/mybook/</td>
+</tr>
+</tbody>
+</table>
+<p>為了協助讀者理解這些範例，我們有必要對範例中的一些正規表達式符號進行說明。</p>
+<p>在實數的範例中，使用 . 代表小數點符號 .，不熟悉正則表達式的讀者一定覺得奇怪，為何要加上斜線符號   呢？ 這是因為在正則表達式當中，有許多符號具有特殊意義，例如點符號 . 是用來表示任意字元的，星號 * 是代表 0 次 或以上，加號 + 代表一次或以上，在正則表達式當中，有許多這類的特殊字元，因此用斜線   代表跳出字元，就像 C 語言當中 printf 函數內的用途一樣。因此，當我們看到   符號時，必須繼續向後看，才能知道其所代表的意義。 表格 2 列出了正則表達式當中大部份的重要符號之意義，以供讀者參考。</p>
+<p>表格 2. 正則表達式當中的符號之意義</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">字元 描</th>
+<th align="left">述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">^</td>
+<td align="left">比對開始位置</td>
+</tr>
+<tr class="even">
+<td align="left">$</td>
+<td align="left">比對結束位置。</td>
+</tr>
+<tr class="odd">
+<td align="left">*</td>
+<td align="left">零次或以上</td>
+</tr>
+<tr class="even">
+<td align="left">+</td>
+<td align="left">一次或以上</td>
+</tr>
+<tr class="odd">
+<td align="left">?</td>
+<td align="left">零次或一次</td>
+</tr>
+<tr class="even">
+<td align="left">{n}</td>
+<td align="left">n 次。</td>
+</tr>
+<tr class="odd">
+<td align="left">{n,}</td>
+<td align="left">n 次或以上</td>
+</tr>
+<tr class="even">
+<td align="left">{n,m}</td>
+<td align="left">n 到 m 次</td>
+</tr>
+<tr class="odd">
+<td align="left">?</td>
+<td align="left">非貪婪模式</td>
+</tr>
+<tr class="even">
+<td align="left">.</td>
+<td align="left">比對除&quot;&quot;之外字元</td>
+</tr>
+<tr class="odd">
+<td align="left">(?:pattern)</td>
+<td align="left">比對 pattern 樣式</td>
+</tr>
+<tr class="even">
+<td align="left">(?=pattern)</td>
+<td align="left">正向預查，例如，&quot;Windows (?=95|98|NT|2000)&quot; 可比對到 &quot;Windows 2000&quot; 中的 &quot;Windows&quot;，但不能比對 Windows XP 中的 Windows。</td>
+</tr>
+<tr class="odd">
+<td align="left">(?!pattern)</td>
+<td align="left">負向預查，例如 &quot;Windows(?!95|98|NT|2000)&quot; 能比對 &quot;Windows XP&quot;中的 &quot;Windows&quot;，但不能比對 &quot;Windows 2000&quot; 中 的&quot;Windows&quot;。</td>
+</tr>
+<tr class="even">
+<td align="left">x|y</td>
+<td align="left">比對 x 或 y。</td>
+</tr>
+<tr class="odd">
+<td align="left">[xyz]</td>
+<td align="left">包含 xyz 等字元。</td>
+</tr>
+<tr class="even">
+<td align="left">[^xyz]</td>
+<td align="left">不包含 xyz 等字元。</td>
+</tr>
+<tr class="odd">
+<td align="left">[a-z]</td>
+<td align="left">字元範圍 a-z。</td>
+</tr>
+<tr class="even">
+<td align="left">[^a-z]</td>
+<td align="left">不包含字元範圍 a-z。</td>
+</tr>
+<tr class="odd">
+<td align="left">\b</td>
+<td align="left">比對一個單詞邊界，也就是指單詞和空格間的位置。例如，&quot;er&quot;可以比對&quot;never&quot;中的&quot;er&quot;，但不能比對&quot;verb&quot;中的&quot;er&quot;。</td>
+</tr>
+<tr class="even">
+<td align="left">\B</td>
+<td align="left">比對非單詞邊界。&quot;er&quot;能比對&quot;verb&quot;中的&quot;er&quot;，但不能比對&quot;never&quot;中的&quot;er&quot;。</td>
+</tr>
+<tr class="odd">
+<td align="left">\cx</td>
+<td align="left">比對由x指明的控制字元。例如，-M或回車符。x的值必須為A-Z或a-z之一。否則，將c視為一個原義的&quot;c&quot;字元。</td>
+</tr>
+<tr class="even">
+<td align="left">\d</td>
+<td align="left">比對一個數位字元。等價於[0-9]。</td>
+</tr>
+<tr class="odd">
+<td align="left">\D</td>
+<td align="left">比對一個非數位字元。等價於[^0-9]。</td>
+</tr>
+<tr class="even">
+<td align="left">\f</td>
+<td align="left">比對一個換頁符。等價於0c和。</td>
+</tr>
+<tr class="odd">
+<td align="left">\n</td>
+<td align="left">比對一個分行符號。等價於0a和。</td>
+</tr>
+<tr class="even">
+<td align="left">\r</td>
+<td align="left">比對一個回車符。等價於0d和。</td>
+</tr>
+<tr class="odd">
+<td align="left">\s</td>
+<td align="left">比對任何空白字元，包括空格、定位字元、換頁符等等。等價於[]。</td>
+</tr>
+<tr class="even">
+<td align="left">\S</td>
+<td align="left">比對任何非空白字元。等價於[^\f\n\r\t\v]。</td>
+</tr>
+<tr class="odd">
+<td align="left">\t</td>
+<td align="left">比對一個定位字元。等價於09和。</td>
+</tr>
+<tr class="even">
+<td align="left">\v</td>
+<td align="left">比對一個垂直定位字元。等價於0b和。</td>
+</tr>
+<tr class="odd">
+<td align="left">\w</td>
+<td align="left">比對包括底線的任何單詞字元。等價於&quot;[A-Za-z0-9_]&quot;。</td>
+</tr>
+<tr class="even">
+<td align="left">\W</td>
+<td align="left">比對任何非單詞字元。等價於&quot;[^A-Za-z0-9_]&quot;。</td>
+</tr>
+<tr class="odd">
+<td align="left">\xn</td>
+<td align="left">比對n，其中n為十六進位轉義值。十六進位轉義值必須為確定的兩個數位長。例如，&quot;41&quot;比對&quot;A&quot;。&quot;041&quot;則等價於&quot;04&quot;&amp;&quot;1&quot;。規則運算式中可以使用ASCII編碼。</td>
+</tr>
+<tr class="even">
+<td align="left">\num</td>
+<td align="left">比對num，其中num是一個正整數。對所獲取的比對的引用。例如，&quot;(.)&quot;比對兩個連續的相同字元。</td>
+</tr>
+<tr class="odd">
+<td align="left">\n</td>
+<td align="left">標識一個八進制轉義值或一個向後引用。如果，則n為向後引用。否則，如果n為八進位數字(0-7)，則n為一個八進制轉義值。</td>
+</tr>
+<tr class="even">
+<td align="left">\nm</td>
+<td align="left">標識一個八進制轉義值或一個向後引用。 如果，則nm為向後引用。如果，則n為一個後跟文字m的向後引用。如果前面的條件都不滿足，若n和m均為八進位數字(0-7)，則將比對八進制轉義值nm。</td>
+</tr>
+<tr class="odd">
+<td align="left">\nml</td>
+<td align="left">如果n為八進位數字(0-3)，且m和l均為八進位數字(0-7)，則比對八進制轉義值nml。</td>
+</tr>
+<tr class="even">
+<td align="left">\un</td>
+<td align="left">比對n，其中n是一個用四個十六進位數位表示的Unicode字元。例如，00A9比對版權符號（©）。</td>
+</tr>
+</tbody>
+</table>
+<p>正則表達式在許多語言當中 (像是 Java, C#, Ruby, Python 等) 都已經有支援良好的函式庫。</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">&lt;html&gt;
+&lt;body&gt;
+
+&lt;script type=<span class="st">&quot;text/javascript&quot;</span>&gt;
+<span class="ot">document</span>.<span class="fu">write</span>(<span class="st">&quot;&lt;pre&gt;</span><span class="ch">\n</span><span class="st">&quot;</span>);
+<span class="ot">String</span>.<span class="ot">prototype</span>.<span class="fu">trim</span> = <span class="kw">function</span>() { <span class="kw">return</span> <span class="kw">this</span>.<span class="fu">replace</span>(<span class="ot">/</span><span class="fl">(</span><span class="ot">^</span><span class="bn">\s</span><span class="fl">*)|(</span><span class="bn">\s</span><span class="fl">*</span><span class="ot">$</span><span class="fl">)</span><span class="ot">/g</span>, <span class="st">&quot;&quot;</span>); }
+<span class="ot">document</span>.<span class="fu">write</span>(<span class="st">&quot;&#39; abc &#39;.trim()=|&quot;</span>+<span class="st">&#39; abc &#39;</span>.<span class="fu">trim</span>()+<span class="st">&quot;|</span><span class="ch">\n</span><span class="st">&quot;</span>);
+<span class="kw">var</span> re = <span class="kw">new</span> <span class="fu">RegExp</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d+&quot;</span>, <span class="st">&quot;gi&quot;</span>);
+<span class="kw">var</span> str = <span class="st">&quot;name:john age:20 birthday:1990/8/31&quot;</span>;
+<span class="kw">var</span> m = <span class="kw">null</span>;
+<span class="kw">while</span> (m = <span class="ot">re</span>.<span class="fu">exec</span>(str))
+  <span class="ot">document</span>.<span class="fu">write</span>(m + <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>);
+<span class="kw">var</span> p = <span class="fu">parse</span>(str);
+<span class="ot">document</span>.<span class="fu">write</span>(<span class="st">&quot;p.name=&quot;</span>+<span class="ot">p</span>.<span class="fu">name</span>+<span class="st">&quot; age=&quot;</span>+<span class="ot">p</span>.<span class="fu">age</span>+<span class="st">&quot; year=&quot;</span>+<span class="ot">p</span>.<span class="fu">year</span>+<span class="st">&quot; month=&quot;</span>+<span class="ot">p</span>.<span class="fu">month</span>+<span class="st">&quot; day=&quot;</span>+<span class="ot">p</span>.<span class="fu">day</span>);
+<span class="ot">document</span>.<span class="fu">write</span>(<span class="st">&quot;&lt;/pre&gt;</span><span class="ch">\n</span><span class="st">&quot;</span>);
+
+<span class="kw">function</span> <span class="fu">parse</span>(data) {
+    <span class="kw">var</span> e=<span class="kw">new</span> <span class="fu">RegExp</span>(<span class="st">&quot;name:(</span><span class="ch">\\</span><span class="st">w+) age:(</span><span class="ch">\\</span><span class="st">d+) birthday:(</span><span class="ch">\\</span><span class="st">d+)/(</span><span class="ch">\\</span><span class="st">d+)/(</span><span class="ch">\\</span><span class="st">d+)&quot;</span>, <span class="st">&quot;gi&quot;</span>);
+
+    <span class="kw">if</span> (<span class="ot">data</span>.<span class="fu">match</span>(e)) {
+        <span class="kw">return</span>  {<span class="dt">exp</span>: RegExp[<span class="st">&#39;$&amp;&#39;</span>],
+                <span class="dt">name</span>: <span class="ot">RegExp</span>.<span class="fu">$1</span>,
+                <span class="dt">age</span>:<span class="ot">RegExp</span>.<span class="fu">$2</span>,
+                <span class="dt">year</span>:<span class="ot">RegExp</span>.<span class="fu">$3</span>,
+                <span class="dt">month</span>:<span class="ot">RegExp</span>.<span class="fu">$4</span>,
+                <span class="dt">day</span>:<span class="ot">RegExp</span>.<span class="fu">$5</span>};
+    }
+    <span class="kw">else</span> {
+        <span class="kw">return</span> <span class="kw">null</span>;
+    }
+}
+&lt;<span class="ot">/script&gt;</span>
+
+<span class="ot">&lt;/body</span>&gt;
+&lt;<span class="ot">/html&gt;</span></code></pre>
+<p>執行結果</p>
+<pre><code>&#39; abc &#39;.trim()=|abc|
+20
+1990
+8
+31
+p.name=john age=20 year=1990 month=8 day=31</code></pre>
+<h2 id="eval-函數"><a href="#eval-函數">eval 函數</a></h2>
+<pre class="sourceCode JavaScript"><code class="sourceCode javascript">&lt;script type=<span class="st">&quot;text/javascript&quot;</span>&gt;
+<span class="kw">var</span> a=<span class="dv">3</span>, b=<span class="dv">5</span>;
+<span class="fu">alert</span>(<span class="st">&#39;a+b=&#39;</span>+<span class="fu">eval</span>(<span class="st">&#39;a+b&#39;</span>));
+&lt;<span class="ot">/script&gt;</span></code></pre>
+<h2 id="參考文獻-4"><a href="#參考文獻-4">參考文獻</a></h2>
+<ul>
+<li>Wikipedia:Regular expression -- http://en.wikipedia.org/wiki/Regular_expression</li>
+<li>維基百科:正規表式 -- http://zh.wikipedia.org/zh-tw/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F</li>
+<li>鳥哥的 Linux 私房菜:第十二章、正規表示法與文件格式化處理 -- http://linux.vbird.org/linux_basic/0330regularex.php</li>
+<li>石頭閒語:Regular Expression (RegExp) in JavaScript -- http://blog.roodo.com/rocksaying/archives/2670695.html</li>
+<li>字串樣版 Regexp: 兼談長線學習投資 -- http://www.cyut.edu.tw/~ckhung/b/re/</li>
+<li>在 C 程式中，使用 Regex (Regular Expression) library -- http://blog.roodo.com/rocksaying/archives/3866523.html</li>
+</ul>
+<h1 id="動態網頁---javascript-在瀏覽器中控制-dom-網頁物件"><a href="#動態網頁---javascript-在瀏覽器中控制-dom-網頁物件">動態網頁 - JavaScript 在瀏覽器中控制 DOM 網頁物件</a></h1>
+<h2 id="javascriptbrowser-與-dom"><a href="#javascriptbrowser-與-dom">JavaScript、Browser 與 DOM</a></h2>
+<p>JavaScript 之所以重要，是因為 JavaScript 是瀏覽器當中規定的標準語言。這是因為早期的瀏覽器 Netscape 將 JavaScript 內建於其中， 以變能夠進行一些互動程式的效果，因此才讓 JavaScript 成為瀏覽器的的標準語言。</p>
+<p>在瀏覽器中，要用 JavaScript 設計出互動效果，畢需借助 DOM (Document Object Model) 這個 HTML 的抽象化物件模型，這個模型將 整個 HTML 文件視為一個樹狀結構的物件，於是 JavaScript 可以透過操控物件屬性的方式，達成某些互動性的顯示效果。這種互動性的 顯示效果形成了瀏覽器特有的視覺化互動模式，可以說是近 15 年來 Web 的發展重點之所在。</p>
+<p>接著、就讓我們透過一些簡單的程式範例，看看如何用 JavaScript 操控 DOM 物件模型，以便完成這種互動效果。</p>
+<h3 id="取得內容innertext-與-innerhtml"><a href="#取得內容innertext-與-innerhtml">取得內容：innerText 與 innerHTML</a></h3>
+<p>以下範例會取得 hi 節點的 innerText 與 innerHTML 顯示出來，請觀察其不同點。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+  <span class="kw">&lt;head&gt;</span>
+    <span class="kw">&lt;title&gt;</span>節點存取示範<span class="kw">&lt;/title&gt;</span>
+  <span class="kw">&lt;/head&gt;</span>
+  <span class="kw">&lt;body&gt;</span>
+    <span class="kw">&lt;div</span><span class="ot"> id</span> <span class="ot">=</span><span class="st">&quot;hi&quot;</span><span class="kw">&gt;&lt;b&gt;</span>你好!<span class="kw">&lt;/b&gt;&lt;/div&gt;</span>
+    <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;button&quot;</span><span class="ot"> value=</span><span class="st">&quot;hi.innerText&quot;</span> 
+<span class="ot">             onclick=</span><span class="st">&quot;alert(document.getElementById(&#39;hi&#39;).innerText)&quot;</span><span class="er">);</span>
+    <span class="er">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;button&quot;</span><span class="ot"> value=</span><span class="st">&quot;hi.innerHTML&quot;</span> 
+<span class="ot">             onclick=</span><span class="st">&quot;alert(document.getElementById(&#39;hi&#39;).innerHTML)&quot;</span><span class="er">);</span>
+  <span class="er">&lt;/body</span><span class="kw">&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<h3 id="顯示與隱藏-show-and-hide"><a href="#顯示與隱藏-show-and-hide">顯示與隱藏 (Show and hide)</a></h3>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+  <span class="kw">&lt;head&gt;</span>
+    <span class="kw">&lt;title&gt;</span>範例 -- 顯示隱藏<span class="kw">&lt;/title&gt;</span>
+  <span class="kw">&lt;/head&gt;</span>
+  <span class="kw">&lt;body&gt;</span>
+    <span class="kw">&lt;div</span><span class="ot"> id</span> <span class="ot">=</span><span class="st">&quot;hi&quot;</span><span class="kw">&gt;&lt;b&gt;</span>你好!<span class="kw">&lt;/b&gt;&lt;/div&gt;</span>
+    <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;button&quot;</span><span class="ot"> value=</span><span class="st">&quot;hi.show()&quot;</span><span class="ot"> onclick=</span><span class="st">&quot;document.getElementById(&#39;hi&#39;).style.visibility=&#39;visible&#39;&quot;</span><span class="er">);</span>
+    <span class="er">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;button&quot;</span><span class="ot"> value=</span><span class="st">&quot;hi.hide()&quot;</span><span class="ot"> onclick=</span><span class="st">&quot;document.getElementById(&#39;hi&#39;).style.visibility=&#39;hidden&#39;&quot;</span><span class="er">);</span>
+  <span class="er">&lt;/body</span><span class="kw">&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<h2 id="功能表程式"><a href="#功能表程式">功能表程式</a></h2>
+<p>JavaScript 是唯一被各家瀏覽器所共同支援的程式語言，因此在設計網站的時候，我們如果不採用像 Flash 或 Silverlight 這樣的外掛技術，就必須採用 JavaScript 來設計互動式網頁。</p>
+<p>在 node.js 這樣的伺服端 JavaScript 開發平台推出之後，我們就能夠採用 JavaScript 同時設計 Client 端與 Server 端的程式，這樣的模式相當的吸引人，我們會在後續的文章中介紹這樣的網站設計方法。</p>
+<p>在本節當中，我們將透過 JavaScript 設計一個互動網頁的功能表，以便展示瀏覽器中的 JavaScript 程式是如何運作的。</p>
+<p>以下是一個功能表的程式的執行結果，當我們的滑鼠移到功能項上時，就會浮現子功能表，而當我們點下子功能表中的項目時，就會出現一個 alert 視窗，顯示該功能子項被點選的訊息。</p>
+<div class="figure">
+<img src="../img/JavaScriptMenuRun.jpg" alt="功能表程式的執行畫面" /><p class="caption">功能表程式的執行畫面</p>
+</div>
+<p>以下是這個網頁的原始 HTML 程式碼，其中 <code>&lt;style&gt;...&lt;/style&gt;</code> 部分是 CSS 原始碼，而 <code>&lt;script ...&lt;/script&gt;</code> 部分則是 JavaScript 程式碼。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+<span class="kw">&lt;title&gt;</span>範例 -- 功能表實作<span class="kw">&lt;/title&gt;</span>
+<span class="kw">&lt;style&gt;</span>
+<span class="fl">.menu</span>   <span class="kw">{</span> <span class="kw">background-color:</span><span class="dt">black</span><span class="kw">;</span> <span class="kw">color:</span><span class="dt">white</span><span class="kw">;</span> <span class="kw">padding:</span><span class="dt">10px</span><span class="kw">;</span> 
+          <span class="kw">vertical-align:</span><span class="dt">top</span><span class="kw">;</span> <span class="kw">width:</span><span class="dt">100px</span><span class="kw">;</span> <span class="kw">list-style-type:</span><span class="dt">none</span><span class="kw">;</span> <span class="kw">}</span>
+<span class="fl">.menu</span> a <span class="kw">{</span> <span class="kw">color:</span><span class="dt">white</span><span class="kw">;</span> <span class="kw">text-decoration:</span><span class="dt">none</span><span class="kw">;</span> <span class="kw">}</span>
+<span class="kw">&lt;/style&gt;</span>
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="er">function show(id) {</span>
+<span class="er">  document.getElementById(id).style.visibility=&#39;visible&#39;;</span>
+}
+ 
+<span class="er">function hide(id) {</span>
+<span class="er">  document.getElementById(id).style.visibility=&#39;hidden&#39;;</span>
+}
+<span class="kw">&lt;/script&gt;</span>    
+  <span class="kw">&lt;/head&gt;</span>
+  <span class="kw">&lt;body</span><span class="ot"> onload=</span><span class="st">&quot;JavaScript:hide(&#39;popup1&#39;);hide(&#39;popup2&#39;);&quot;</span><span class="kw">&gt;</span>
+      <span class="kw">&lt;ul</span><span class="ot"> onmouseover=</span><span class="st">&quot;show(&#39;popup1&#39;);&quot;</span><span class="ot">  onmouseout=</span><span class="st">&quot;hide(&#39;popup1&#39;)&quot;</span> 
+<span class="ot">          style=</span><span class="st">&quot;position:absolute; left:100px; top:20px&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;li</span><span class="ot"> id=</span><span class="st">&quot;menu1&quot;</span><span class="ot"> class=</span><span class="st">&quot;menu&quot;</span><span class="kw">&gt;</span>menu1<span class="kw">&lt;/li&gt;</span>
+        <span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">&quot;popup1&quot;</span><span class="ot"> class=</span><span class="st">&quot;menu&quot;</span><span class="kw">&gt;</span>
+          <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;JavaScript:alert(&#39;1.1&#39;);&quot;</span><span class="kw">&gt;</span>menu 1.1<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+          <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;JavaScript:alert(&#39;1.2&#39;);&quot;</span><span class="kw">&gt;</span>menu 1.2<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="kw">&lt;/ul&gt;</span> 
+      <span class="kw">&lt;/ul&gt;</span>
+      <span class="kw">&lt;ul</span><span class="ot"> onmouseover=</span><span class="st">&quot;show(&#39;popup2&#39;);&quot;</span><span class="ot"> onmouseout=</span><span class="st">&quot;hide(&#39;popup2&#39;)&quot;</span> 
+<span class="ot">          style=</span><span class="st">&quot;position:absolute; left:220px; top:20px&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;li</span><span class="ot"> id=</span><span class="st">&quot;menu2&quot;</span><span class="ot"> class=</span><span class="st">&quot;menu&quot;</span><span class="kw">&gt;</span>menu2<span class="kw">&lt;/li&gt;</span>
+        <span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">&quot;popup2&quot;</span><span class="ot"> class=</span><span class="st">&quot;menu&quot;</span><span class="kw">&gt;</span>
+          <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;JavaScript:alert(&#39;2.1&#39;);&quot;</span><span class="kw">&gt;</span>menu 2.1<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+          <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;JavaScript:alert(&#39;2.2&#39;);&quot;</span><span class="kw">&gt;</span>menu 2.2<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+          <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;JavaScript:alert(&#39;2.3&#39;);&quot;</span><span class="kw">&gt;</span>menu 2.3<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="kw">&lt;/ul&gt;</span>
+      <span class="kw">&lt;/ul&gt;</span>
+  <span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>雖然以上程式只是一個小小的功能表程式碼，但是要能夠讀懂，而且寫得出來，卻要懂相當多的技術才行，這些技術包含 HTML, CSS , JavaScript 與 Document Object Model (DOM)。</p>
+<h3 id="程式解析"><a href="#程式解析">程式解析</a></h3>
+<p>在 HTML 的一開始，我們用以下語法描述了功能表所需要的 CSS 樣式，當我們套用在像 <code>&lt;li id=&quot;menu2&quot; class=&quot;menu&quot;&gt;menu2&lt;/li&gt;</code> 這樣的 HTML 項目上時，就會呈現比較好看的功能表排版格式，而這正是 CSS 樣式的功用。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;style&gt;</span>
+<span class="fl">.menu</span>   <span class="kw">{</span> <span class="kw">background-color:</span><span class="dt">black</span><span class="kw">;</span> <span class="kw">color:</span><span class="dt">white</span><span class="kw">;</span> <span class="kw">padding:</span><span class="dt">10px</span><span class="kw">;</span> 
+          <span class="kw">vertical-align:</span><span class="dt">top</span><span class="kw">;</span> <span class="kw">width:</span><span class="dt">100px</span><span class="kw">;</span> <span class="kw">list-style-type:</span><span class="dt">none</span><span class="kw">;</span> <span class="kw">}</span>
+<span class="fl">.menu</span> a <span class="kw">{</span> <span class="kw">color:</span><span class="dt">white</span><span class="kw">;</span> <span class="kw">text-decoration:</span><span class="dt">none</span><span class="kw">;</span> <span class="kw">}</span>
+<span class="kw">&lt;/style&gt;</span></code></pre>
+<p>以上的 CSS 語法中，要求功能表要以黑底白字的方式 (<code>background-color:black; color:white;</code>) 顯示，邊緣補上 10 點的空白(<code>padding:10px;</code>)，而且是以向上靠攏 (<code>vertical-align:top;</code>) 的方式，每個功能表的寬度都是 100 點 (<code>width:100px;</code>)，然後不要顯示項目前面的點符號 (<code>list-style-type:none;</code>)。</p>
+<p>接著是一段 JavaScript 程式碼的語法，定義了 show(id) 與 hide(id) 這兩個函數，我們可以用這兩個函數在適當的時候讓功能表顯示出來或者是隱藏掉，這樣才能做到「浮現」的功能。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="er">function show(id) {</span>
+<span class="er">  document.getElementById(id).style.visibility=&#39;visible&#39;;</span>
+}
+ 
+<span class="er">function hide(id) {</span>
+<span class="er">  document.getElementById(id).style.visibility=&#39;hidden&#39;;</span>
+}
+<span class="kw">&lt;/script&gt;</span>    </code></pre>
+<p>然後，開始進入 HTML 的 body 區塊，其中定義了兩組功能表，第一組的內容如下：</p>
+<pre class="sourceCode html"><code class="sourceCode html">      <span class="kw">&lt;ul</span><span class="ot"> onmouseover=</span><span class="st">&quot;show(&#39;popup1&#39;);&quot;</span><span class="ot">  onmouseout=</span><span class="st">&quot;hide(&#39;popup1&#39;)&quot;</span> 
+<span class="ot">          style=</span><span class="st">&quot;position:absolute; left:100px; top:20px&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;li</span><span class="ot"> id=</span><span class="st">&quot;menu1&quot;</span><span class="ot"> class=</span><span class="st">&quot;menu&quot;</span><span class="kw">&gt;</span>menu1<span class="kw">&lt;/li&gt;</span>
+        <span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">&quot;popup1&quot;</span><span class="ot"> class=</span><span class="st">&quot;menu&quot;</span><span class="kw">&gt;</span>
+          <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;JavaScript:alert(&#39;1.1&#39;);&quot;</span><span class="kw">&gt;</span>menu 1.1<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+          <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;JavaScript:alert(&#39;1.2&#39;);&quot;</span><span class="kw">&gt;</span>menu 1.2<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="kw">&lt;/ul&gt;</span> 
+      <span class="kw">&lt;/ul&gt;</span></code></pre>
+<p>上述區塊最外層的 <code>&lt;ul&gt;...&lt;/ul&gt;</code> 定義了整個功能表的結構，是由功能母項 <code>&lt;li id=&quot;menu1&quot; class=&quot;menu&quot;&gt;menu1&lt;/li&gt;</code> 與子功能表 <code>&lt;ul id=&quot;popup1&quot; class=&quot;menu&quot;&gt;...&lt;/ul&gt;</code> 所組合而成的，而 <code>&lt;ul onmouseover=&quot;show('popup1');&quot;  onmouseout=&quot;hide('popup1')&quot; style=&quot;position:absolute; left:100px; top:20px&quot;&gt;</code> 這一段除了定義了該功能表要顯示在絕對位置 (100,20) 的地方之外，還定義了 onmouseover 與 onmouseout 的事件，這兩個事件讓功能表可以在滑鼠移入時顯示出來，然後在滑鼠移出時隱藏起來，因而做到了浮現式功能表所要求的條件。</p>
+<p>由於我們在 <code>&lt;li&gt;...&lt;/li&gt;</code> 內的超連結 <code>&lt;a href=&quot;JavaScript:alert('2.1');&quot;&gt;menu 2.1&lt;/a&gt;</code> 使用了 JavaScript 語法，因此在該超連結被點選時，就會有警告視窗顯示 2.1 的訊息，這個訊息僅僅是讓我們知道該功能項被點選了而已，沒有真實的功能。</p>
+<p>同樣的、第二個功能表的程式碼也是非常類似的，請讀者看看是否能夠讀者其內容。</p>
+<pre class="sourceCode html"><code class="sourceCode html">      <span class="kw">&lt;ul</span><span class="ot"> onmouseover=</span><span class="st">&quot;show(&#39;popup2&#39;);&quot;</span><span class="ot"> onmouseout=</span><span class="st">&quot;hide(&#39;popup2&#39;)&quot;</span> 
+<span class="ot">          style=</span><span class="st">&quot;position:absolute; left:220px; top:20px&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;li</span><span class="ot"> id=</span><span class="st">&quot;menu2&quot;</span><span class="ot"> class=</span><span class="st">&quot;menu&quot;</span><span class="kw">&gt;</span>menu2<span class="kw">&lt;/li&gt;</span>
+        <span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">&quot;popup2&quot;</span><span class="ot"> class=</span><span class="st">&quot;menu&quot;</span><span class="kw">&gt;</span>
+          <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;JavaScript:alert(&#39;2.1&#39;);&quot;</span><span class="kw">&gt;</span>menu 2.1<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+          <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;JavaScript:alert(&#39;2.2&#39;);&quot;</span><span class="kw">&gt;</span>menu 2.2<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+          <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;JavaScript:alert(&#39;2.3&#39;);&quot;</span><span class="kw">&gt;</span>menu 2.3<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="kw">&lt;/ul&gt;</span>
+      <span class="kw">&lt;/ul&gt;</span></code></pre>
+<p>看到這裡，讀者應該大致理解了上述功能表網頁的運作原理，但事實上、我們還漏掉了一行重要的程式碼，那就是 <code>&lt;body onload=&quot;JavaScript:hide('popup1');hide('popup2');&quot;&gt;</code> 這一行，這一行讓浮現功能表能在一開始就處於隱藏狀態，才不會一進來就看到兩個功能表都浮現出來的錯誤情況。</p>
+<h3 id="小結"><a href="#小結">小結</a></h3>
+<p>從上述範例中，您可以看到瀏覽器中的 JavaScript ，通常是透過調整網頁某些項目的 CSS 屬性，以達成互動性的功能，這種互動網頁技術，事實上是結合了 HTML+CSS+JavaScript 等技術才能達成的功能，因此這三項技術在瀏覽器當中幾乎是合為一體、可以說是缺一不可的。</p>
+<p>在本期中我們說明了互動式網頁的設計方式，但這樣的設計方式非常冗長，對程式人員而言是很大的負擔，因此在互動網頁興起之後，就逐漸出現了各式各樣的互動性 JavaScript 框架，也就是現成的 JavaScript 函式庫，讓我們可以輕易做出很好的互動性，像是 jQuery, ExtJS, YUI, Prototype, Dojo 等互動性函式庫，以便減輕 JavaScript 程式人員的負擔，增加程式員的生產力，在下一期當中，我們將使用最常被使用的 jQuery 框架，再度說明互動網頁的寫法，我們下期見！</p>
+<h2 id="html-編輯器"><a href="#html-編輯器">HTML 編輯器</a></h2>
+<p>在本節當中，我們將透過 JavaScript 設計一個 HTML 編輯器，讓您可以直接在瀏覽器當中看到 HTML 網頁的呈現結果， 筆者認為這個範例對學習動態網頁設計是一個非常簡單、卻又很有啟發性的程式。因為他很明顯的展現了動態網頁的原理。</p>
+<p>以下是該 HTML 編輯器的執行結果，當我們在 CSS 與 HTML 區塊輸入對應的原始碼之後，就可以按下「→」按鈕，然後在 呈現的 <code>&lt;div id=&quot;showbox&quot; ...&lt;/div&gt;</code> 區塊看到兩者搭配時的呈現結果。</p>
+<div class="figure">
+<img src="../img/HtmlEditorRun.jpg" alt="HTML 編輯器的執行畫面" /><p class="caption">HTML 編輯器的執行畫面</p>
+</div>
+<p>您也可以點選下列連結以實際檢視該網頁：</p>
+<ul>
+<li>HTML 編輯器：<a href="https://dl.dropboxusercontent.com/u/101584453/pmag/201305/code/HtmlEditor.htm">https://dl.dropboxusercontent.com/u/101584453/pmag/201305/code/HtmlEditor.htm</a></li>
+</ul>
+<p>以下是這個網頁的原始 HTML 程式碼，其中有兩大段是我們預設填入的 CSS 與 HTML 原始碼，這兩段原則上可以去掉，但是 為了測試方便起見，我們就留在檔案中，請讀者閱讀的時候仔細區分之。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;style&gt;</span>
+textarea, <span class="fl">#showbox</span> <span class="kw">{</span> <span class="kw">border:</span> <span class="dt">1px</span> <span class="dt">solid</span> <span class="dt">#9f9f9f</span><span class="kw">;</span> <span class="kw">}</span>
+<span class="kw">&lt;/style&gt;</span>
+<span class="kw">&lt;style</span><span class="ot"> id=</span><span class="st">&quot;showboxstyle&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;/style&gt;</span>
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="er">function convert() {</span>
+<span class="er">  var cssbox  = document.getElementById(&quot;cssbox&quot;);</span>
+<span class="er">  var editbox = document.getElementById(&quot;editbox&quot;);</span>
+<span class="er">  var showbox = document.getElementById(&quot;showbox&quot;);</span>
+<span class="er">  var showboxstyle = document.getElementById(&quot;showboxstyle&quot;);</span>
+  <span class="ot">showbox</span>.<span class="fu">innerHTML</span> = <span class="ot">editbox</span>.<span class="fu">value</span>;
+  <span class="ot">showboxstyle</span>.<span class="fu">innerHTML</span> = <span class="ot">cssbox</span>.<span class="fu">value</span>;
+}
+<span class="kw">&lt;/script&gt;</span>   
+<span class="kw">&lt;body&gt;</span>
+<span class="kw">&lt;form&gt;</span>
+<span class="kw">&lt;table</span><span class="ot"> width=</span><span class="st">&quot;95%&quot;</span><span class="ot"> style=</span><span class="st">&quot;border-collapse: collapse; border: 0px;&quot;</span><span class="kw">&gt;&lt;tr&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;td</span><span class="ot"> colspan=</span><span class="st">&quot;2&quot;</span><span class="ot"> style=</span><span class="st">&quot;text-align:center&quot;</span><span class="kw">&gt;</span>HTML 原始碼　　<span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;button&quot;</span><span class="ot"> value=</span><span class="st">&quot; → &quot;</span><span class="ot"> onclick=</span><span class="st">&quot;JavaScript:convert()&quot;</span><span class="kw">/&gt;</span>　　　顯示結果<span class="kw">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;td</span><span class="ot"> width=</span><span class="st">&quot;50%&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;textarea</span><span class="ot"> id=</span><span class="st">&quot;cssbox&quot;</span><span class="ot"> style=</span><span class="st">&quot;width:100%; height:100px;&quot;</span> <span class="kw">&gt;</span>
+<span class="co">&lt;!-- 預設貼入的CSS：開始 --&gt;</span>
+td, th { padding:10px; }
+th { background-color:black; color:white; }
+table { border-collapse: collapse; border: 1px solid #373737; }
+<span class="co">&lt;!---預設貼入的CSS：結束 --&gt;</span>
+<span class="kw">&lt;/textarea&gt;</span>
+<span class="kw">&lt;textarea</span><span class="ot"> id=</span><span class="st">&quot;editbox&quot;</span><span class="ot"> style=</span><span class="st">&quot;width:100%; height:400px;&quot;</span><span class="kw">&gt;</span>
+<span class="co">&lt;!-- 預設貼入的HTML：開始 --&gt;</span>
+Hello! <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;http://tw.yahoo.com&quot;</span><span class="kw">&gt;</span>Yahoo<span class="kw">&lt;/a&gt;&lt;br/&gt;&lt;/br&gt;</span>
+<span class="kw">&lt;table&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;</span>欄 1<span class="kw">&lt;/th&gt;&lt;th&gt;</span>欄 2<span class="kw">&lt;/th&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;</span>列 1<span class="kw">&lt;/th&gt;&lt;td&gt;</span>1,1<span class="kw">&lt;/td&gt;&lt;td&gt;</span>1,2<span class="kw">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;&lt;th&gt;</span>列 2<span class="kw">&lt;/th&gt;&lt;td&gt;</span>2,1<span class="kw">&lt;/td&gt;&lt;td&gt;</span>2,2<span class="kw">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="kw">&lt;/table&gt;&lt;br/&gt;</span>
+<span class="kw">&lt;form</span><span class="ot"> action=</span><span class="st">&quot;signup&quot;</span><span class="ot"> method=</span><span class="st">&quot;post&quot;</span><span class="kw">&gt;</span>
+帳號: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> name=</span><span class="st">&quot;user&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+密碼: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;password&quot;</span><span class="ot"> name=</span><span class="st">&quot;password&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+信箱: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;email&quot;</span><span class="ot"> name=</span><span class="st">&quot;email&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+生日: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;date&quot;</span><span class="ot"> name=</span><span class="st">&quot;birthday&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+照片: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;file&quot;</span><span class="ot"> name=</span><span class="st">&quot;picture&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+性別: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;radio&quot;</span><span class="ot"> name=</span><span class="st">&quot;sex&quot;</span><span class="ot"> value=</span><span class="st">&quot;male&quot;</span><span class="ot"> checked</span><span class="kw">/&gt;</span> 男
+      <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;radio&quot;</span><span class="ot"> name=</span><span class="st">&quot;sex&quot;</span><span class="ot"> value=</span><span class="st">&quot;female&quot;</span><span class="kw">/&gt;</span> 女<span class="kw">&lt;br/&gt;</span>
+血型: <span class="kw">&lt;select</span><span class="ot"> name=</span><span class="st">&quot;BloodType&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;option</span><span class="ot"> value=</span><span class="st">&quot;A&quot;</span><span class="kw">&gt;</span>A 型<span class="kw">&lt;/option&gt;</span>
+        <span class="kw">&lt;option</span><span class="ot"> value=</span><span class="st">&quot;B&quot;</span><span class="kw">&gt;</span>B 型<span class="kw">&lt;/option&gt;</span>
+        <span class="kw">&lt;option</span><span class="ot"> value=</span><span class="st">&quot;AB&quot;</span><span class="kw">&gt;</span>AB 型<span class="kw">&lt;/option&gt;</span>
+        <span class="kw">&lt;option</span><span class="ot"> value=</span><span class="st">&quot;O&quot;</span><span class="kw">&gt;</span>O 型<span class="kw">&lt;/option&gt;</span>
+      <span class="kw">&lt;/select&gt;</span> <span class="kw">&lt;br/&gt;</span>
+自我介紹： <span class="kw">&lt;br/&gt;</span>
+<span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="ot"> value=</span><span class="st">&quot;送出&quot;</span><span class="kw">/&gt;&lt;input</span><span class="ot"> type=</span><span class="st">&quot;reset&quot;</span><span class="ot"> value=</span><span class="st">&quot;清除&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+<span class="kw">&lt;/form&gt;</span>
+<span class="co">&lt;!-- 預設貼入的HTML：結束 --&gt;</span>
+<span class="kw">&lt;/textarea&gt;</span> 
+<span class="kw">&lt;/td&gt;</span>
+<span class="kw">&lt;td&gt;</span>
+<span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;showbox&quot;</span><span class="ot"> style=</span><span class="st">&quot;width:100%; height:500px;&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;/div&gt;</span>
+<span class="kw">&lt;/td&gt;</span>
+<span class="kw">&lt;/tr&gt;&lt;/table&gt;</span>
+<span class="kw">&lt;/form&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<h3 id="程式解析-1"><a href="#程式解析-1">程式解析</a></h3>
+<p>上述程式當中有三個主要的區塊，分別是：</p>
+<ol style="list-style-type: decimal">
+<li>CSS 填入區塊： <code>&lt;textarea id=&quot;cssbox&quot; ...&lt;/textarea&gt;</code></li>
+<li>HTML 填入區塊：<code>&lt;textarea id=&quot;editbox&quot; ...&lt;/textarea&gt;</code></li>
+<li>HTML 顯示區塊：<code>&lt;div id=&quot;showbox&quot; ... &lt;/div&gt;</code></li>
+</ol>
+<p>此網頁的核心程式部分真的很簡單，只有如下短短的一小段：</p>
+<ol style="list-style-type: decimal">
+<li>利用 <code>var editbox = document.getElementById(&quot;editbox&quot;);</code> 取得 HTML 區塊內容</li>
+<li>利用 <code>showbox.innerHTML = editbox.value;</code> 這個指令將該 HTML 原始碼填入 showbox 當中</li>
+</ol>
+<p>這樣就完成顯示 HTML 的動作了。</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> <span class="fu">convert</span>() {
+  <span class="kw">var</span> cssbox  = <span class="ot">document</span>.<span class="fu">getElementById</span>(<span class="st">&quot;cssbox&quot;</span>);
+  <span class="kw">var</span> editbox = <span class="ot">document</span>.<span class="fu">getElementById</span>(<span class="st">&quot;editbox&quot;</span>);
+  <span class="kw">var</span> showbox = <span class="ot">document</span>.<span class="fu">getElementById</span>(<span class="st">&quot;showbox&quot;</span>);
+  <span class="kw">var</span> showboxstyle = <span class="ot">document</span>.<span class="fu">getElementById</span>(<span class="st">&quot;showboxstyle&quot;</span>);
+  <span class="ot">showbox</span>.<span class="fu">innerHTML</span> = <span class="ot">editbox</span>.<span class="fu">value</span>;
+  <span class="ot">showboxstyle</span>.<span class="fu">innerHTML</span> = <span class="ot">cssbox</span>.<span class="fu">value</span>;
+}</code></pre>
+<p>但是這樣作並沒有加入 cssbox 的內容到 HTML 當中，因此我們加入了下列原始碼：</p>
+<ol style="list-style-type: decimal">
+<li>在整個網頁的頭部事先用 <code>&lt;style id=&quot;showboxstyle&quot;&gt;...&lt;/style&gt;</code> 這個標記加入一個 CSS style 顯示區塊</li>
+<li>利用 <code>showboxstyle.innerHTML = cssbox.value</code> 這個指令將 cssbox 的內容填入到該表頭的 style 區塊中</li>
+</ol>
+<p>這樣就達成了套用 CSS 內容到網頁中的目的，完成了整個 HTML 編輯器的功能。</p>
+<h3 id="小結-1"><a href="#小結-1">小結</a></h3>
+<p>在本節中，我們用非常簡單的程式，建構了一個 HTML 編輯器。事實上我們只不過是把網頁內容從編輯區域移動到顯示區域，然後流覽器就會 自動解釋這些內容進行呈現了。</p>
+<p>在本系列的文章中，關於瀏覽器部分的 JavaScript 程式，我們將至此告一個段落，在下一期當中，我們將開始進入伺服端的 javascript 程式。 我們將利用 node.js 這個伺服端 JavaScript 執行平台，進一步探索 JavaScript 程式的奧秘，我們下期見！</p>
+<h2 id="參考文獻-5"><a href="#參考文獻-5">參考文獻</a></h2>
+<ul>
+<li><a href="http://stackoverflow.com/questions/1720320/how-to-dynamically-create-css-class-in-javascript-and-apply">http://stackoverflow.com/questions/1720320/how-to-dynamically-create-css-class-in-javascript-and-apply</a></li>
+<li><a href="http://dev.opera.com/articles/view/dynamic-style-css-javascript/">http://dev.opera.com/articles/view/dynamic-style-css-javascript/</a></li>
+</ul>
+<h1 id="node.js-命令列---讓-javascript-作為一般程式執行"><a href="#node.js-命令列---讓-javascript-作為一般程式執行">Node.js 命令列 - 讓 JavaScript 作為一般程式執行</a></h1>
+<p>Node.js 通常被用來當成與 PHP、Ruby on Rail 或 ASP.NET 類似的平台，用來撰寫 Web 的網站程式， 但是這種觀點主要是使用 node.js 的 Web 函式庫功能，直接從 Web 程式的實作開始，而非從基礎的 JavaScript 開始，我們認為這樣的方式並不好，因為入門瓶頸太高，很容易會造成讀者的學習障礙。</p>
+<p>事實上、Node.js 當中包含了一個由 Google Chrome 計畫中所釋出的 JavaScript 編譯引擎 -- V8，這是一個 速度很快的 JavaScript 執行工具，在本章中，我們將從命令列基本操作開始，將 node.js 單純當作一個 JavaScript 解譯器使用，以便透過 node.js 進一步學習 JavaScript 的語法與基本函式庫的用法。</p>
+<h2 id="node.js-的安裝"><a href="#node.js-的安裝">Node.js 的安裝</a></h2>
+<p>本文使用 node.js 0.10.0 版示範，您可以從 node.js 官網上下載到最新的版本，以下是 node.js 的網址。</p>
+<ul>
+<li><a href="http://nodejs.org/">http://nodejs.org/</a></li>
+</ul>
+<p>node.js 0.10 之後的版本，在 windows 當中的安裝非常容易，只要一直點選下一步，就能完全安裝完畢。</p>
+<h2 id="node.js-的互動操作環境"><a href="#node.js-的互動操作環境">Node.js 的互動操作環境</a></h2>
+<p>安裝完 Node.js 之後，您就可以啟動 Node.js 的互動操作環境，然後開始輸入一些基本的 JavaScript 程式，以便學習 JavaScript 的語法，以下是筆者的一個操作畫面。</p>
+<div class="figure">
+<img src="../img/node_shell.jpg" alt="圖、Node.js 的操作畫面" /><p class="caption">圖、Node.js 的操作畫面</p>
+</div>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">&gt; x = <span class="dv">3</span>
+<span class="dv">3</span>
+&gt; y = <span class="dv">5</span>
+<span class="dv">5</span>
+&gt; z = x+y
+<span class="dv">8</span>
+&gt; w = x*y
+<span class="dv">15</span>
+&gt; x, y, z, w
+<span class="dv">15</span>
+&gt; <span class="fu">eval</span>(<span class="st">&quot;x+y+z+w&quot;</span>)
+<span class="dv">31</span>
+&gt; s = <span class="st">&quot;Hello!&quot;</span>
+<span class="st">&#39;Hello!&#39;</span>
+&gt; t = x+s
+<span class="st">&#39;3Hello!&#39;</span>
+&gt; s+t
+<span class="st">&#39;Hello!3Hello!&#39;</span>
+&gt; score = <span class="dv">80</span>
+<span class="dv">80</span>
+&gt; add = <span class="kw">function</span>(a,b) { <span class="kw">return</span> a+b; }
+[Function]
+&gt; <span class="fu">add</span>(<span class="dv">3</span>,<span class="dv">5</span>)
+<span class="dv">8</span>
+&gt; <span class="fu">add</span>(<span class="dv">374</span>, <span class="dv">567</span>)
+<span class="dv">941</span>
+&gt; sum = <span class="kw">function</span>(n) {
+... <span class="fu">s</span> = <span class="dv">0</span>;
+... <span class="fu">for</span> (i=<span class="dv">1</span>; i&lt;=n; i++)
+...   <span class="fu">s</span> += i;
+... <span class="fu">return</span> <span class="fu">s</span>
+... }
+[Function]
+&gt; <span class="fu">sum</span>(<span class="dv">10</span>)
+<span class="dv">55</span>
+&gt; <span class="fu">sum</span>(<span class="dv">100</span>)
+<span class="dv">5050</span>
+&gt; max = <span class="kw">function</span>(a,b) {
+... <span class="fu">if</span> (a&gt;b)
+...   <span class="fu">return</span> <span class="fu">a</span>;
+... <span class="fu">else</span>
+...   <span class="fu">return</span> <span class="fu">b</span>;
+... }
+[Function]
+&gt; <span class="fu">max</span>(<span class="dv">3</span>,<span class="dv">5</span>)
+<span class="dv">5</span>
+&gt; <span class="fu">max</span>(<span class="dv">9</span>,<span class="dv">2</span>)
+<span class="dv">9</span></code></pre>
+<p>從以上的操作中，您可以看到我們不只可以進行基本的運算操作，也可以直接在裏面定義函數，以及呼叫這些函數。</p>
+<p>當然、您也可以將 JavaScript 的程式存檔，然後用 node.js 去執行，</p>
+<h2 id="node.js-的命令列工具"><a href="#node.js-的命令列工具">Node.js 的命令列工具</a></h2>
+<p>雖然互動操作環境感覺很方便，但是要撰寫真正的程式時，就不太好用了，此時您可以使用 Node 的 命令列工具 -- Node.js command prompt 來執行程式。舉例而言，我們可以先撰寫了一個 hello.js 的程式， 如下所示：</p>
+<p>檔案：hello.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&quot;Hello!&quot;</span>);</code></pre>
+<p>然後啟動 Node.js command prompt 去執行該程式，以下是我們的執行 hello.js 與下述 sum.js 程式的結果：</p>
+<div class="figure">
+<img src="../img/NodeCommandRunHelloSum.jpg" alt="圖、用 Node.js command prompt 執行程式" /><p class="caption">圖、用 Node.js command prompt 執行程式</p>
+</div>
+<p>檔案：sum.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> <span class="fu">sum</span>(n) {
+  <span class="kw">var</span> s = <span class="dv">0</span>;
+  <span class="kw">for</span> (i=<span class="dv">1</span>; i&lt;=n; i++)
+    s+=i;
+  <span class="kw">return</span> s;
+}
+
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&quot;sum(10)=&quot;</span>+<span class="fu">sum</span>(<span class="dv">10</span>));
+
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&quot;sum(100)=&quot;</span>+<span class="fu">sum</span>(<span class="dv">100</span>));</code></pre>
+<p>於是、透過 Node.js 的開發環境，我們可以將原本只能在瀏覽器中測試的 JavaScript 程式， 放到 Node.js 當中執行，這樣就能更方便的學習 JavaScript 的語法與函式庫，大大的提高了 我們學習 JavaScript 的方便程度。</p>
+<p>目前、筆者在撰寫 JavaScript 程式時，通常會先用 Node.js 進行測試，沒有問題之後，在放到 瀏覽器當中去執行，也就是將 Node.js 當作單元測試的工具，這對筆者的幫助很大。</p>
+<p>接著、讓我們透過 Node.js 平台，來學習一些 JavaScript 基本函式庫的用法，首先讓我們來看看 動態解譯函數 eval()。</p>
+<h2 id="eval-函數-1"><a href="#eval-函數-1">Eval 函數</a></h2>
+<p>Eval 函數可以用來執行任何 JavaScript 程式碼，這是解譯式語言特有的函數，以下是一個使用 eval() 函數的程式範例。</p>
+<p>檔案：eval.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">x = <span class="dv">3</span>;
+y = <span class="dv">5</span>;
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&quot;eval(&#39;x+y&#39;)=&quot;</span>+<span class="fu">eval</span>(<span class="st">&#39;x+y&#39;</span>));
+
+<span class="kw">function</span> <span class="fu">max</span>(x,y) { 
+    <span class="kw">return</span> (x&gt;y)?x:y; 
+}
+
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&quot;eval(&#39;max&#39;)=&quot;</span>+<span class="fu">eval</span>(<span class="st">&#39;max&#39;</span>));
+
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&quot;eval(&#39;max(x,y)&#39;)=&quot;</span>+<span class="fu">eval</span>(<span class="st">&#39;max(x,y)&#39;</span>));
+
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&quot;eval(&#39;max(2*x,y)&#39;)=&quot;</span>+<span class="fu">eval</span>(<span class="st">&#39;max(2*x,y)&#39;</span>));</code></pre>
+<p>執行結果：</p>
+<pre><code>D:\code\node&gt;node eval.js
+eval(&#39;x+y&#39;)=8
+eval(&#39;max&#39;)=function max(x,y) {
+    return (x&gt;y)?x:y;
+}
+eval(&#39;max(x,y)&#39;)=5
+eval(&#39;max(2*x,y)&#39;)=6
+</code></pre>
+<p>雖然 eval() 通常是在解釋環境之下才具備的功能，但是在 Node.js 這種動態編譯環境之下， 卻也能夠順利的執行，這對那些開發 C/C++, Java, C# 等語言的程式人員而言，勢必會感到 非常的羨慕才對。</p>
+<p>註：如果您曾經在資料結構的課程上，嘗試去寫運算式處理的中序轉前序程式，只是為了計算 運算式的值，就會知道這樣的功能在那些編譯式語言當中是多麼的難寫，而要寫一個支援任意 運算式執行的程式，基本上就是重新撰寫一個語言解譯器，那就相當於重新建造了整套開發工具， 這是非常非常困難的。</p>
+<p>接著、讓我們來看看 Node.js 當中的一些重要的函式庫與觀念，包含「輸出入、檔案、以及模組的定義與引用等」。</p>
+<h3 id="讀取檔案"><a href="#讀取檔案">讀取檔案</a></h3>
+<p>程式：readfile.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> fs = <span class="fu">require</span>(<span class="st">&#39;fs&#39;</span>); <span class="co">// 引用檔案物件</span>
+<span class="kw">var</span> file = <span class="ot">fs</span>.<span class="fu">readFileSync</span>(<span class="ot">process</span>.<span class="fu">argv</span>[<span class="dv">2</span>], <span class="st">&quot;utf8&quot;</span>); <span class="co">// 讀取檔案</span>
+<span class="ot">console</span>.<span class="fu">log</span>(file); <span class="co">// 顯示在螢幕上</span></code></pre>
+<p>執行結果</p>
+<pre><code>D:\code\node&gt;node readfile.js readfile.js
+var fs = require(&#39;fs&#39;); // 引用檔案物件
+var file = fs.readFileSync(process.argv[2], &quot;utf8&quot;); // 讀取檔案
+console.log(file); // 顯示在螢幕上</code></pre>
+<h2 id="寫入檔案"><a href="#寫入檔案">寫入檔案</a></h2>
+<p>我們用複製檔案的程式來示範寫入檔案的功能。</p>
+<p>程式：copyfile.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> fs = <span class="fu">require</span>(<span class="st">&#39;fs&#39;</span>);
+<span class="kw">var</span> file = <span class="ot">fs</span>.<span class="fu">readFileSync</span>(<span class="ot">process</span>.<span class="fu">argv</span>[<span class="dv">2</span>]);
+<span class="ot">console</span>.<span class="fu">log</span>(file);
+<span class="ot">fs</span>.<span class="fu">writeFileSync</span>(<span class="ot">process</span>.<span class="fu">argv</span>[<span class="dv">3</span>], file);</code></pre>
+<p>執行結果：</p>
+<pre><code>D:\code\node&gt;node copyfile.js copyfile.js copyfile.js.bak
+&lt;Buffer 76 61 72 20 66 73 20 3d 20 72 65 71 75 69 72 65 28 27 66 73 27 29 3b 0a
+76 61 72 20 66 69 6c 65 20 3d 20 66 73 2e 72 65 61 64 46 69 6c 65 53 79 6e 63 28
+ ...&gt;</code></pre>
+<h2 id="模組定義與引用"><a href="#模組定義與引用">模組定義與引用</a></h2>
+<p>當您用 javascript 寫出物件或函式庫時，可以提供給其他程式使用。</p>
+<p>在 node.js 當中，模組的定義大致有兩種類型，一種是「匯出物件」的靜態模組，另一種是匯出「建構函數」的動態模組。</p>
+<h3 id="靜態模組匯出物件"><a href="#靜態模組匯出物件">靜態模組：匯出物件</a></h3>
+<p>以下是一個匯出物件的靜態模組定義。</p>
+<p>模組定義：circle.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> math = {
+    <span class="dt">PI</span>:<span class="fl">3.14</span>,
+    <span class="dt">square</span>:<span class="kw">function</span>(n) {
+        <span class="kw">return</span> n*n;
+    }
+}
+
+<span class="ot">module</span>.<span class="fu">exports</span> = math;</code></pre>
+<p>接著您可以使用 require 這個指令動態的引入該模組，注意 require 必須採用相對路徑，即使在同一個資料夾底下，也要加上 ./ 的前置符號，代表在目前資料夾之下。以下是一個引用上述模組的範例。</p>
+<p>模組使用：CircleTest.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> m=<span class="fu">require</span>(<span class="st">&quot;./math&quot;</span>);
+
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&quot;PI=%d square(3)=%d&quot;</span>, <span class="ot">m</span>.<span class="fu">PI</span>, <span class="ot">m</span>.<span class="fu">square</span>(<span class="dv">3</span>));</code></pre>
+<p>執行結果：</p>
+<pre><code>D:\Dropbox\Public\pmag\201306\code&gt;node mathTest
+PI=3.14 square(3)=9
+</code></pre>
+<h3 id="動態模組匯出建構函數"><a href="#動態模組匯出建構函數">動態模組：匯出建構函數</a></h3>
+<p>以下是一個定義圓形 circle 的物件。</p>
+<p>模組定義：circle.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> PI = <span class="fl">3.14</span>;
+Circle = <span class="kw">function</span> (radius) {
+    <span class="kw">this</span>.<span class="fu">radius</span> = radius
+    <span class="kw">this</span>.<span class="fu">area</span> = <span class="kw">function</span>() {
+        <span class="kw">return</span> PI * <span class="kw">this</span>.<span class="fu">radius</span> * <span class="kw">this</span>.<span class="fu">radius</span>;
+    }
+};
+
+<span class="ot">module</span>.<span class="fu">exports</span> = Circle;
+<span class="ot">module</span>.<span class="ot">exports</span>.<span class="fu">PI</span> = PI;</code></pre>
+<p>在引用「匯出建構函數」的程式當中，由於取得的是建構函數，因此必須再使用 new 的方式建立物件之後才能使用 (例如以下的 <code>c = new cir(5)</code> 這個指令，就是在透過建構函數 <code>cir()</code> 建立物件。</p>
+<p>模組使用：CircleTest.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> cir = <span class="fu">require</span>(<span class="st">&#39;./circle&#39;</span>);              <span class="co">// 注意，./ 代表 circle 與此程式放在同一個資料夾底下。</span>
+<span class="kw">var</span> c = <span class="kw">new</span> <span class="fu">cir</span>(<span class="dv">5</span>);
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&quot;cir.PI=&quot;</span>+<span class="ot">cir</span>.<span class="fu">PI</span>);
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&quot;c.PI=&quot;</span>+<span class="ot">c</span>.<span class="fu">PI</span>);
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&quot;c.area()=&quot;</span>+<span class="ot">c</span>.<span class="fu">area</span>());</code></pre>
+<p>執行結果</p>
+<pre><code>D:\code\node&gt;node circleTest.js
+cir.PI=3.14
+c.PI=undefined
+c.area()=78.5</code></pre>
+<p>您現在應該可以理解為何我們要將 Circle 定義為一個函數了吧！這只不過 Circle 類別的建構函數而已， 當他被 module.exports = Circle 這個指令匯出時，就可以在 var cir = require('./circle') 這個指令 接收到建構函數，然後再利用像 <code>var c = new cir(5)</code> 這樣的指令，呼叫該建構函數，以建立出物件。</p>
+<p>然後，您也應該可以看懂為何我們要用 module.exports.PI = PI 將 PI 獨立塞到 module.exports 裏了吧！ 因為只有這樣才能讓外面的模組在不執行物件建構函數 (不建立物件) 的情況之下就能存取 PI。</p>
+<h3 id="跨平台模組定義各種平台均能使用的-javascript-模組"><a href="#跨平台模組定義各種平台均能使用的-javascript-模組">跨平台模組：定義各種平台均能使用的 JavaScript 模組</a></h3>
+<p>在很多開放原始碼的 JavaScript 專案模組中，我們會看到模組的最後有一段很複雜的匯出動作。舉例而言， 在 marked.js 這個將 Markdown 語法轉為 HTML 的模組最後，我們看到了下列這段感覺匪夷所思的匯出橋段， 這種寫法其實只是為了要讓這個模組能夠順利的在「瀏覽器、node.js、CommonJS 與其 Asynchronous Module Definition (AMD) 實作版的 RequireJS」等平台當中都能順利的使用這個模組而寫的程式碼而已。</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">
+<span class="co">/**</span>
+<span class="co"> * Expose</span>
+<span class="co"> */</span>
+
+<span class="ot">marked</span>.<span class="fu">Parser</span> = Parser;
+<span class="ot">marked</span>.<span class="fu">parser</span> = <span class="ot">Parser</span>.<span class="fu">parse</span>;
+
+<span class="ot">marked</span>.<span class="fu">Lexer</span> = Lexer;
+<span class="ot">marked</span>.<span class="fu">lexer</span> = <span class="ot">Lexer</span>.<span class="fu">lex</span>;
+
+<span class="ot">marked</span>.<span class="fu">InlineLexer</span> = InlineLexer;
+<span class="ot">marked</span>.<span class="fu">inlineLexer</span> = <span class="ot">InlineLexer</span>.<span class="fu">output</span>;
+
+<span class="ot">marked</span>.<span class="fu">parse</span> = marked;
+
+<span class="kw">if</span> (<span class="kw">typeof</span> exports === <span class="st">&#39;object&#39;</span>) {
+  <span class="ot">module</span>.<span class="fu">exports</span> = marked;
+} <span class="kw">else</span> <span class="kw">if</span> (<span class="kw">typeof</span> define === <span class="st">&#39;function&#39;</span> &amp;&amp; <span class="ot">define</span>.<span class="fu">amd</span>) {
+  <span class="fu">define</span>(<span class="kw">function</span>() { <span class="kw">return</span> marked; });
+} <span class="kw">else</span> {
+  <span class="kw">this</span>.<span class="fu">marked</span> = marked;
+}
+
+}).<span class="fu">call</span>(<span class="kw">function</span>() {
+  <span class="kw">return</span> <span class="kw">this</span> || (<span class="kw">typeof</span> window !== <span class="st">&#39;undefined&#39;</span> ? window : global);
+}());</code></pre>
+<p>對這個超複雜匯出程式有興趣的朋友可以看看以下的文章，應該就可以大致理解這種寫法的來龍去脈了。</p>
+<ul>
+<li><a href="http://www.angrycoding.com/2012/10/cross-platform-wrapper-function-for.html">http://www.angrycoding.com/2012/10/cross-platform-wrapper-function-for.html</a></li>
+</ul>
+<h2 id="參考文獻-6"><a href="#參考文獻-6">參考文獻</a></h2>
+<ul>
+<li>Node.js 台灣社群協作電子書 -- <a href="http://book.nodejs.tw/">http://book.nodejs.tw/</a></li>
+<li>Node入門 -- <a href="http://www.nodebeginner.org/index-zh-tw.html">http://www.nodebeginner.org/index-zh-tw.html</a></li>
+<li>深入浅出Node.js相关的内容 -- <a href="http://www.infoq.com/cn/master-nodejs">http://www.infoq.com/cn/master-nodejs</a>
+<ul>
+<li>深入浅出Node.js（一）：什么是Node.js -- <a href="http://www.infoq.com/cn/articles/what-is-nodejs">http://www.infoq.com/cn/articles/what-is-nodejs</a></li>
+<li>深入浅出Node.js（三）：深入Node.js的模块机制 -- <a href="http://www.infoq.com/cn/articles/nodejs-module-mechanism">http://www.infoq.com/cn/articles/nodejs-module-mechanism</a></li>
+</ul></li>
+<li>node.js 檔案讀取 -- http://book.nodejs.tw/zh-tw/node_basic.html#id2</li>
+<li><a href="http://stackoverflow.com/questions/2496710/nodejs-write-to-file">http://stackoverflow.com/questions/2496710/nodejs-write-to-file</a></li>
+<li>Node.js, Require and Exports
+<ul>
+<li><a href="http://openmymind.net/2012/2/3/Node-Require-and-Exports/">http://openmymind.net/2012/2/3/Node-Require-and-Exports/</a></li>
+</ul></li>
+<li>Node.js v0.8.5 Manual &amp; Documentation/Modules
+<ul>
+<li><a href="http://nodejs.org/api/modules.html#modules_modules">http://nodejs.org/api/modules.html#modules_modules</a></li>
+</ul></li>
+<li>Understanding Node.js' &quot;require&quot;
+<ul>
+<li><a href="http://jherdman.github.com/2010-04-05/understanding-nodejs-require.html">http://jherdman.github.com/2010-04-05/understanding-nodejs-require.html</a></li>
+</ul></li>
+</ul>
+<h1 id="node.js----web-程式"><a href="#node.js----web-程式">Node.js -- Web 程式</a></h1>
+<h2 id="第一個-web-程式"><a href="#第一個-web-程式">第一個 Web 程式</a></h2>
+<p>程式：HelloWeb.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> http = <span class="fu">require</span>(<span class="st">&#39;http&#39;</span>);
+<span class="ot">http</span>.<span class="fu">createServer</span>(<span class="kw">function</span> (req, res) {
+  <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&#39;Content-Type&#39;</span>: <span class="st">&#39;text/plain&#39;</span>});
+  <span class="ot">res</span>.<span class="fu">end</span>(<span class="st">&#39;Hello Node.js!</span><span class="ch">\n</span><span class="st">&#39;</span>);
+}).<span class="fu">listen</span>(<span class="dv">80</span>, <span class="st">&#39;127.0.0.1&#39;</span>);
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&#39;Server running at http://127.0.0.1:80/&#39;</span>);</code></pre>
+<p>執行結果</p>
+<pre><code>D:\ccc101\nodejs&gt;node WebHello.js
+Server running at http://127.0.0.1:80/</code></pre>
+<div class="figure">
+<img src="../img/WebHello.jpg" />
+</div>
+<h2 id="htmlserver"><a href="#htmlserver">HtmlServer</a></h2>
+<p>執行結果：</p>
+<div class="figure">
+<img src="../img/NodeHtmlServer.jpg" />
+</div>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> server,
+    ip   = <span class="st">&quot;127.0.0.1&quot;</span>,
+    port = <span class="dv">80</span>,
+    http = <span class="fu">require</span>(<span class="st">&#39;http&#39;</span>),
+    fs = <span class="fu">require</span>(<span class="st">&quot;fs&quot;</span>),
+    folderPath = <span class="st">&quot;.&quot;</span>,
+    url = <span class="fu">require</span>(<span class="st">&#39;url&#39;</span>),
+    path,
+    filePath,
+    encode = <span class="st">&quot;utf8&quot;</span>;
+
+server = <span class="ot">http</span>.<span class="fu">createServer</span>(<span class="kw">function</span> (req, res) {
+    path = <span class="ot">url</span>.<span class="fu">parse</span>(<span class="ot">req</span>.<span class="fu">url</span>);
+    filePath = folderPath + <span class="ot">path</span>.<span class="fu">pathname</span>;
+    <span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&quot;filePath=&quot;</span>+filePath);
+    <span class="ot">fs</span>.<span class="fu">readFile</span>(filePath, encode, <span class="kw">function</span>(err, file) {
+      <span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&quot;err=&quot;</span>+err);
+      <span class="kw">if</span> (err) {
+          <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">404</span>, {<span class="st">&#39;Content-Type&#39;</span>: <span class="st">&#39;text/plain&#39;</span>});
+          <span class="ot">res</span>.<span class="fu">end</span>();
+          <span class="kw">return</span>;
+      }
+
+      <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&#39;Content-Type&#39;</span>: <span class="st">&#39;text/html&#39;</span>});
+      <span class="ot">res</span>.<span class="fu">write</span>(file);
+      <span class="ot">console</span>.<span class="fu">log</span>(file);
+      <span class="ot">res</span>.<span class="fu">end</span>();
+    });
+});
+
+<span class="ot">server</span>.<span class="fu">listen</span>(port, ip);
+
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&quot;Server running at http://&quot;</span> + ip + <span class="st">&quot;:&quot;</span> + port);</code></pre>
+<h2 id="簡易-webserver"><a href="#簡易-webserver">簡易 WebServer</a></h2>
+<p>由於 node.js 採用 Event Queue 的方式執行 (類似 Win3.1 中的協同式多工)，而沒有採用 Thread 的方式，因此對所有 輸出入 IO 都應該盡可能採用非同步的方式執行，這樣才能讓 node.js 程式發揮最大的效能，否則就會因為 IO 而卡住。</p>
+<p>因此以下兩個版本當中，以非同步版速度較快。</p>
+<h3 id="簡易-webserver-同步版-效能較差不符合-node.js-的設計理念"><a href="#簡易-webserver-同步版-效能較差不符合-node.js-的設計理念">簡易 WebServer ：同步版 (效能較差，不符合 node.js 的設計理念)</a></h3>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> path = <span class="fu">require</span>(<span class="st">&#39;path&#39;</span>);
+<span class="kw">var</span> fs = <span class="fu">require</span>(<span class="st">&quot;fs&quot;</span>);
+<span class="kw">var</span> qs = <span class="fu">require</span>(<span class="st">&#39;querystring&#39;</span>);
+<span class="kw">var</span> express = <span class="fu">require</span>(<span class="st">&quot;express&quot;</span>);
+<span class="kw">var</span> app = <span class="fu">express</span>();    
+<span class="ot">app</span>.<span class="fu">listen</span>(<span class="dv">80</span>);
+ 
+<span class="kw">var</span> response = <span class="kw">function</span>(res, type, text) {
+    <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&#39;Content-Type&#39;</span>: type});
+    <span class="ot">res</span>.<span class="fu">write</span>(text);
+    <span class="ot">console</span>.<span class="fu">log</span>(text);
+    <span class="ot">res</span>.<span class="fu">end</span>();
+}
+ 
+<span class="ot">app</span>.<span class="fu">get</span>(<span class="st">&#39;*&#39;</span>, <span class="kw">function</span>(req, res){
+  <span class="kw">try</span> {
+    <span class="kw">var</span> path = <span class="st">&#39;.&#39;</span> + <span class="ot">req</span>.<span class="fu">url</span>;
+    <span class="ot">fs</span>.<span class="fu">stat</span>(path, <span class="kw">function</span>(err, pathStat) {
+        <span class="kw">if</span> (err) {
+            <span class="fu">response</span>(res, <span class="st">&quot;text/plain&quot;</span>, <span class="ot">err</span>.<span class="fu">toString</span>());
+            <span class="kw">return</span>;
+        }
+        <span class="kw">if</span> (<span class="ot">pathStat</span>.<span class="fu">isFile</span>()) {
+            <span class="ot">fs</span>.<span class="fu">readFile</span>(path, <span class="st">&quot;utf8&quot;</span>, <span class="kw">function</span>(err, file) {
+                <span class="fu">response</span>(res, <span class="st">&quot;text/html&quot;</span>, file);
+            });
+        } <span class="kw">else</span> <span class="kw">if</span> (<span class="ot">pathStat</span>.<span class="fu">isDirectory</span>()) {
+            <span class="kw">var</span> dirPath = <span class="ot">req</span>.<span class="fu">url</span>;
+            <span class="kw">if</span> (<span class="ot">dirPath</span>.<span class="fu">substring</span>(-<span class="dv">1</span>)!==<span class="st">&quot;/&quot;</span>) 
+                dirPath = dirPath+<span class="st">&quot;/&quot;</span>;
+            <span class="kw">var</span> html = <span class="st">&quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;&quot;</span>+<span class="ot">req</span>.<span class="fu">url</span>+<span class="st">&quot;&lt;/h1&gt;</span><span class="ch">\n</span><span class="st">&quot;</span>;
+            <span class="ot">fs</span>.<span class="fu">readdir</span>(path, <span class="kw">function</span>(err, files) {
+                <span class="kw">for</span> (f <span class="kw">in</span> files) {
+                    fname = files[f];
+                    filePath = dirPath+fname;
+                    html += <span class="st">&quot;&lt;li&gt;&lt;a href=&#39;&quot;</span>+filePath+<span class="st">&quot;&#39;&gt;&quot;</span>+fname+<span class="st">&quot;&lt;/a&gt;&lt;/li&gt;</span><span class="ch">\n</span><span class="st">&quot;</span>;
+                }
+                html += <span class="st">&quot;&lt;body&gt;&lt;/html&gt;&quot;</span>;
+                <span class="fu">response</span>(res, <span class="st">&quot;text/html&quot;</span>, html);
+            });
+        } 
+    });    
+  } <span class="kw">catch</span> (err) {
+    <span class="fu">response</span>(res, <span class="st">&quot;text/plain&quot;</span>, <span class="ot">err</span>.<span class="fu">toString</span>());
+  }
+});
+ 
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&#39;start WebServer</span><span class="ch">\n</span><span class="st">&#39;</span>);</code></pre>
+<h3 id="簡易-webserver-非同步版-效能較好符合-node.js-的設計理念"><a href="#簡易-webserver-非同步版-效能較好符合-node.js-的設計理念">簡易 WebServer ：非同步版 (效能較好，符合 node.js 的設計理念)</a></h3>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">
+<span class="kw">var</span> path = <span class="fu">require</span>(<span class="st">&#39;path&#39;</span>);
+<span class="kw">var</span> fs = <span class="fu">require</span>(<span class="st">&quot;fs&quot;</span>);
+<span class="kw">var</span> qs = <span class="fu">require</span>(<span class="st">&#39;querystring&#39;</span>);
+<span class="kw">var</span> express = <span class="fu">require</span>(<span class="st">&quot;express&quot;</span>);
+<span class="kw">var</span> app = <span class="fu">express</span>();    
+<span class="ot">app</span>.<span class="fu">listen</span>(<span class="dv">80</span>);
+ 
+<span class="kw">var</span> response = <span class="kw">function</span>(res, type, text) {
+    <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&#39;Content-Type&#39;</span>: type});
+    <span class="ot">res</span>.<span class="fu">write</span>(text);
+    <span class="ot">console</span>.<span class="fu">log</span>(text);
+    <span class="ot">res</span>.<span class="fu">end</span>();
+}
+ 
+<span class="ot">app</span>.<span class="fu">get</span>(<span class="st">&#39;*&#39;</span>, <span class="kw">function</span>(req, res){
+  <span class="kw">try</span> {
+    <span class="kw">var</span> path = <span class="st">&#39;.&#39;</span> + <span class="ot">req</span>.<span class="fu">url</span>;
+    <span class="ot">fs</span>.<span class="fu">stat</span>(path, <span class="kw">function</span>(err, pathStat) {
+        <span class="kw">if</span> (<span class="ot">pathStat</span>.<span class="fu">isFile</span>()) {
+            <span class="ot">fs</span>.<span class="fu">readFile</span>(path, <span class="st">&quot;utf8&quot;</span>, <span class="kw">function</span>(err, file) {
+                <span class="fu">response</span>(res, <span class="st">&quot;text/html&quot;</span>, file);
+            });
+        } <span class="kw">else</span> <span class="kw">if</span> (<span class="ot">pathStat</span>.<span class="fu">isDirectory</span>()) {
+            <span class="kw">var</span> html = <span class="st">&quot;&lt;html&gt;&lt;body&gt;&quot;</span>;
+            <span class="ot">fs</span>.<span class="fu">readdir</span>(path, <span class="kw">function</span>(err, files) {
+                <span class="kw">for</span> (f <span class="kw">in</span> files) {
+                    fname = files[f];
+                    filePath = <span class="ot">req</span>.<span class="fu">url</span>+fname;
+                    html += <span class="st">&quot;&lt;li&gt;&lt;a href=&#39;&quot;</span>+filePath+<span class="st">&quot;&#39;&gt;&quot;</span>
+                             +filePath+<span class="st">&quot;&lt;/a&gt;&lt;/li&gt;</span><span class="ch">\n</span><span class="st">&quot;</span>;
+                }
+                html += <span class="st">&quot;&lt;body&gt;&lt;/html&gt;&quot;</span>;
+                <span class="fu">response</span>(res, <span class="st">&quot;text/html&quot;</span>, html);
+            });
+        } 
+    });    
+  } <span class="kw">catch</span> (err) {
+    <span class="fu">response</span>(res, <span class="st">&quot;text/plain&quot;</span>, <span class="ot">err</span>.<span class="fu">toString</span>());
+  }
+});
+ 
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&#39;start WebServer</span><span class="ch">\n</span><span class="st">&#39;</span>);</code></pre>
+<h2 id="較完整的-webserver-非同步版"><a href="#較完整的-webserver-非同步版">較完整的 WebServer (非同步版)</a></h2>
+<p>程式：WebServer2.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> path = <span class="fu">require</span>(<span class="st">&#39;path&#39;</span>);
+<span class="kw">var</span> fs = <span class="fu">require</span>(<span class="st">&quot;fs&quot;</span>);
+<span class="kw">var</span> qs = <span class="fu">require</span>(<span class="st">&#39;querystring&#39;</span>);
+<span class="kw">var</span> express = <span class="fu">require</span>(<span class="st">&quot;express&quot;</span>);
+<span class="kw">var</span> app = <span class="fu">express</span>();
+
+<span class="kw">var</span> mimeType = {
+   <span class="st">&quot;jpg&quot;</span>:<span class="st">&quot;image/jpeg&quot;</span>, 
+   <span class="st">&quot;gif&quot;</span>:<span class="st">&quot;image/gif&quot;</span>, 
+   <span class="st">&quot;png&quot;</span>:<span class="st">&quot;image/png&quot;</span>, 
+   <span class="st">&quot;svg&quot;</span>:<span class="st">&quot;image/svg&quot;</span>,
+   <span class="st">&quot;zip&quot;</span>:<span class="st">&quot;application/zip&quot;</span>, 
+   <span class="st">&quot;pdf&quot;</span>:<span class="st">&quot;application/pdf&quot;</span>, 
+   <span class="st">&quot;xls&quot;</span>:<span class="st">&quot;application/vnd.ms-excel&quot;</span>, 
+   <span class="st">&quot;ppt&quot;</span>:<span class="st">&quot;application/vnd.ms-powerpoint&quot;</span>, 
+   <span class="st">&quot;doc&quot;</span>:<span class="st">&quot;application/msword&quot;</span>, 
+   <span class="st">&quot;htm&quot;</span>:<span class="st">&quot;text/html&quot;</span>, 
+   <span class="st">&quot;html&quot;</span>:<span class="st">&quot;text/html&quot;</span>
+};
+
+<span class="kw">function</span> <span class="fu">getMimeType</span>(ext) {
+    <span class="kw">var</span> type = mimeType[ext];
+    <span class="kw">if</span> (!type)
+        <span class="kw">return</span> <span class="st">&quot;text/plain&quot;</span>;
+    <span class="kw">else</span>
+        <span class="kw">return</span> type;
+}
+
+<span class="ot">app</span>.<span class="fu">listen</span>(<span class="dv">80</span>);
+
+<span class="kw">var</span> response = <span class="kw">function</span>(res, type, data) {
+    <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&#39;Content-Type&#39;</span>: type});
+    <span class="kw">if</span> (<span class="ot">type</span>.<span class="fu">indexOf</span>(<span class="st">&quot;text/&quot;</span>)&gt;=<span class="dv">0</span>)
+        <span class="ot">res</span>.<span class="fu">end</span>(data);
+    <span class="kw">else</span>
+        <span class="ot">res</span>.<span class="fu">end</span>(data, <span class="st">&quot;binary&quot;</span>);
+}
+
+<span class="ot">app</span>.<span class="fu">get</span>(<span class="st">&#39;*&#39;</span>, <span class="kw">function</span>(req, res){
+  <span class="kw">try</span> {
+    <span class="kw">var</span> path = <span class="st">&#39;.&#39;</span> + <span class="ot">req</span>.<span class="fu">url</span>;
+    <span class="ot">fs</span>.<span class="fu">stat</span>(path, <span class="kw">function</span>(err, pathStat) {
+        <span class="kw">if</span> (err) {
+            <span class="fu">response</span>(res, <span class="st">&quot;text/plain&quot;</span>, <span class="ot">err</span>.<span class="fu">toString</span>());
+            <span class="kw">return</span>;
+        }
+        <span class="kw">if</span> (<span class="ot">pathStat</span>.<span class="fu">isFile</span>()) {
+            <span class="ot">fs</span>.<span class="fu">readFile</span>(path, <span class="kw">function</span>(err, file) {
+                <span class="kw">var</span> tokens = <span class="ot">path</span>.<span class="fu">split</span>(<span class="st">&quot;.&quot;</span>);
+                <span class="kw">var</span> ext = tokens[<span class="ot">tokens</span>.<span class="fu">length</span><span class="dv">-1</span>];
+                <span class="fu">response</span>(res, <span class="fu">getMimeType</span>(ext), file);
+            });
+        } <span class="kw">else</span> <span class="kw">if</span> (<span class="ot">pathStat</span>.<span class="fu">isDirectory</span>()) {
+            <span class="kw">var</span> dirPath = <span class="ot">req</span>.<span class="fu">url</span>;
+            <span class="kw">if</span> (<span class="ot">dirPath</span>.<span class="fu">substring</span>(-<span class="dv">1</span>)!==<span class="st">&quot;/&quot;</span>) 
+                dirPath = dirPath+<span class="st">&quot;/&quot;</span>;
+            <span class="kw">var</span> html = <span class="st">&quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;&quot;</span>+<span class="ot">req</span>.<span class="fu">url</span>+<span class="st">&quot;&lt;/h1&gt;</span><span class="ch">\n</span><span class="st">&quot;</span>;
+            <span class="ot">fs</span>.<span class="fu">readdir</span>(path, <span class="kw">function</span>(err, files) {
+                <span class="kw">for</span> (f <span class="kw">in</span> files) {
+                    fname = files[f];
+                    filePath = dirPath+fname;
+                    html += <span class="st">&quot;&lt;li&gt;&lt;a href=&#39;&quot;</span>+filePath+<span class="st">&quot;&#39;&gt;&quot;</span>+fname+<span class="st">&quot;&lt;/a&gt;&lt;/li&gt;</span><span class="ch">\n</span><span class="st">&quot;</span>;
+                }
+                html += <span class="st">&quot;&lt;body&gt;&lt;/html&gt;&quot;</span>;
+                <span class="fu">response</span>(res, <span class="st">&quot;text/html&quot;</span>, html);
+            });
+        } 
+    }); 
+  } <span class="kw">catch</span> (err) {
+    <span class="fu">response</span>(res, <span class="st">&quot;text/plain&quot;</span>, <span class="ot">err</span>.<span class="fu">toString</span>());
+  }
+});
+
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&#39;start WebServer</span><span class="ch">\n</span><span class="st">&#39;</span>);</code></pre>
+<h2 id="參考文獻-7"><a href="#參考文獻-7">參考文獻</a></h2>
+<ul>
+<li>深入浅出Node.js相关的内容 -- <a href="http://www.infoq.com/cn/master-nodejs">http://www.infoq.com/cn/master-nodejs</a>
+<ul>
+<li>深入浅出Node.js（一）：什么是Node.js -- http://www.infoq.com/cn/articles/what-is-nodejs</li>
+<li>深入浅出Node.js（三）：深入Node.js的模块机制 -- http://www.infoq.com/cn/articles/nodejs-module-mechanism</li>
+</ul></li>
+</ul>
+<h1 id="node.js----表單資料的處理"><a href="#node.js----表單資料的處理">Node.js -- 表單資料的處理</a></h1>
+<h2 id="web-的表單資料"><a href="#web-的表單資料">Web 的表單資料</a></h2>
+<p>在「HTML 網頁設計」這個章節裏，我們曾經介紹過 form 這個標記的用法，以及包含於其中的一群表單標記，讓我們再次複習一下這個主題。</p>
+<p>在 HTML 當中，表單 (Form) 是指可以讓使用者進行輸入的元件，其語法是用 <code>&lt;form&gt; ...&lt;/form&gt;</code> 夾住一堆的輸入元件，這些輸入元件包含 input (輸入)、 textarea (文字區)、 select (選項) 等，其中的 input 還可以根據其 type 欄位顯示成 checkbox, color, date, datetime, datetime-local, email, file, hidden, image, month, number, password, radio, range, reset, search, submit, tel, text, time, url, week 等各種不同的輸入欄形式，以下是一個表單的範例。</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;form</span><span class="ot"> action=</span><span class="st">&quot;signup&quot;</span><span class="ot"> method=</span><span class="st">&quot;post&quot;</span><span class="kw">&gt;</span>
+帳號: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> name=</span><span class="st">&quot;user&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+密碼: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;password&quot;</span><span class="ot"> name=</span><span class="st">&quot;password&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+信箱: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;email&quot;</span><span class="ot"> name=</span><span class="st">&quot;email&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+生日: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;date&quot;</span><span class="ot"> name=</span><span class="st">&quot;birthday&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+照片: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;file&quot;</span><span class="ot"> name=</span><span class="st">&quot;picture&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+性別: <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;radio&quot;</span><span class="ot"> name=</span><span class="st">&quot;sex&quot;</span><span class="ot"> value=</span><span class="st">&quot;male&quot;</span><span class="ot"> checked</span><span class="kw">/&gt;</span> 男
+      <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;radio&quot;</span><span class="ot"> name=</span><span class="st">&quot;sex&quot;</span><span class="ot"> value=</span><span class="st">&quot;female&quot;</span><span class="kw">/&gt;</span> 女<span class="kw">&lt;br/&gt;</span>
+血型: <span class="kw">&lt;select</span><span class="ot"> name=</span><span class="st">&quot;BloodType&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;option</span><span class="ot"> value=</span><span class="st">&quot;A&quot;</span><span class="kw">&gt;</span>A 型<span class="kw">&lt;/option&gt;</span>
+        <span class="kw">&lt;option</span><span class="ot"> value=</span><span class="st">&quot;B&quot;</span><span class="kw">&gt;</span>B 型<span class="kw">&lt;/option&gt;</span>
+        <span class="kw">&lt;option</span><span class="ot"> value=</span><span class="st">&quot;AB&quot;</span><span class="kw">&gt;</span>AB 型<span class="kw">&lt;/option&gt;</span>
+        <span class="kw">&lt;option</span><span class="ot"> value=</span><span class="st">&quot;O&quot;</span><span class="kw">&gt;</span>O 型<span class="kw">&lt;/option&gt;</span>
+      <span class="kw">&lt;/select&gt;</span> <span class="kw">&lt;br/&gt;</span>
+自我介紹： <span class="kw">&lt;br/&gt;</span>
+<span class="kw">&lt;textarea</span><span class="ot"> name=</span><span class="st">&quot;AboutMe&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;/textarea&gt;</span> <span class="kw">&lt;br/&gt;</span>
+
+<span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="ot"> value=</span><span class="st">&quot;送出&quot;</span><span class="kw">/&gt;&lt;input</span><span class="ot"> type=</span><span class="st">&quot;reset&quot;</span><span class="ot"> value=</span><span class="st">&quot;清除&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+<span class="kw">&lt;/form&gt;</span></code></pre>
+<p>檢視檔案：<a href="https://dl.dropbox.com/u/101584453/wp/code/form.htm">https://dl.dropbox.com/u/101584453/wp/code/form.htm</a></p>
+<div class="figure">
+<img src="../img/form.jpg" alt="表單的顯示結果" /><p class="caption">表單的顯示結果</p>
+</div>
+<p>在上述的範例中，當 submit 類型的送出鈕被按下後，瀏覽器會將這些填寫的資訊，以先前所說的 GET/POST 方式，發送給伺服器，如果 method 欄位是 GET，那麼會採用在 HTTP 表頭網址處傳送 singup?user=xxx&amp;password=xxx .....這樣的形式送出，這種方式會將密碼顯示在瀏覽器的網址列上，比較容易被看到，若 method 欄位是 POST，則會在 HTTP 表頭尾端加上 user=xxx&amp;password=xxx ... 的資訊，不會在網址列上被看到。當然、如果有人監控網路上訊息的話，還是會看得到這些輸入資訊。</p>
+<p>若要更安全，則必須採用 HTTPS 的 SSL 方式傳遞，這種方式會對訊息加密編碼，就比較不會有輸入訊息外洩的危險。</p>
+<p>node.js 對於 GET/POST 訊息的處理，是以 url 與 querystring 為基礎，然後還有個額外的套件 express 可以進行方便的進階處理，以下我們將介紹這些主題。</p>
+<h2 id="get-的處理"><a href="#get-的處理">GET 的處理</a></h2>
+<p>node.js 在處理 GET 表單訊息時，最基礎的方式是使用 url.parse() 與 querystring.parse() 等兩個函數為基礎的，以下是一個簡單的範例。</p>
+<p>檔案：httpget.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">http = <span class="fu">require</span>(<span class="st">&#39;http&#39;</span>);
+qs = <span class="fu">require</span>(<span class="st">&#39;querystring&#39;</span>);
+url = <span class="fu">require</span>(<span class="st">&#39;url&#39;</span>);
+util = <span class="fu">require</span>(<span class="st">&#39;util&#39;</span>);
+
+format = <span class="kw">function</span>() {
+    <span class="kw">return</span> <span class="ot">util</span>.<span class="ot">format</span>.<span class="fu">apply</span>(<span class="kw">null</span>, arguments);
+};
+
+log = <span class="ot">console</span>.<span class="fu">log</span>;
+ip   = <span class="st">&quot;127.0.0.1&quot;</span>;
+port = <span class="dv">8080</span>;
+
+server = <span class="ot">http</span>.<span class="fu">createServer</span>(<span class="kw">function</span> (req, res) {
+  <span class="kw">var</span> path = <span class="ot">url</span>.<span class="fu">parse</span>(<span class="ot">req</span>.<span class="fu">url</span>),
+      parameter = <span class="ot">qs</span>.<span class="fu">parse</span>(<span class="ot">path</span>.<span class="fu">query</span>);
+
+  <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&#39;Content-Type&#39;</span>: <span class="st">&#39;text/plain&#39;</span>});
+  <span class="ot">res</span>.<span class="fu">write</span>(<span class="fu">format</span>(<span class="st">&quot;path=%j</span><span class="ch">\n</span><span class="st">&quot;</span>, path));
+  <span class="ot">res</span>.<span class="fu">write</span>(<span class="fu">format</span>(<span class="st">&quot;parameter=%j</span><span class="ch">\n</span><span class="st">&quot;</span>, parameter));
+  <span class="ot">res</span>.<span class="fu">end</span>();
+});
+
+<span class="ot">server</span>.<span class="fu">listen</span>(port, ip);
+
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="fu">format</span>(<span class="st">&quot;Server running at http://%s:%d</span><span class="ch">\n</span><span class="st">&quot;</span>, ip, port));</code></pre>
+<p>執行結果：</p>
+<pre><code>D:\Dropbox\Public\wp\code&gt;node httpget
+Server running at http://127.0.0.1:8080
+</code></pre>
+<div class="figure">
+<img src="../img/http_get.jpg" />
+</div>
+<p>由於 GET 的傳送方式是透過網址欄，因此您只要在網址上進行修改，就可以看到上述程式會有不同的執行結果。</p>
+<h2 id="post-的處理"><a href="#post-的處理">POST 的處理</a></h2>
+<p>對於 POST 訊息而言，就無法透過修改網址的方式測試了，要示範如何用 node.js 處理 post 訊息，我們必須先有一個 包含表單的 HTML 網頁，然後在 form 欄位內指定 <code>method=&quot;POST&quot;</code> ，這樣當您填完按下 submit 送出鈕時，網頁中所 填寫的資訊就會附加在 HTTP 表頭的尾部傳送出去。</p>
+<p>檔案：httppost.htm</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+<span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;utf-8&quot;</span> <span class="kw">/&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+  <span class="kw">&lt;body&gt;</span> 
+    <span class="kw">&lt;form</span><span class="ot"> id=</span><span class="st">&quot;signup&quot;</span><span class="ot"> method=</span><span class="st">&quot;POST&quot;</span><span class="ot"> action=</span><span class="st">&quot;http://localhost:8080/post&quot;</span><span class="kw">&gt;</span>
+      <span class="kw">&lt;label&gt;</span>帳號：<span class="kw">&lt;/label&gt;&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> id=</span><span class="st">&quot;user&quot;</span><span class="ot"> name=</span><span class="st">&quot;user&quot;</span><span class="ot"> value=</span><span class="st">&quot;ccc&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+      <span class="kw">&lt;label&gt;</span>密碼：<span class="kw">&lt;/label&gt;&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> id=</span><span class="st">&quot;password&quot;</span><span class="ot"> name=</span><span class="st">&quot;password&quot;</span><span class="ot"> value=</span><span class="st">&quot;1234567&quot;</span><span class="kw">/&gt;&lt;br/&gt;</span>
+      <span class="kw">&lt;label&gt;</span>標題：<span class="kw">&lt;/label&gt;&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> id=</span><span class="st">&quot;title&quot;</span><span class="ot"> name=</span><span class="st">&quot;title&quot;</span><span class="ot"> size=</span><span class="st">&quot;80&quot;</span><span class="ot"> value=</span><span class="st">&quot;當您死後，您在意的是公墓裏的那塊牌子，還是 facebook 上的日誌與照片呢？&quot;</span><span class="kw">/&gt;&lt;br&gt;</span>
+      <span class="kw">&lt;textarea</span><span class="ot"> name=</span><span class="st">&quot;text&quot;</span><span class="ot"> rows=</span><span class="st">30</span><span class="ot"> cols=</span><span class="st">80</span><span class="kw">&gt;</span>
+如果我死了！我不會在意自己被葬在哪裡，公墓裏有沒有一個骨灰罈或牌子！
+
+但是我會在意自己的「照片、錄影、網誌、facebook、YouTube上的影片、電子書、以及我所創辦的程式人雜誌」是否有人接手、整理或出版。
+
+我不希望死後 facebook 上的資訊就被視為靜止戶而刪除，我不希望網誌上的資訊雜亂無章，我不希望數位相機的照片與錄影從此消失，我不希望那些美好的記憶在家人的腦海裡逐漸模糊！
+
+我希望這些資訊可以變成我的日記、著作，有人幫我剪接這些影片，在喪禮上可以回顧我的一生，我希望我的小孩有空時能透過這些資訊瞭解我，甚至是與已經身在天堂的我對話，當他有的生命遇到疑問時，可以從我的人生經驗當中得到啟發，或者些許的指引與安慰！
+
+如果我的老婆小孩經濟困難，我希望可以從我的數位遺產中找到有價值出版的作品，幫助他們度過難關，如果他們的經濟情況不錯，我希望這些價值就捐獻給公益團體。
+
+要完成這些事，就必須要有一個組織，提供「數位遺產管理」的服務。這需要有一些工具可以擷取出這些數位遺產，需要一些人力可以幫組織與整理，並且需要服務人員對家屬提供適當的協助。所以我想，這需要一整個公司，甚至整個供應鏈的配合。
+
+這是一個全新的領域 -- 「數位殯葬業 + 數位遺產管理事業」，當您抱怨網路行業都已經被 Google 、Facebook 、淘寶等公司壟斷的時候，實體的世界當中仍然有很多的創業機會，等著您去開發！
+      <span class="kw">&lt;/textarea&gt;&lt;br/&gt;</span>
+      <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="ot"> value=</span><span class="st">&quot;送出&quot;</span> <span class="kw">/&gt;</span>
+    <span class="kw">&lt;/form&gt;</span>
+  <span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<div class="figure">
+<img src="../img/httppost_htm.jpg" />
+</div>
+<p>接著、我們就可以用請求參數 req 的 <code>on(&quot;data&quot;, ...)</code> 事件與接收資料，然後在 <code>on(&quot;end&quot;, ...)</code> 事件 時完成接收並處理 POST 訊息，如以下程式所示。</p>
+<p>檔案：httppost.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">http = <span class="fu">require</span>(<span class="st">&#39;http&#39;</span>);
+qs = <span class="fu">require</span>(<span class="st">&#39;querystring&#39;</span>);
+url = <span class="fu">require</span>(<span class="st">&#39;url&#39;</span>);
+util = <span class="fu">require</span>(<span class="st">&#39;util&#39;</span>);
+
+format = <span class="kw">function</span>() {
+    <span class="kw">return</span> <span class="ot">util</span>.<span class="ot">format</span>.<span class="fu">apply</span>(<span class="kw">null</span>, arguments);
+};
+
+log = <span class="ot">console</span>.<span class="fu">log</span>;
+ip   = <span class="st">&quot;127.0.0.1&quot;</span>;
+port = <span class="dv">8080</span>;
+
+server = <span class="ot">http</span>.<span class="fu">createServer</span>(<span class="kw">function</span> (req, res) {
+  <span class="kw">var</span> path = <span class="ot">url</span>.<span class="fu">parse</span>(<span class="ot">req</span>.<span class="fu">url</span>, <span class="kw">true</span>),
+      parameter = <span class="ot">qs</span>.<span class="fu">parse</span>(<span class="ot">path</span>.<span class="fu">query</span>);
+
+  <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&#39;Content-Type&#39;</span>: <span class="st">&#39;text/plain&#39;</span>});
+  formData = <span class="st">&#39;&#39;</span>;
+  <span class="ot">req</span>.<span class="fu">on</span>(<span class="st">&quot;data&quot;</span>, <span class="kw">function</span>(data) {
+    <span class="kw">return</span> formData += data;
+  });
+  <span class="ot">req</span>.<span class="fu">on</span>(<span class="st">&quot;end&quot;</span>, <span class="kw">function</span>() {
+    <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&quot;Content-Type&quot;</span>:<span class="st">&quot;text/html; charset=utf-8&quot;</span>});
+    post = <span class="ot">qs</span>.<span class="fu">parse</span>(formData);
+    <span class="fu">log</span>(<span class="fu">format</span>(<span class="st">&quot;post=%j</span><span class="ch">\n</span><span class="st">&quot;</span>, post));
+    user = <span class="ot">post</span>.<span class="fu">user</span>;
+    password = <span class="ot">post</span>.<span class="fu">password</span>;
+    title = <span class="fu">decodeURIComponent</span>(<span class="ot">post</span>.<span class="fu">title</span>);
+    text  = <span class="fu">decodeURIComponent</span>(<span class="ot">post</span>.<span class="fu">text</span>);
+    <span class="ot">res</span>.<span class="fu">write</span>(<span class="st">&quot;user=&quot;</span>+user+<span class="st">&quot;&lt;br/&gt;&quot;</span>);
+    <span class="ot">res</span>.<span class="fu">write</span>(<span class="st">&quot;password=&quot;</span>+password+<span class="st">&quot;&lt;br/&gt;&quot;</span>);
+    <span class="ot">res</span>.<span class="fu">write</span>(<span class="st">&quot;title=&quot;</span>+title+<span class="st">&quot;&lt;br/&gt;&quot;</span>);
+    <span class="ot">res</span>.<span class="fu">write</span>(<span class="st">&quot;text=&quot;</span>+text+<span class="st">&quot;&lt;br/&gt;&quot;</span>);
+    <span class="ot">res</span>.<span class="fu">end</span>();
+  });
+});
+
+<span class="ot">server</span>.<span class="fu">listen</span>(port, ip);
+
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="fu">format</span>(<span class="st">&quot;Server (POST test) running at http://%s:%d</span><span class="ch">\n</span><span class="st">&quot;</span>, ip, port));</code></pre>
+<p>執行結果：</p>
+<pre><code>user=ccc
+password=1234567
+title=當您死後，您在意的是公墓裏的那塊牌子，還是 facebook 上的日誌與照片呢？
+text=如果我死了！我不會在意自己被葬在哪裡，公墓裏有沒有一個骨灰罈或牌子！ 但是我會在意
+...
+...
+等著您去開發！ </code></pre>
+<div class="figure">
+<img src="../img/httppost.jpg" />
+</div>
+<h2 id="網路記事本"><a href="#網路記事本">網路記事本</a></h2>
+<p>接著、讓我們用一個完整的「網路記事本」範例，來說明 node.js 的表單處理過程，在這個範例中， 我們用了 express 這個套件，以便能更方便的處理網址所對應的不同功能，在執行程式前，請先用 下列指令安裝 express 套件。</p>
+<pre><code>$ npm install express -g</code></pre>
+<p>整個網路記事本的專案，您可以從下列網址下載：</p>
+<p>網路記事本 (下載點)：<a href="https://dl.dropboxusercontent.com/u/101584453/wp/code/noteserver1.zip">noteserver1.zip</a></p>
+<p>以下是該程式的執行過程：</p>
+<pre><code>D:\Dropbox\Public\wp\code\noteserver1&gt;node NoteServer.js
+start NoteServer
+
+
+note ifidie.txt
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot; /&gt;
+&lt;/head&gt;
+....
+</code></pre>
+<p>以下是該程式的一些執行畫面，當您在網址上輸入以下內容時，您將可以編輯 ifidie.txt 這個檔案。</p>
+<pre><code>http://127.0.0.1/note/ifidie.txt</code></pre>
+<div class="figure">
+<img src="../img/Note_Edit1.jpg" alt="編輯已存在的檔案 ifidie.txt" /><p class="caption">編輯已存在的檔案 ifidie.txt</p>
+</div>
+<p>編輯完後送出，您可以看到下列儲存訊息，此時如果您在點選 ifidie.txt 這個超連結，就能回到編輯畫面，繼續編輯其內容。</p>
+<div class="figure">
+<img src="../img/Note_Edit1.jpg" alt="編輯完後的儲存訊息 ifidie.txt" /><p class="caption">編輯完後的儲存訊息 ifidie.txt</p>
+</div>
+<p>假如您輸入一個原本不存在的檔案名稱時，那麼內容就會顯示「檔案不存在，您可修改本文後存檔！」，然後您同樣可以編輯後 按下「送出」鍵儲存，此時上述程式將會建立一個新的 <code>abc.txt</code> 檔案，其內容即為您所輸入的內容。</p>
+<div class="figure">
+<img src="../img/Note_Edit_new.jpg" alt="編輯不存在的檔案 abc.txt" /><p class="caption">編輯不存在的檔案 abc.txt</p>
+</div>
+<p>上述網路記事本的完整程式碼如下所示：</p>
+<p>檔案：NoteServer.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> path = <span class="fu">require</span>(<span class="st">&#39;path&#39;</span>);
+<span class="kw">var</span> fs = <span class="fu">require</span>(<span class="st">&quot;fs&quot;</span>);
+<span class="kw">var</span> qs = <span class="fu">require</span>(<span class="st">&#39;querystring&#39;</span>);
+<span class="kw">var</span> express = <span class="fu">require</span>(<span class="st">&quot;express&quot;</span>);
+<span class="kw">var</span> app = <span class="fu">express</span>();    
+<span class="ot">app</span>.<span class="fu">listen</span>(<span class="dv">80</span>);
+
+<span class="kw">var</span> noteTemplate = <span class="st">&quot;&quot;</span>;
+
+<span class="ot">fs</span>.<span class="fu">readFile</span>(<span class="st">&quot;note.htm&quot;</span>, <span class="st">&quot;utf8&quot;</span>, <span class="kw">function</span>(err, file) {
+    noteTemplate = file;
+});
+
+<span class="ot">fs</span>.<span class="fu">readFile</span>(<span class="st">&quot;save.htm&quot;</span>, <span class="st">&quot;utf8&quot;</span>, <span class="kw">function</span>(err, file) {
+    saveTemplate = file;
+});
+
+<span class="kw">var</span> error = <span class="kw">function</span>(err, res) {
+    <span class="kw">if</span> (err) {
+        <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">404</span>, {<span class="st">&#39;Content-Type&#39;</span>: <span class="st">&#39;text/plain&#39;</span>});
+        <span class="ot">res</span>.<span class="fu">end</span>();
+    }
+}
+
+<span class="kw">var</span> response = <span class="kw">function</span>(res, type, text) {
+    <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&#39;Content-Type&#39;</span>: type});
+    <span class="ot">res</span>.<span class="fu">write</span>(text);
+    <span class="ot">console</span>.<span class="fu">log</span>(text);
+    <span class="ot">res</span>.<span class="fu">end</span>();
+}
+    
+<span class="ot">app</span>.<span class="fu">post</span>(<span class="st">&#39;/save/:path&#39;</span>, <span class="kw">function</span>(req, res){
+    <span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&#39;save &#39;</span> + <span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>);
+    <span class="kw">var</span> path = <span class="st">&quot;./&quot;</span>+<span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>;
+    formData = <span class="st">&#39;&#39;</span>;
+    <span class="ot">req</span>.<span class="fu">on</span>(<span class="st">&quot;data&quot;</span>, <span class="kw">function</span> (chunk) {
+        formData += chunk;
+    });
+
+    <span class="ot">req</span>.<span class="fu">on</span>(<span class="st">&quot;end&quot;</span>, <span class="kw">function</span> () {
+        form = <span class="ot">qs</span>.<span class="fu">parse</span>(formData);
+        <span class="ot">fs</span>.<span class="fu">writeFile</span>(path, <span class="ot">form</span>.<span class="fu">note</span>, <span class="kw">function</span> (err) {
+          <span class="kw">if</span> (!err)
+            <span class="fu">response</span>(res, <span class="st">&quot;text/html&quot;</span>, <span class="ot">saveTemplate</span>.<span class="fu">replace</span>(<span class="st">&quot;[[?path?]]&quot;</span>, <span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>)
+            .<span class="fu">replace</span>(<span class="st">&quot;[[?path?]]&quot;</span>, <span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>)
+            .<span class="fu">replace</span>(<span class="st">&quot;[[?path?]]&quot;</span>, <span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>).<span class="fu">replace</span>(<span class="st">&quot;[[?fileText?]]&quot;</span>, <span class="ot">form</span>.<span class="fu">note</span>));
+        });
+    }); 
+});
+
+<span class="ot">app</span>.<span class="fu">get</span>(<span class="st">&#39;/note/:path&#39;</span>, <span class="kw">function</span>(req, res){
+    <span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&#39;note &#39;</span> + <span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>);
+    <span class="kw">var</span> path = <span class="st">&quot;./&quot;</span>+<span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>;
+    <span class="ot">fs</span>.<span class="fu">readFile</span>(path, <span class="st">&quot;utf8&quot;</span>, <span class="kw">function</span>(err, file) {
+        <span class="kw">if</span> (err)
+            <span class="fu">response</span>(res, <span class="st">&quot;text/html&quot;</span>, <span class="ot">noteTemplate</span>.<span class="fu">replace</span>(<span class="st">&quot;[[?path?]]&quot;</span>, <span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>)
+            .<span class="fu">replace</span>(<span class="st">&quot;[[?path?]]&quot;</span>, <span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>).<span class="fu">replace</span>(<span class="st">&quot;[[?fileText?]]&quot;</span>, <span class="st">&quot;檔案不存在，您可修改本文後存檔！&quot;</span>));
+        <span class="kw">else</span>
+            <span class="fu">response</span>(res, <span class="st">&quot;text/html&quot;</span>, <span class="ot">noteTemplate</span>.<span class="fu">replace</span>(<span class="st">&quot;[[?path?]]&quot;</span>, <span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>)
+            .<span class="fu">replace</span>(<span class="st">&quot;[[?path?]]&quot;</span>, <span class="ot">req</span>.<span class="ot">params</span>.<span class="fu">path</span>).<span class="fu">replace</span>(<span class="st">&quot;[[?fileText?]]&quot;</span>, file));
+    });
+});
+
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&#39;start NoteServer</span><span class="ch">\n</span><span class="st">&#39;</span>);</code></pre>
+<p>檔案：note.htm</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+<span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;utf-8&quot;</span> <span class="kw">/&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+  <span class="kw">&lt;body&gt;</span> 
+    <span class="kw">&lt;form</span><span class="ot"> method=</span><span class="st">&quot;POST&quot;</span><span class="ot"> action=</span><span class="st">&quot;/save/[[?path?]]&quot;</span><span class="kw">&gt;</span>
+      <span class="kw">&lt;label&gt;</span>檔案路徑：[[?path?]]<span class="kw">&lt;/label&gt;&lt;br&gt;</span>
+      <span class="kw">&lt;textarea</span><span class="ot"> name=</span><span class="st">&quot;note&quot;</span><span class="ot"> rows=</span><span class="st">30</span><span class="ot"> cols=</span><span class="st">80</span><span class="kw">&gt;</span>
+[[?fileText?]]      
+      <span class="kw">&lt;/textarea&gt;&lt;br/&gt;</span>
+      <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="ot"> value=</span><span class="st">&quot;送出&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;/form&gt;</span>
+  <span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>檔案：save.htm</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt; 
+save:path=&lt;a href=&quot;/note/[[?path?]]&quot;&gt;[[?path?]]&lt;/a&gt;
+&lt;pre&gt;
+[[?fileText?]]      
+&lt;/pre&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>檔案：ifidie.txt</p>
+<pre><code>如果我死了！我不會在意自己被葬在哪裡，公墓裏有沒有一個骨灰罈或牌子！
+
+但是我會在意自己的「照片、錄影、網誌、facebook、YouTube上的影片、電子書、以及我所創辦的程式人雜誌」是否有人接手、整理或出版。
+
+我不希望死後 facebook 上的資訊就被視為靜止戶而刪除，我不希望網誌上的資訊雜亂無章，我不希望數位相機的照片與錄影從此消失，我不希望那些美好的記憶在家人的腦海裡逐漸模糊！
+
+我希望這些資訊可以變成我的日記、著作，有人幫我剪接這些影片，在喪禮上可以回顧我的一生，我希望我的小孩有空時能透過這些資訊瞭解我，甚至是與已經身在天堂的我對話，當他有的生命遇到疑問時，可以從我的人生經驗當中得到啟發，或者些許的指引與安慰！
+
+如果我的老婆小孩經濟困難，我希望可以從我的數位遺產中找到有價值出版的作品，幫助他們度過難關，如果他們的經濟情況不錯，我希望這些價值就捐獻給公益團體。
+
+要完成這些事，就必須要有一個組織，提供「數位遺產管理」的服務。這需要有一些工具可以擷取出這些數位遺產，需要一些人力可以幫組織與整理，並且需要服務人員對家屬提供適當的協助。所以我想，這需要一整個公司，甚至整個供應鏈的配合。
+
+這是一個全新的領域 -- 「數位殯葬業 + 數位遺產管理事業」，當您抱怨網路行業都已經被 Google 、Facebook 、淘寶等公司壟斷的時候，實體的世界當中仍然有很多的創業機會，等著您去開發！</code></pre>
+<h1 id="結語"><a href="#結語">結語</a></h1>
+<p>Web 可以說是 1990 年以來最重要的程式技術，但由於技術的演進呈現多元而紛亂的過程，因此總是讓初學者眼花撩亂。</p>
+<p>您可以看到像 CGI, PHP, ASP, ASP.NET, JSP, Ruby on Rail, Python Dejango, Node.js 等技術，都可以用來 實作 Web 的伺服端程式，還好客戶端大致都統一在 HTML+CSS+JavaScript 的架構之下，雖然中間也有 Flash 技術的風行， 但 Flash 最近已經有逐漸被 HTML 5.0 取代的跡象。</p>
+<p>在本書中，我們採用了一個相對較簡單的開發架構，也就是 HTML+CSS+JavaScript+Node.js 這樣的架構。在這種架構下， 只需要學會一種程式語言，也就是 JavaScript，希望這樣可以讓網站設計的學習者用最小的力氣，得到最大的效用。</p>
+<p>但本書已經盡可能的涵蓋了筆者認為重要的部份，未來、如果有任何新的主題，筆者隨時會在補上，希望這樣的一本書 能對讀者有所幫助。</p>
+<h1 id="附錄"><a href="#附錄">附錄</a></h1>
+<h2 id="目錄-含教學影片"><a href="#目錄-含教學影片">目錄 (含教學影片)</a></h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">主題</th>
+<th align="left">教學影片</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">第 1 章. <a href="introduction.html">Web 程式簡介</a></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">第 2 章. <a href="html.html">HTML 網頁設計</a></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">─ HTML 基礎 1</td>
+<td align="left"><a href="http://youtu.be/e0dQYn0vzeQ">http://youtu.be/e0dQYn0vzeQ</a></td>
+</tr>
+<tr class="even">
+<td align="left">─ HTML 基礎 2</td>
+<td align="left"><a href="http://youtu.be/DTRTWv0c-mY">http://youtu.be/DTRTWv0c-mY</a></td>
+</tr>
+<tr class="odd">
+<td align="left">第 3 章. <a href="css.html">CSS 版面設計</a></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">─ CSS 樣式語言 1</td>
+<td align="left"><a href="http://youtu.be/FcFk4spEBlU">http://youtu.be/FcFk4spEBlU</a></td>
+</tr>
+<tr class="odd">
+<td align="left">─ CSS 樣式語言 2</td>
+<td align="left"><a href="http://youtu.be/BBq2qcWe3Fs">http://youtu.be/BBq2qcWe3Fs</a></td>
+</tr>
+<tr class="even">
+<td align="left">第 4 章. <a href="javascript.html">JavaScript 程式設計</a></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">第 5 章. <a href="javascript_string.html">JavaScript 的字串處理</a></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">第 6 章. <a href="dhtml.html">DHTML 動態網頁</a></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">第 7 章. <a href="node.html">Node.js 命令列 - 讓 JavaScript 作為一般程式執行</a></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">─ node.js 簡介</td>
+<td align="left"><a href="http://youtu.be/HfvgT6ow12E">http://youtu.be/HfvgT6ow12E</a></td>
+</tr>
+<tr class="odd">
+<td align="left">─ node.js 基礎</td>
+<td align="left"><a href="http://youtu.be/l5S-855PKMk">http://youtu.be/l5S-855PKMk</a></td>
+</tr>
+<tr class="even">
+<td align="left">- node.js 的字串</td>
+<td align="left"><a href="http://youtu.be/dtT3JgL9-7k">http://youtu.be/dtT3JgL9-7k</a></td>
+</tr>
+<tr class="odd">
+<td align="left">- node.js 正規表達式 1</td>
+<td align="left"><a href="http://youtu.be/hvF2iy3Ew4Y">http://youtu.be/hvF2iy3Ew4Y</a></td>
+</tr>
+<tr class="even">
+<td align="left">- node.js 正規表達式 2</td>
+<td align="left"><a href="http://youtu.be/QPf0Gn57b3w">http://youtu.be/QPf0Gn57b3w</a></td>
+</tr>
+<tr class="odd">
+<td align="left">─ node.js 命令列 1</td>
+<td align="left"><a href="http://youtu.be/MF3faHnnWiA">http://youtu.be/MF3faHnnWiA</a></td>
+</tr>
+<tr class="even">
+<td align="left">─ node.js 命令列 2</td>
+<td align="left"><a href="http://youtu.be/G2V29mO5wo0">http://youtu.be/G2V29mO5wo0</a></td>
+</tr>
+<tr class="odd">
+<td align="left">─ node.js 物件導向</td>
+<td align="left"><a href="http://youtu.be/he6-GzX8z54">http://youtu.be/he6-GzX8z54</a></td>
+</tr>
+<tr class="even">
+<td align="left">─ node.js 檔案讀寫</td>
+<td align="left"><a href="http://youtu.be/1WxnW62XAqI">http://youtu.be/1WxnW62XAqI</a></td>
+</tr>
+<tr class="odd">
+<td align="left">─ node.js 物件模組定義</td>
+<td align="left"><a href="http://youtu.be/XedEvcEZCXE">http://youtu.be/XedEvcEZCXE</a></td>
+</tr>
+<tr class="even">
+<td align="left">─ node.js 靜態模組定義</td>
+<td align="left"><a href="http://youtu.be/HfvgT6ow12E">http://youtu.be/HfvgT6ow12E</a></td>
+</tr>
+<tr class="odd">
+<td align="left">─ node.js 匿名函數 Callback 1</td>
+<td align="left"><a href="http://youtu.be/0jC2TWIrMnU">http://youtu.be/0jC2TWIrMnU</a></td>
+</tr>
+<tr class="even">
+<td align="left">─ node.js 匿名函數 Callback 2</td>
+<td align="left"><a href="http://youtu.be/Xg-3LKqrkN8">http://youtu.be/Xg-3LKqrkN8</a></td>
+</tr>
+<tr class="odd">
+<td align="left">第 8 章. <a href="node_web.html">Node.js Web 程式</a></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">─ node.js Hello Server</td>
+<td align="left"><a href="http://youtu.be/iohBu4gS770">http://youtu.be/iohBu4gS770</a></td>
+</tr>
+<tr class="odd">
+<td align="left">─ node.js 簡易的 HtmlServer</td>
+<td align="left"><a href="http://youtu.be/NWcREc8l2mQ">http://youtu.be/NWcREc8l2mQ</a></td>
+</tr>
+<tr class="even">
+<td align="left">─ node.js 簡易的 WebServer</td>
+<td align="left"><a href="http://youtu.be/K_tvilxm2I8">http://youtu.be/K_tvilxm2I8</a></td>
+</tr>
+<tr class="odd">
+<td align="left">第 9 章. <a href="node_form.html">Node.js 表單</a></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">─ node.js GET 參數取得與解析</td>
+<td align="left"><a href="http://youtu.be/z55rIcnhDis">http://youtu.be/z55rIcnhDis</a></td>
+</tr>
+<tr class="odd">
+<td align="left">─ node.js POST 參數的取得與處理</td>
+<td align="left"><a href="http://youtu.be/VWOQapnQfb4">http://youtu.be/VWOQapnQfb4</a></td>
+</tr>
+<tr class="even">
+<td align="left">─ node.js 網路記事本 1</td>
+<td align="left"><a href="http://youtu.be/uOqW7TNMeFw">http://youtu.be/uOqW7TNMeFw</a></td>
+</tr>
+<tr class="odd">
+<td align="left">─ node.js 網路記事本 2</td>
+<td align="left"><a href="http://youtu.be/8lFAcZLsQ9w">http://youtu.be/8lFAcZLsQ9w</a></td>
+</tr>
+<tr class="even">
+<td align="left">─ node.js 網路記事本 3</td>
+<td align="left"><a href="http://youtu.be/6rduY-GDHB4">http://youtu.be/6rduY-GDHB4</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="考題與解答"><a href="#考題與解答">考題與解答</a></h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">學校</th>
+<th align="left">科系</th>
+<th align="left">學期</th>
+<th align="left">課程</th>
+<th align="left">名稱</th>
+<th align="left">考題</th>
+<th align="left">解答</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">金門大學</td>
+<td align="left">資工系</td>
+<td align="left">101學年下學期</td>
+<td align="left">網路程式設計</td>
+<td align="left">期中考</td>
+<td align="left"><a href="https://dl.dropboxusercontent.com/u/101584453/cs/exam/101bWebExam1.pdf">101bWebExam1.pdf</a></td>
+<td align="left"><a href="https://dl.dropboxusercontent.com/u/101584453/cs/exam/101bWebExam1Answer.pdf">101bWebExam1Answer.pdf</a></td>
+</tr>
+<tr class="even">
+<td align="left">金門大學</td>
+<td align="left">資工系</td>
+<td align="left">101學年下學期</td>
+<td align="left">網路程式設計</td>
+<td align="left">期末考</td>
+<td align="left"><a href="https://dl.dropboxusercontent.com/u/101584453/cs/exam/101bWebExam2.pdf">101bWebExam2.pdf</a></td>
+<td align="left"><a href="https://dl.dropboxusercontent.com/u/101584453/cs/exam/101bWebExam2Answer.pdf">101bWebExam2Answer.pdf</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="footer">
+<a href="http://ccckmit.wikidot.com">陳鍾誠</a>衍生自<a href="http://zh.wikipedia.org/">維基百科</a>之作品：採用 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/ ">創作共用：姓名標示、相同方式分享</a> <a href="license.html">授權</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,171 @@
+# JavaScript 語言進階
+
+## Node.js 的繼承方法
+
+
+### 繼承的實作方式：使用 util.inherits(Child, Parent)
+
+簡單範例：inherit1.js
+
+```javascript
+var util = require("util");
+
+function Parent() {
+  this.age = 40;
+}
+
+Parent.prototype.toStr = function() {
+  return "Parent:toStr age="+this.age;
+}
+
+Parent.prototype.callf = function() {
+  console.log("Parent:callf");
+  return this.f();
+}
+
+function Child() {
+  this.age = 10;
+}
+
+util.inherits(Child, Parent);
+
+Child.prototype.toStr = function() {
+    return "Child:toStr age="+this.age;
+}
+
+Child.prototype.f = function() {
+   console.log("Child:f");
+}
+
+Child.prototype.print = function() {
+  return console.log(this.toStr());
+}
+
+parent = new Parent();
+console.log(parent.toStr());
+// parent.print();
+child = new Child();
+console.log(child.toStr());
+child.print();
+child.callf();
+```
+
+執行結果
+
+```
+D:\Dropbox\Public\oc\code>node inherit1
+Parent:toStr age=40
+Child:toStr age=10
+Child:toStr age=10
+Parent:callf
+Child:f
+```
+
+進階範例：
+
+檔案：inherit2.js
+
+```javascript
+var util = require("util");
+
+function Parent(name) {
+  this.name = name;
+  this.age = 40;
+}
+
+Parent.prototype.toStr = function() {
+  return "Parent:toStr name="+this.name+" age="+this.age;
+}
+
+Parent.prototype.callf = function() {
+  console.log("Parent:callf");
+  return this.f();
+}
+
+function Child(name) {
+  this.name = name;
+  this.age = 10;
+}
+
+util.inherits(Child, Parent);
+
+Child.prototype.toStr = function() {
+    console.log("Child=%s", Child);
+    console.log("Child.super_=%s", Child.super_);
+    console.log("Child.super_.prototype=%s", Child.super_.prototype);
+    console.log("Child.super_.prototype.constructor=%s", Child.super_.prototype.constructor);
+    console.log("this.__proto__.constructor=%s", this.__proto__.constructor);
+    console.log("Child.super_.prototype.toStr()=%s", Child.super_.prototype.toStr());
+    console.log("Parent.prototype.toStr.call(this)=%s", Parent.prototype.toStr.call(this));
+//    console.log("this.super_.toStr()", this.super_.toStr()); // 失敗
+    Parent.prototype.toStr.call(this);
+    return "Child:toStr > "+Parent.prototype.toStr.call(this);
+}
+
+Child.prototype.f = function() {
+   console.log("Child:f");
+}
+
+Child.prototype.print = function() {
+  return console.log(this.toStr());
+}
+
+parent = new Parent("John");
+console.log(parent.toStr());
+// parent.print();
+child = new Child("Johnson");
+console.log(child.toStr());
+child.print();
+child.callf();
+
+```
+
+執行結果：
+
+```
+D:\Dropbox\Public\oc\code>node inherit2
+Parent:toStr name=John age=40
+Child=function Child(name) {
+  this.name = name;
+  this.age = 10;
+}
+Child.super_=function Parent(name) {
+  this.name = name;
+  this.age = 40;
+}
+Child.super_.prototype=[object Object]
+Child.super_.prototype.constructor=function Parent(name) {
+  this.name = name;
+  this.age = 40;
+}
+this.__proto__.constructor=function Child(name) {
+  this.name = name;
+  this.age = 10;
+}
+Child.super_.prototype.toStr()=Parent:toStr name=undefined age=undefined
+Parent.prototype.toStr.call(this)=Parent:toStr name=Johnson age=10
+Child:toStr > Parent:toStr name=Johnson age=10
+Child=function Child(name) {
+  this.name = name;
+  this.age = 10;
+}
+Child.super_=function Parent(name) {
+  this.name = name;
+  this.age = 40;
+}
+Child.super_.prototype=[object Object]
+Child.super_.prototype.constructor=function Parent(name) {
+  this.name = name;
+  this.age = 40;
+}
+this.__proto__.constructor=function Child(name) {
+  this.name = name;
+  this.age = 10;
+}
+Child.super_.prototype.toStr()=Parent:toStr name=undefined age=undefined
+Parent.prototype.toStr.call(this)=Parent:toStr name=Johnson age=10
+Child:toStr > Parent:toStr name=Johnson age=10
+Parent:callf
+Child:f
+
+```

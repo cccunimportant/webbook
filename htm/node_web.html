@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" href="../css/book.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+  <h1><a href="index.htm">電子書：Web 程式設計</a></h1>
+  <table id="bar" border="0" style="border:0;"><tr style="border:0;">
+    <td style="text-align:left;border:0;"> <a href="book.html">目錄</a> | <a href="download.html">下載</a> | <a href="course.html">課程</a> | <a href="forum.html">討論</a> | <a href="exam.html">測驗</a></td>
+    <td style="text-align:right;border:0;"><a href="http://ccckmit.wikidot.com/">陳鍾誠</a> 於 <a href="http://www.nqu.edu.tw/">金門大學</a></td>
+  </tr></table>
+</div>
+<div id="content">
+<div id="TOC">
+<ul>
+<li><a href="#node.js----web-程式">Node.js -- Web 程式</a><ul>
+<li><a href="#第一個-web-程式">第一個 Web 程式</a></li>
+<li><a href="#htmlserver">HtmlServer</a></li>
+<li><a href="#簡易-webserver">簡易 WebServer</a></li>
+<li><a href="#較完整的-webserver-非同步版">較完整的 WebServer (非同步版)</a></li>
+<li><a href="#參考文獻">參考文獻</a></li>
+</ul></li>
+</ul>
+</div>
+<h1 id="node.js----web-程式"><a href="#node.js----web-程式">Node.js -- Web 程式</a></h1>
+<h2 id="第一個-web-程式"><a href="#第一個-web-程式">第一個 Web 程式</a></h2>
+<p>程式：HelloWeb.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> http = <span class="fu">require</span>(<span class="st">&#39;http&#39;</span>);
+<span class="ot">http</span>.<span class="fu">createServer</span>(<span class="kw">function</span> (req, res) {
+  <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&#39;Content-Type&#39;</span>: <span class="st">&#39;text/plain&#39;</span>});
+  <span class="ot">res</span>.<span class="fu">end</span>(<span class="st">&#39;Hello Node.js!</span><span class="ch">\n</span><span class="st">&#39;</span>);
+}).<span class="fu">listen</span>(<span class="dv">80</span>, <span class="st">&#39;127.0.0.1&#39;</span>);
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&#39;Server running at http://127.0.0.1:80/&#39;</span>);</code></pre>
+<p>執行結果</p>
+<pre><code>D:\ccc101\nodejs&gt;node WebHello.js
+Server running at http://127.0.0.1:80/</code></pre>
+<div class="figure">
+<img src="../img/WebHello.jpg" />
+</div>
+<h2 id="htmlserver"><a href="#htmlserver">HtmlServer</a></h2>
+<p>執行結果：</p>
+<div class="figure">
+<img src="../img/NodeHtmlServer.jpg" />
+</div>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> server,
+    ip   = <span class="st">&quot;127.0.0.1&quot;</span>,
+    port = <span class="dv">80</span>,
+    http = <span class="fu">require</span>(<span class="st">&#39;http&#39;</span>),
+    fs = <span class="fu">require</span>(<span class="st">&quot;fs&quot;</span>),
+    folderPath = <span class="st">&quot;.&quot;</span>,
+    url = <span class="fu">require</span>(<span class="st">&#39;url&#39;</span>),
+    path,
+    filePath,
+    encode = <span class="st">&quot;utf8&quot;</span>;
+
+server = <span class="ot">http</span>.<span class="fu">createServer</span>(<span class="kw">function</span> (req, res) {
+    path = <span class="ot">url</span>.<span class="fu">parse</span>(<span class="ot">req</span>.<span class="fu">url</span>);
+    filePath = folderPath + <span class="ot">path</span>.<span class="fu">pathname</span>;
+    <span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&quot;filePath=&quot;</span>+filePath);
+    <span class="ot">fs</span>.<span class="fu">readFile</span>(filePath, encode, <span class="kw">function</span>(err, file) {
+      <span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&quot;err=&quot;</span>+err);
+      <span class="kw">if</span> (err) {
+          <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">404</span>, {<span class="st">&#39;Content-Type&#39;</span>: <span class="st">&#39;text/plain&#39;</span>});
+          <span class="ot">res</span>.<span class="fu">end</span>();
+          <span class="kw">return</span>;
+      }
+
+      <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&#39;Content-Type&#39;</span>: <span class="st">&#39;text/html&#39;</span>});
+      <span class="ot">res</span>.<span class="fu">write</span>(file);
+      <span class="ot">console</span>.<span class="fu">log</span>(file);
+      <span class="ot">res</span>.<span class="fu">end</span>();
+    });
+});
+
+<span class="ot">server</span>.<span class="fu">listen</span>(port, ip);
+
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&quot;Server running at http://&quot;</span> + ip + <span class="st">&quot;:&quot;</span> + port);</code></pre>
+<h2 id="簡易-webserver"><a href="#簡易-webserver">簡易 WebServer</a></h2>
+<p>由於 node.js 採用 Event Queue 的方式執行 (類似 Win3.1 中的協同式多工)，而沒有採用 Thread 的方式，因此對所有 輸出入 IO 都應該盡可能採用非同步的方式執行，這樣才能讓 node.js 程式發揮最大的效能，否則就會因為 IO 而卡住。</p>
+<p>因此以下兩個版本當中，以非同步版速度較快。</p>
+<h3 id="簡易-webserver-同步版-效能較差不符合-node.js-的設計理念"><a href="#簡易-webserver-同步版-效能較差不符合-node.js-的設計理念">簡易 WebServer ：同步版 (效能較差，不符合 node.js 的設計理念)</a></h3>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> path = <span class="fu">require</span>(<span class="st">&#39;path&#39;</span>);
+<span class="kw">var</span> fs = <span class="fu">require</span>(<span class="st">&quot;fs&quot;</span>);
+<span class="kw">var</span> qs = <span class="fu">require</span>(<span class="st">&#39;querystring&#39;</span>);
+<span class="kw">var</span> express = <span class="fu">require</span>(<span class="st">&quot;express&quot;</span>);
+<span class="kw">var</span> app = <span class="fu">express</span>();    
+<span class="ot">app</span>.<span class="fu">listen</span>(<span class="dv">80</span>);
+ 
+<span class="kw">var</span> response = <span class="kw">function</span>(res, type, text) {
+    <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&#39;Content-Type&#39;</span>: type});
+    <span class="ot">res</span>.<span class="fu">write</span>(text);
+    <span class="ot">console</span>.<span class="fu">log</span>(text);
+    <span class="ot">res</span>.<span class="fu">end</span>();
+}
+ 
+<span class="ot">app</span>.<span class="fu">get</span>(<span class="st">&#39;*&#39;</span>, <span class="kw">function</span>(req, res){
+  <span class="kw">try</span> {
+    <span class="kw">var</span> path = <span class="st">&#39;.&#39;</span> + <span class="ot">req</span>.<span class="fu">url</span>;
+    <span class="ot">fs</span>.<span class="fu">stat</span>(path, <span class="kw">function</span>(err, pathStat) {
+        <span class="kw">if</span> (err) {
+            <span class="fu">response</span>(res, <span class="st">&quot;text/plain&quot;</span>, <span class="ot">err</span>.<span class="fu">toString</span>());
+            <span class="kw">return</span>;
+        }
+        <span class="kw">if</span> (<span class="ot">pathStat</span>.<span class="fu">isFile</span>()) {
+            <span class="ot">fs</span>.<span class="fu">readFile</span>(path, <span class="st">&quot;utf8&quot;</span>, <span class="kw">function</span>(err, file) {
+                <span class="fu">response</span>(res, <span class="st">&quot;text/html&quot;</span>, file);
+            });
+        } <span class="kw">else</span> <span class="kw">if</span> (<span class="ot">pathStat</span>.<span class="fu">isDirectory</span>()) {
+            <span class="kw">var</span> dirPath = <span class="ot">req</span>.<span class="fu">url</span>;
+            <span class="kw">if</span> (<span class="ot">dirPath</span>.<span class="fu">substring</span>(-<span class="dv">1</span>)!==<span class="st">&quot;/&quot;</span>) 
+                dirPath = dirPath+<span class="st">&quot;/&quot;</span>;
+            <span class="kw">var</span> html = <span class="st">&quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;&quot;</span>+<span class="ot">req</span>.<span class="fu">url</span>+<span class="st">&quot;&lt;/h1&gt;</span><span class="ch">\n</span><span class="st">&quot;</span>;
+            <span class="ot">fs</span>.<span class="fu">readdir</span>(path, <span class="kw">function</span>(err, files) {
+                <span class="kw">for</span> (f <span class="kw">in</span> files) {
+                    fname = files[f];
+                    filePath = dirPath+fname;
+                    html += <span class="st">&quot;&lt;li&gt;&lt;a href=&#39;&quot;</span>+filePath+<span class="st">&quot;&#39;&gt;&quot;</span>+fname+<span class="st">&quot;&lt;/a&gt;&lt;/li&gt;</span><span class="ch">\n</span><span class="st">&quot;</span>;
+                }
+                html += <span class="st">&quot;&lt;body&gt;&lt;/html&gt;&quot;</span>;
+                <span class="fu">response</span>(res, <span class="st">&quot;text/html&quot;</span>, html);
+            });
+        } 
+    });    
+  } <span class="kw">catch</span> (err) {
+    <span class="fu">response</span>(res, <span class="st">&quot;text/plain&quot;</span>, <span class="ot">err</span>.<span class="fu">toString</span>());
+  }
+});
+ 
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&#39;start WebServer</span><span class="ch">\n</span><span class="st">&#39;</span>);</code></pre>
+<h3 id="簡易-webserver-非同步版-效能較好符合-node.js-的設計理念"><a href="#簡易-webserver-非同步版-效能較好符合-node.js-的設計理念">簡易 WebServer ：非同步版 (效能較好，符合 node.js 的設計理念)</a></h3>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">
+<span class="kw">var</span> path = <span class="fu">require</span>(<span class="st">&#39;path&#39;</span>);
+<span class="kw">var</span> fs = <span class="fu">require</span>(<span class="st">&quot;fs&quot;</span>);
+<span class="kw">var</span> qs = <span class="fu">require</span>(<span class="st">&#39;querystring&#39;</span>);
+<span class="kw">var</span> express = <span class="fu">require</span>(<span class="st">&quot;express&quot;</span>);
+<span class="kw">var</span> app = <span class="fu">express</span>();    
+<span class="ot">app</span>.<span class="fu">listen</span>(<span class="dv">80</span>);
+ 
+<span class="kw">var</span> response = <span class="kw">function</span>(res, type, text) {
+    <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&#39;Content-Type&#39;</span>: type});
+    <span class="ot">res</span>.<span class="fu">write</span>(text);
+    <span class="ot">console</span>.<span class="fu">log</span>(text);
+    <span class="ot">res</span>.<span class="fu">end</span>();
+}
+ 
+<span class="ot">app</span>.<span class="fu">get</span>(<span class="st">&#39;*&#39;</span>, <span class="kw">function</span>(req, res){
+  <span class="kw">try</span> {
+    <span class="kw">var</span> path = <span class="st">&#39;.&#39;</span> + <span class="ot">req</span>.<span class="fu">url</span>;
+    <span class="ot">fs</span>.<span class="fu">stat</span>(path, <span class="kw">function</span>(err, pathStat) {
+        <span class="kw">if</span> (<span class="ot">pathStat</span>.<span class="fu">isFile</span>()) {
+            <span class="ot">fs</span>.<span class="fu">readFile</span>(path, <span class="st">&quot;utf8&quot;</span>, <span class="kw">function</span>(err, file) {
+                <span class="fu">response</span>(res, <span class="st">&quot;text/html&quot;</span>, file);
+            });
+        } <span class="kw">else</span> <span class="kw">if</span> (<span class="ot">pathStat</span>.<span class="fu">isDirectory</span>()) {
+            <span class="kw">var</span> html = <span class="st">&quot;&lt;html&gt;&lt;body&gt;&quot;</span>;
+            <span class="ot">fs</span>.<span class="fu">readdir</span>(path, <span class="kw">function</span>(err, files) {
+                <span class="kw">for</span> (f <span class="kw">in</span> files) {
+                    fname = files[f];
+                    filePath = <span class="ot">req</span>.<span class="fu">url</span>+fname;
+                    html += <span class="st">&quot;&lt;li&gt;&lt;a href=&#39;&quot;</span>+filePath+<span class="st">&quot;&#39;&gt;&quot;</span>
+                             +filePath+<span class="st">&quot;&lt;/a&gt;&lt;/li&gt;</span><span class="ch">\n</span><span class="st">&quot;</span>;
+                }
+                html += <span class="st">&quot;&lt;body&gt;&lt;/html&gt;&quot;</span>;
+                <span class="fu">response</span>(res, <span class="st">&quot;text/html&quot;</span>, html);
+            });
+        } 
+    });    
+  } <span class="kw">catch</span> (err) {
+    <span class="fu">response</span>(res, <span class="st">&quot;text/plain&quot;</span>, <span class="ot">err</span>.<span class="fu">toString</span>());
+  }
+});
+ 
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&#39;start WebServer</span><span class="ch">\n</span><span class="st">&#39;</span>);</code></pre>
+<h2 id="較完整的-webserver-非同步版"><a href="#較完整的-webserver-非同步版">較完整的 WebServer (非同步版)</a></h2>
+<p>程式：WebServer2.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> path = <span class="fu">require</span>(<span class="st">&#39;path&#39;</span>);
+<span class="kw">var</span> fs = <span class="fu">require</span>(<span class="st">&quot;fs&quot;</span>);
+<span class="kw">var</span> qs = <span class="fu">require</span>(<span class="st">&#39;querystring&#39;</span>);
+<span class="kw">var</span> express = <span class="fu">require</span>(<span class="st">&quot;express&quot;</span>);
+<span class="kw">var</span> app = <span class="fu">express</span>();
+
+<span class="kw">var</span> mimeType = {
+   <span class="st">&quot;jpg&quot;</span>:<span class="st">&quot;image/jpeg&quot;</span>, 
+   <span class="st">&quot;gif&quot;</span>:<span class="st">&quot;image/gif&quot;</span>, 
+   <span class="st">&quot;png&quot;</span>:<span class="st">&quot;image/png&quot;</span>, 
+   <span class="st">&quot;svg&quot;</span>:<span class="st">&quot;image/svg&quot;</span>,
+   <span class="st">&quot;zip&quot;</span>:<span class="st">&quot;application/zip&quot;</span>, 
+   <span class="st">&quot;pdf&quot;</span>:<span class="st">&quot;application/pdf&quot;</span>, 
+   <span class="st">&quot;xls&quot;</span>:<span class="st">&quot;application/vnd.ms-excel&quot;</span>, 
+   <span class="st">&quot;ppt&quot;</span>:<span class="st">&quot;application/vnd.ms-powerpoint&quot;</span>, 
+   <span class="st">&quot;doc&quot;</span>:<span class="st">&quot;application/msword&quot;</span>, 
+   <span class="st">&quot;htm&quot;</span>:<span class="st">&quot;text/html&quot;</span>, 
+   <span class="st">&quot;html&quot;</span>:<span class="st">&quot;text/html&quot;</span>
+};
+
+<span class="kw">function</span> <span class="fu">getMimeType</span>(ext) {
+    <span class="kw">var</span> type = mimeType[ext];
+    <span class="kw">if</span> (!type)
+        <span class="kw">return</span> <span class="st">&quot;text/plain&quot;</span>;
+    <span class="kw">else</span>
+        <span class="kw">return</span> type;
+}
+
+<span class="ot">app</span>.<span class="fu">listen</span>(<span class="dv">80</span>);
+
+<span class="kw">var</span> response = <span class="kw">function</span>(res, type, data) {
+    <span class="ot">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&#39;Content-Type&#39;</span>: type});
+    <span class="kw">if</span> (<span class="ot">type</span>.<span class="fu">indexOf</span>(<span class="st">&quot;text/&quot;</span>)&gt;=<span class="dv">0</span>)
+        <span class="ot">res</span>.<span class="fu">end</span>(data);
+    <span class="kw">else</span>
+        <span class="ot">res</span>.<span class="fu">end</span>(data, <span class="st">&quot;binary&quot;</span>);
+}
+
+<span class="ot">app</span>.<span class="fu">get</span>(<span class="st">&#39;*&#39;</span>, <span class="kw">function</span>(req, res){
+  <span class="kw">try</span> {
+    <span class="kw">var</span> path = <span class="st">&#39;.&#39;</span> + <span class="ot">req</span>.<span class="fu">url</span>;
+    <span class="ot">fs</span>.<span class="fu">stat</span>(path, <span class="kw">function</span>(err, pathStat) {
+        <span class="kw">if</span> (err) {
+            <span class="fu">response</span>(res, <span class="st">&quot;text/plain&quot;</span>, <span class="ot">err</span>.<span class="fu">toString</span>());
+            <span class="kw">return</span>;
+        }
+        <span class="kw">if</span> (<span class="ot">pathStat</span>.<span class="fu">isFile</span>()) {
+            <span class="ot">fs</span>.<span class="fu">readFile</span>(path, <span class="kw">function</span>(err, file) {
+                <span class="kw">var</span> tokens = <span class="ot">path</span>.<span class="fu">split</span>(<span class="st">&quot;.&quot;</span>);
+                <span class="kw">var</span> ext = tokens[<span class="ot">tokens</span>.<span class="fu">length</span><span class="dv">-1</span>];
+                <span class="fu">response</span>(res, <span class="fu">getMimeType</span>(ext), file);
+            });
+        } <span class="kw">else</span> <span class="kw">if</span> (<span class="ot">pathStat</span>.<span class="fu">isDirectory</span>()) {
+            <span class="kw">var</span> dirPath = <span class="ot">req</span>.<span class="fu">url</span>;
+            <span class="kw">if</span> (<span class="ot">dirPath</span>.<span class="fu">substring</span>(-<span class="dv">1</span>)!==<span class="st">&quot;/&quot;</span>) 
+                dirPath = dirPath+<span class="st">&quot;/&quot;</span>;
+            <span class="kw">var</span> html = <span class="st">&quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;&quot;</span>+<span class="ot">req</span>.<span class="fu">url</span>+<span class="st">&quot;&lt;/h1&gt;</span><span class="ch">\n</span><span class="st">&quot;</span>;
+            <span class="ot">fs</span>.<span class="fu">readdir</span>(path, <span class="kw">function</span>(err, files) {
+                <span class="kw">for</span> (f <span class="kw">in</span> files) {
+                    fname = files[f];
+                    filePath = dirPath+fname;
+                    html += <span class="st">&quot;&lt;li&gt;&lt;a href=&#39;&quot;</span>+filePath+<span class="st">&quot;&#39;&gt;&quot;</span>+fname+<span class="st">&quot;&lt;/a&gt;&lt;/li&gt;</span><span class="ch">\n</span><span class="st">&quot;</span>;
+                }
+                html += <span class="st">&quot;&lt;body&gt;&lt;/html&gt;&quot;</span>;
+                <span class="fu">response</span>(res, <span class="st">&quot;text/html&quot;</span>, html);
+            });
+        } 
+    }); 
+  } <span class="kw">catch</span> (err) {
+    <span class="fu">response</span>(res, <span class="st">&quot;text/plain&quot;</span>, <span class="ot">err</span>.<span class="fu">toString</span>());
+  }
+});
+
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&#39;start WebServer</span><span class="ch">\n</span><span class="st">&#39;</span>);</code></pre>
+<h2 id="參考文獻"><a href="#參考文獻">參考文獻</a></h2>
+<ul>
+<li>深入浅出Node.js相关的内容 -- <a href="http://www.infoq.com/cn/master-nodejs">http://www.infoq.com/cn/master-nodejs</a>
+<ul>
+<li>深入浅出Node.js（一）：什么是Node.js -- http://www.infoq.com/cn/articles/what-is-nodejs</li>
+<li>深入浅出Node.js（三）：深入Node.js的模块机制 -- http://www.infoq.com/cn/articles/nodejs-module-mechanism</li>
+</ul></li>
+</ul>
+</div>
+<div id="footer">
+<a href="http://ccckmit.wikidot.com">陳鍾誠</a>衍生自<a href="http://zh.wikipedia.org/">維基百科</a>之作品：採用 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/ ">創作共用：姓名標示、相同方式分享</a> <a href="license.html">授權</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" href="../css/book.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+  <h1><a href="index.htm">電子書：Web 程式設計</a></h1>
+  <table id="bar" border="0" style="border:0;"><tr style="border:0;">
+    <td style="text-align:left;border:0;"> <a href="book.html">目錄</a> | <a href="download.html">下載</a> | <a href="course.html">課程</a> | <a href="forum.html">討論</a> | <a href="exam.html">測驗</a></td>
+    <td style="text-align:right;border:0;"><a href="http://ccckmit.wikidot.com/">陳鍾誠</a> 於 <a href="http://www.nqu.edu.tw/">金門大學</a></td>
+  </tr></table>
+</div>
+<div id="content">
+<div id="TOC">
+<ul>
+<li><a href="#node.js-實作基於-markdown-的電子書出版系統">Node.js 實作：基於 markdown 的電子書出版系統</a><ul>
+<li><a href="#markdown-模組">Markdown 模組</a></li>
+<li><a href="#marked-轉換套件">marked 轉換套件</a></li>
+<li><a href="#markdown-動態網頁編輯器">Markdown 動態網頁編輯器</a></li>
+<li><a href="#參考文獻">參考文獻</a></li>
+</ul></li>
+</ul>
+</div>
+<h1 id="node.js-實作基於-markdown-的電子書出版系統"><a href="#node.js-實作基於-markdown-的電子書出版系統">Node.js 實作：基於 markdown 的電子書出版系統</a></h1>
+<h2 id="markdown-模組"><a href="#markdown-模組">Markdown 模組</a></h2>
+<p>showdown : 將 markdown 轉換為 html 最常被用的程式 pagedown : stackoverflow 所使用的 markdown 轉換程式，從 showdown 修改而來 marked 強調速度的 markdown 轉 html 程式 markx : 結合 markdown 與 jade 模板引擎的專案。</p>
+<h2 id="marked-轉換套件"><a href="#marked-轉換套件">marked 轉換套件</a></h2>
+<p>首先，請從下列網址下載 marked.js 這個檔案，然後與下列的測試程式放在同一個資料夾中，這樣測試程式才能順利引用到此模組。</p>
+<ul>
+<li>https://github.com/chjj/marked/blob/master/lib/marked.js</li>
+</ul>
+<p>程式：markedTest.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">marked = <span class="fu">require</span>(<span class="st">&#39;./marked&#39;</span>);
+
+<span class="co">// Set default options</span>
+<span class="ot">marked</span>.<span class="fu">setOptions</span>({
+  <span class="dt">gfm</span>: <span class="kw">true</span>,
+  <span class="dt">tables</span>: <span class="kw">true</span>,
+  <span class="dt">breaks</span>: <span class="kw">false</span>,
+  <span class="dt">pedantic</span>: <span class="kw">false</span>,
+  <span class="dt">sanitize</span>: <span class="kw">true</span>,
+  <span class="dt">smartLists</span>: <span class="kw">true</span>,
+  <span class="dt">langPrefix</span>: <span class="st">&#39;language-&#39;</span>,
+  <span class="dt">highlight</span>: <span class="kw">function</span>(code, lang) {
+    <span class="kw">if</span> (lang === <span class="st">&#39;js&#39;</span>) {
+      <span class="kw">return</span> <span class="ot">highlighter</span>.<span class="fu">javascript</span>(code);
+    }
+    <span class="kw">return</span> code;
+  }
+});
+
+<span class="ot">console</span>.<span class="fu">log</span>(<span class="fu">marked</span>(<span class="st">&#39;i am using __markdown__.&#39;</span>));</code></pre>
+<p>執行結果：</p>
+<pre><code>D:\code\node&gt;node markedTest.js
+&lt;p&gt;i am using &lt;strong&gt;markdown&lt;/strong&gt;.&lt;/p&gt;</code></pre>
+<p>接下來就可以實作完整的轉換程式 md2htm 了，該程式的參數有兩個，執行方式如下：</p>
+<ul>
+<li>node md2htm <markdown input file>
+<html output file>
+</li>
+</ul>
+<p>程式：md2htm.js</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> marked = <span class="fu">require</span>(<span class="st">&#39;./marked&#39;</span>);
+<span class="kw">var</span> fs = <span class="fu">require</span>(<span class="st">&#39;fs&#39;</span>);
+<span class="kw">var</span> argv = <span class="ot">process</span>.<span class="fu">argv</span>;
+<span class="kw">var</span> md = <span class="ot">fs</span>.<span class="fu">readFileSync</span>(<span class="ot">process</span>.<span class="fu">argv</span>[<span class="dv">2</span>], <span class="st">&quot;utf8&quot;</span>);
+
+<span class="co">// Set default options</span>
+<span class="ot">marked</span>.<span class="fu">setOptions</span>({
+  <span class="dt">gfm</span>: <span class="kw">true</span>,
+  <span class="dt">tables</span>: <span class="kw">true</span>,
+  <span class="dt">breaks</span>: <span class="kw">false</span>,
+  <span class="dt">pedantic</span>: <span class="kw">false</span>,
+  <span class="dt">sanitize</span>: <span class="kw">true</span>,
+  <span class="dt">smartLists</span>: <span class="kw">true</span>,
+  <span class="dt">langPrefix</span>: <span class="st">&#39;language-&#39;</span>,
+  <span class="dt">highlight</span>: <span class="kw">function</span>(code, lang) {
+    <span class="kw">if</span> (lang === <span class="st">&#39;js&#39;</span>) {
+      <span class="kw">return</span> <span class="ot">highlighter</span>.<span class="fu">javascript</span>(code);
+    }
+    <span class="kw">return</span> code;
+  }
+});
+
+<span class="kw">var</span> html = <span class="fu">marked</span>(md);
+
+<span class="ot">fs</span>.<span class="fu">writeFileSync</span>(<span class="ot">process</span>.<span class="fu">argv</span>[<span class="dv">3</span>], html, <span class="st">&quot;utf8&quot;</span>);</code></pre>
+<p>執行結果</p>
+<pre><code>D:\code\node&gt;node md2htm.js test.md test.html</code></pre>
+<h2 id="markdown-動態網頁編輯器"><a href="#markdown-動態網頁編輯器">Markdown 動態網頁編輯器</a></h2>
+<p>.... 等待撰寫中 .....</p>
+<h2 id="參考文獻"><a href="#參考文獻">參考文獻</a></h2>
+<ul>
+<li>http://stackoverflow.com/questions/134235/is-there-any-good-markdown-javascript-library-or-control
+<ul>
+<li>Jquery-Markedit - This was forked from wmd-edit quite some time ago and refactored to use jQuery. Seems good at first sight.</li>
+<li>EpicEditor - is also still maintained, has a flexible parser and, as you can see below, the author is highly responsive (see below). IT seems to have good documentation as well. Sadly not working with IE9.</li>
+<li>MarkdownDeep is a third option that is still current. The interesting point with this one is support for Markdown Extra. Has a dependency on JQuery (actually you can also implement without JQuery). Based on the .NET version so documentation is more aligned to that than the JS version. This also works with IE9. It is very easy to use (with JQuery) &amp; very simple. No significant development happening with this though as far as I can see.</li>
+<li>js-markdown-extra is a fairly accurate port of the PHP library and is still under maintenance. It supports Markdown Extra of course.</li>
+</ul></li>
+<li>https://github.com/coreyti/showdown</li>
+<li>https://code.google.com/p/pagedown/
+<ul>
+<li>Stackoverflow 所使用的 markdown 轉 html 引擎。</li>
+<li><a href="https://code.google.com/p/pagedown/wiki/PageDown">https://code.google.com/p/pagedown/wiki/PageDown</a></li>
+</ul></li>
+<li>https://github.com/jgallen23/markx
+<ul>
+<li><a href="http://thechangelog.com/markx-convert-markdown-jade-and-more-to-static-html-with/">http://thechangelog.com/markx-convert-markdown-jade-and-more-to-static-html-with/</a></li>
+</ul></li>
+<li>https://github.com/andris9/node-markdown</li>
+<li>https://github.com/chjj/marked</li>
+</ul>
+</div>
+<div id="footer">
+<a href="http://ccckmit.wikidot.com">陳鍾誠</a>衍生自<a href="http://zh.wikipedia.org/">維基百科</a>之作品：採用 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/ ">創作共用：姓名標示、相同方式分享</a> <a href="license.html">授權</a>
+</div>
+</body>
+</html>
